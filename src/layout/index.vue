@@ -10,6 +10,28 @@
       <app-main />
       <div class="foot-copyright">
         <!-- <span>Copyright © 2021 starplatinumora 版权所有</span> -->
+        <div>
+          <a class="userfulLink" target="_blank" href="https://visualgo.net/zh">   
+           数据结构和算法动态可视化 (Chinese) - VisuAlgo</a>
+
+        </div>
+        <div>
+          <a   class="userfulLink"
+          target="_blank"
+         
+           href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html"> 
+               Data Structure Visualization</a>
+        </div>
+        <div>
+          <a   class="userfulLink"
+          target="_blank"
+           href="https://algorithm-visualizer.org/"> 
+           Algorithm Visualizer</a>
+        </div>
+    
+ 
+
+
       </div>
       <back-to-top :visibility-height="100" :back-position="0" transition-name="fade" ref="backTop"/>
     </div>
@@ -57,6 +79,14 @@ export default {
   @import "~@/styles/mixin.scss";
   @import "~@/styles/variables.scss";
 
+  .userfulLink :hover{
+  color: plum;
+  // 儿子 
+  }
+  .userfulLink:hover{
+    // 自己
+  color: plum;
+  }
   .app-wrapper {
     @include clearfix;
     position: relative;

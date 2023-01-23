@@ -84,6 +84,28 @@ router.afterEach(() => {
 
 Vue.prototype.$$router = router
 
+// 引入jshint用于实现js自动补全提示 
+
+// import jshint from "jshint";
+
+// window.JSHINT = jshint.JSHINT;
+
+// 引入代码编辑器 
+
+// import { codemirror } from "vue-codemirror";
+
+// import "codemirror/lib/codemirror.css";
+
+// import App from "./app/App"
+
+// ...略
+
+// Vue.use(ElementUI);
+
+// Vue.use(codemirror);
+
+// ...略
+
 new Vue({
   router: router,
   store: store,

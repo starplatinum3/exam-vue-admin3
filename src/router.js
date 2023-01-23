@@ -234,6 +234,40 @@ const constantRoutes = [
         name: 'DragDiv',
         meta: { title: 'DragDiv', icon: 'home', affix: true }
       },
+      {
+        path: 'CodeMirrorEditorTest',
+        component: () => import('@/views/CodeMirrorEditorTest'),
+        name: 'CodeMirrorEditorTest',
+        meta: { title: 'CodeMirrorEditorTest', icon: 'home', affix: true }
+      },
+      {
+        path: 'GraphEditorIframe',
+        component: () => import('@/views/GraphEditorIframe'),
+        name: 'GraphEditorIframe',
+        meta: { title: 'GraphEditorIframe', icon: 'home', affix: true }
+      },
+      {
+        path: 'CodeMirrorUtilTest',
+        component: () => import('@/views/CodeMirrorUtilTest'),
+        name: 'CodeMirrorUtilTest',
+        meta: { title: 'CodeMirrorUtilTest', icon: 'home', affix: true }
+      },
+      {
+        path: 'CodeMirrorG6',
+        component: () => import('@/views/CodeMirrorG6'),
+        name: 'CodeMirrorG6',
+        meta: { title: 'CodeMirrorG6', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorG6.vue
+      // GraphEditorIframe
+      // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorUtilTest.vue
+      {
+        path: 'PythonEditor',
+        component: () => import('@/views/PythonEditor'),
+        name: 'PythonEditor',
+        meta: { title: 'PythonEditor', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\PythonEditor.vue
       // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\DragDiv.vue
       {
         path: 'FlowChart',

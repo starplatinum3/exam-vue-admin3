@@ -62,3 +62,5 @@ cnpm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 
 /* import specific icons */
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+D:\proj\bishe\exam-vue-admin3>
