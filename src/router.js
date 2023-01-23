@@ -252,6 +252,13 @@ const constantRoutes = [
         name: 'CodeMirrorUtilTest',
         meta: { title: 'CodeMirrorUtilTest', icon: 'home', affix: true }
       },
+      // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorEditorBlackTest.vue
+      {
+        path: 'CodeMirrorEditorBlackTest',
+        component: () => import('@/views/CodeMirrorEditorBlackTest'),
+        name: 'CodeMirrorEditorBlackTest',
+        meta: { title: 'CodeMirrorEditorBlackTest', icon: 'home', affix: true }
+      },
       {
         path: 'CodeMirrorG6',
         component: () => import('@/views/CodeMirrorG6'),

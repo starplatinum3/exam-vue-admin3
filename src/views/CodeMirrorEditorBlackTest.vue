@@ -1,29 +1,19 @@
 <template>
-  <div>
-    <a href="https://visualgo.net/zh">
-      数据结构和算法动态可视化 (Chinese) - VisuAlgo
-    </a>
-    <!-- '100%' -->
-    <div class="flexRow">
-      <div id="container" :style="{ height: '800px', width: '70%' }" ></div>
-
-      <!-- style="height: 200px; width: 600px" -->
-      <!-- <textarea
-        ref="mycode"
-        class="codesql"
-        v-model="code"
-        style="height: 200px; width: 600px"
-      ></textarea> -->
-
-      <CodeMirrorEditorBlack style="width:400px"></CodeMirrorEditorBlack>
-    </div>
+  <!-- class="flexRow" -->
+  <div  class="rowEditor" style="">
+    <div class="leftBlock" style="width: 200px"></div>
+    <!-- style="width: 400px" -->
+    <CodeMirrorEditorBlack class="floatRight" ></CodeMirrorEditorBlack>
+    <!-- <div>
+      <CodeMirrorEditorBlack class="floatRight" style="width: 400px"></CodeMirrorEditorBlack>
+    </div> -->
   </div>
 </template>
   <script>
 import G6 from "@antv/g6";
 // D:\proj\bishe\exam-vue-admin3\src\utils\CodeMirrorUtil.js
 import CodeMirrorUtil from "@/utils/CodeMirrorUtil";
-import  CodeMirrorEditorBlack from  "@/components/CodeMirrorEditorBlack";
+import CodeMirrorEditorBlack from "@/components/CodeMirrorEditorBlack";
 // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\CodeMirrorItTest.vue
 import "codemirror/theme/ambiance.css";
 import "codemirror/lib/codemirror.css";
@@ -265,5 +255,17 @@ export default {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono,
     DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   margin-left: 10px;
+}
+
+.rowEditor{
+
+}
+
+.floatRight{
+  width: 500px;
+  float: right;
+}
+.leftBlock{
+  background: rgb(187, 27, 27);
 }
 </style>
