@@ -26,6 +26,45 @@ let NodeUtil = {
     };
     return node;
   },
+  //处理数据
+  changeTreeData(getTreedata) {
+    // this.
+    let treedata=[]
+    getTreedata.forEach((item, i) => {
+      let data2 = [];
+      for (var i in item.indexList) {
+        let data3 = [];
+        for (var j in item.indexList[i].indexList) {
+          var data = (
+            item.indexList[i].indexList[j].indexName +
+            "(" +
+            item.indexList[i].indexList[j].newData +
+            "/" +
+            item.indexList[i].indexList[j].tarData +
+            ")"
+          ).replace(/(.{18})/g, "$1\n");
+          data3.push({
+            id: item.indexList[i].indexList[j].id,
+            label: data,
+            status: item.indexList[i].indexList[j].status,
+          });
+        }
+        data2.push({
+          id: String(item.indexList[i].id),
+          label: item.indexList[i].indexTitle,
+          children: data3,
+        });
+      }
+      // this.
+      treedata.push({
+        id: item.id,
+        label: item.indexTitle,
+        children: data2,
+      });
+      // console.log(this.treedata);
+    });
+    return treedata
+  },
   makeWhiteNode(name, x, y, id) {
     // ListUtil
     let node = {

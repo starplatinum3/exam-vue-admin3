@@ -252,7 +252,49 @@ const constantRoutes = [
         name: 'CodeMirrorUtilTest',
         meta: { title: 'CodeMirrorUtilTest', icon: 'home', affix: true }
       },
+      {
+        path: 'G6TreeAdd',
+        component: () => import('@/views/G6TreeAdd'),
+        name: 'G6TreeAdd',
+        meta: { title: 'G6TreeAdd', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\G6TreeAdd.vue
+      // JsEditor.vue
+      {
+        path: 'JsEditor',
+        component: () => import('@/views/JsEditor'),
+        name: 'JsEditor',
+        meta: { title: 'JsEditor', icon: 'home', affix: true }
+      },
+      {
+        path: 'Instance',
+        component: () => import('@/views/Instance'),
+        name: 'Instance',
+        meta: { title: 'Instance', icon: 'home', affix: true }
+      },
+       {
+        path: 'JsonEditor2',
+        component: () => import('@/views/JsonEditor2'),
+        name: 'JsonEditor2',
+        meta: { title: 'JsonEditor2', icon: 'home', affix: true }
+      },
+      // JsonEditor2
+      // D:\proj\bishe\exam-vue-admin3\src\views\Instance.vue
       // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorEditorBlackTest.vue
+      // D:\proj\bishe\exam-vue-admin3\src\views\JsonEditor.vue
+      // {
+      //   path: 'JsonEditor',
+      //   component: () => import('@/views/JsonEditor'),
+      //   name: 'JsonEditor',
+      //   meta: { title: 'JsonEditor', icon: 'home', affix: true }
+      // },
+      // D:\proj\bishe\exam-vue-admin3\src\views\JsonEditorTest.vue
+      {
+        path: 'JsonEditorTest',
+        component: () => import('@/views/JsonEditorTest'),
+        name: 'JsonEditorTest',
+        meta: { title: 'JsonEditorTest', icon: 'home', affix: true }
+      },
       {
         path: 'CodeMirrorEditorBlackTest',
         component: () => import('@/views/CodeMirrorEditorBlackTest'),

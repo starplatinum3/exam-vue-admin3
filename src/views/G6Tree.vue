@@ -5,7 +5,12 @@
     </a> -->
     <!-- '100%' -->
     <div class="flexRow">
-      <div id="container" :style="{ height: '800px', width: '70%' }" ></div>
+      <div class="flexCol g6Part">
+        <el-button type="" @click="getCode">getCode</el-button>
+
+        <!-- :style="{ height: '800px', width: '70%' }"  -->
+        <div id="container" :style="{ height: '800px', width: '700px' }"></div>
+      </div>
 
       <!-- style="height: 200px; width: 600px" -->
       <!-- <textarea
@@ -15,11 +20,10 @@
         style="height: 200px; width: 600px"
       ></textarea> -->
       <!-- :code="getTreedata"  -->
-      <CodeMirrorEditorBlack 
-      
+      <!-- <CodeMirrorEditorBlack 
       :data="getTreedata" 
-  
-      style="width:400px"></CodeMirrorEditorBlack>
+      style="width:400px"></CodeMirrorEditorBlack> -->
+      <JsonCodeMirror ref='JsonCodeMirror' :data="getTreedata"></JsonCodeMirror>
     </div>
   </div>
 </template>
@@ -27,7 +31,13 @@
 import G6 from "@antv/g6";
 // D:\proj\bishe\exam-vue-admin3\src\utils\CodeMirrorUtil.js
 import CodeMirrorUtil from "@/utils/CodeMirrorUtil";
-import  CodeMirrorEditorBlack from  "@/components/CodeMirrorEditorBlack";
+import NodeUtil from "@/utils/NodeUtil";
+
+import G6Util from "@/utils/G6Util";
+
+import CodeMirrorEditorBlack from "@/components/CodeMirrorEditorBlack";
+import JsonCodeMirror from "@/components/JsonCodeMirror";
+
 // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\CodeMirrorItTest.vue
 import "codemirror/theme/ambiance.css";
 import "codemirror/lib/codemirror.css";
@@ -44,7 +54,7 @@ require("codemirror/addon/hint/sql-hint");
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/xml/xml"; // xml编辑器模式
 import "codemirror/theme/monokai.css"; // 主题
-
+// D:\proj\bishe\exam-vue-admin3\src\components\JsonCodeMirror.vue
 export default {
   data() {
     return {
@@ -100,10 +110,12 @@ export default {
         },
       ],
       treedata: [],
+      graph: null,
     };
   },
   components: {
     CodeMirrorEditorBlack,
+    JsonCodeMirror,
   },
   mounted() {
     this.changeTreeData();
@@ -112,6 +124,47 @@ export default {
     // let editor = CodeMirrorUtil.getEditor(this.$refs.mycode);
   },
   methods: {
+    
+    getCode() {
+      console.log('getCode');
+      let graph=this.graph
+      // if(graph.destroyed){
+      //   this.showChart()
+      // }
+      if(graph?.destroy){
+        graph.destroy()
+      }
+
+      // JsonCodeMirror
+      // getValue
+      // let getTreedata=  this.$refs.JsonCodeMirror?.getValue()
+      let JsonCodeMirrorVal=  this.$refs.JsonCodeMirror?.getValue()
+
+      let getTreedata=    JSON.parse(JsonCodeMirrorVal)
+    //  let getTreedata=  this.$refs.JsonCodeMirror?.data
+     console.log("getTreedata");
+      console.log(getTreedata);
+
+      // console.log("this.getTreedata");
+      // console.log(this.getTreedata);
+
+      // let data=NodeUtil.changeTreeData(this.getTreedata)
+      // let treeData=NodeUtil.changeTreeData(this.getTreedata)
+      let treeData=NodeUtil.changeTreeData(getTreedata)
+
+      this.graph=   G6Util.showChartG6Tree("container",treeData[0])
+           //初始化数据
+          //  graph.data(data);
+          // let  treeData0=treeData[0]
+          // console.log("treeData0");
+          // console.log(treeData0);
+          //  graph.data(treeData0);
+
+        // //渲染视图
+        // graph.render();
+        // //让画布内容适应视口
+        // graph.fitView();
+    },
     //处理数据
     changeTreeData() {
       this.getTreedata.forEach((item, i) => {
@@ -152,8 +205,10 @@ export default {
       const data = this.treedata[0];
       const container = document.getElementById("container");
       if (container) {
+        // const width=1000
         const width = container.clientWidth;
         const height = container.clientHeight;
+        // new G6.TreeGraph 更新数据
         const graph = new G6.TreeGraph({
           // 图的DOM 容器，可以传入该 DOM 的 id 或者直接传入容器的 HTML 节点对象。
           container: container,
@@ -248,6 +303,7 @@ export default {
         graph.render();
         //让画布内容适应视口
         graph.fitView();
+        this.graph=graph
       }
     },
   },
@@ -256,6 +312,16 @@ export default {
   
   
 <style scoped>
+.g6Part {
+  width: 1000px;
+}
+.flexCol {
+  /* width: 1000px; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+}
 .flexRow {
   width: 1000px;
   display: flex;
