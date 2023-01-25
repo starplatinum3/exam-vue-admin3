@@ -25,11 +25,20 @@ import "codemirror/mode/xml/xml"; // xml编辑器模式
 import "codemirror/theme/monokai.css"; // 主题
 export default {
   name: "codeMirror",
+  props:{
+    data:{}
+    // code:{}
+  },
   data() {
     return {
       editor: null,
       code: "//按Ctrl键进行代码提示",
     };
+  },
+  created(){
+    console.log(`this.data`);
+    console.log(this.data);
+    this.code=JSON.stringify(this.data)
   },
   methods: {
     // this.editor = CodeMirror.fromTextArea(this.$refs.code, {
@@ -56,6 +65,9 @@ export default {
     },
   },
   mounted() {
+    // this.code=JSON.stringify(this.code)
+    this.code=JSON.stringify(this.data)
+
     // debugger
     // let mime = 'text/x-mariadb'
     // CodeMirror xml 编辑器 代码提示

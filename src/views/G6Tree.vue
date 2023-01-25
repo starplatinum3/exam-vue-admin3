@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a href="https://visualgo.net/zh">
+    <!-- <a href="https://visualgo.net/zh">
       数据结构和算法动态可视化 (Chinese) - VisuAlgo
-    </a>
+    </a> -->
     <!-- '100%' -->
     <div class="flexRow">
       <div id="container" :style="{ height: '800px', width: '70%' }" ></div>
@@ -14,8 +14,12 @@
         v-model="code"
         style="height: 200px; width: 600px"
       ></textarea> -->
-
-      <CodeMirrorEditorBlack style="width:400px"></CodeMirrorEditorBlack>
+      <!-- :code="getTreedata"  -->
+      <CodeMirrorEditorBlack 
+      
+      :data="getTreedata" 
+  
+      style="width:400px"></CodeMirrorEditorBlack>
     </div>
   </div>
 </template>
