@@ -7,7 +7,7 @@
       {{item}}
     </div> -->
     <el-form :model="queryParam" ref="queryForm" :inline="true">
-      <el-form-item label="题目ID：">
+      <el-form-item class="inputLabel" label="题目ID：">
         <el-input v-model="queryParam.id" clearable></el-input>
       </el-form-item>
       <!-- 查询不了 题干 -->
@@ -526,5 +526,13 @@ let conf={
             top: -50px;
             left: 260px;
             z-index: -99;
+        }
+
+        /* label */
+        .inputLabel .el-form-item__label{
+          color: black;
+        }
+        .inputLabel label{
+          color: black;
         }
 </style>

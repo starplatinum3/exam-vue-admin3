@@ -12,6 +12,9 @@
 </template>
 
 <script>
+// import Minimap from "@antv/g6/minimap";
+// import G6 from "@antv/g6";
+
 import Minimap from "@antv/g6/build/minimap";
 import eventBus from "@/utils/eventBus";
 export default {
@@ -34,6 +37,9 @@ export default {
       const cfgs = {
         container: "minimap"
       };
+      // G6
+      // this.minimap = new G6.Minimap({ ...cfgs });
+
       this.minimap = new Minimap({ ...cfgs });
     },
     bindEvent() {
@@ -46,6 +52,9 @@ export default {
       if (!this.minimap || !this.graph) {
         return;
       }
+      console.log("this.minimap");
+      console.log(this.minimap);
+
      this.graph.addPlugin(this.minimap)
     }
   }
@@ -55,10 +64,11 @@ export default {
 <style scoped>
 #navigator {
   width: 200px;
-  /* height: 176px; */
+  height: 176px;
   position: absolute;
   bottom: 0px;
   right: 0px;
+  top: 400px;
   z-index: 3;
 }
 

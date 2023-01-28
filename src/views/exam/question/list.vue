@@ -189,10 +189,12 @@
         <template slot-scope="{ row }">
           <el-button size="mini" @click="showQuestion(row)">预览</el-button>
           <el-button size="mini" @click="editQuestion(row)">编辑</el-button>
+          <!-- confirmDeleteQuestion -->
+          <!-- deleteQuestion -->
           <el-button
             size="mini"
             type="danger"
-            @click="deleteQuestion(row)"
+            @click="confirmDeleteQuestion(row)"
             class="link-left"
             >删除
           </el-button>
@@ -622,6 +624,7 @@ where info_text_content_id = ${this.toShowItem.id}`,
       // this.$router.push({ path: url, query: { id: row.id } });
     },
     deleteQuestion(row) {
+      // vue  elm ui 确认删除 弹窗
       let _this = this;
       questionApi.deleteQuestion(row.id).then((re) => {
         if (re.code === 1) {
@@ -631,6 +634,18 @@ where info_text_content_id = ${this.toShowItem.id}`,
           _this.$message.error(re.message);
         }
       });
+    },
+    confirmDeleteQuestion(row){
+      this.$confirm("是否删除？", "提示", {
+          confirmButtonText: "确认",
+          cancelButtonText: "取消",
+          type: "warning",
+        })
+          .then(() => {
+            // DeletOprate();
+            this.deleteQuestion(row)
+          })
+          .catch(() => {});
     },
     questionTypeFormatter(row, column, cellValue, index) {
       return this.enumFormat(this.questionType, cellValue);

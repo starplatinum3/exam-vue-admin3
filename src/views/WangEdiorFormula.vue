@@ -33,8 +33,11 @@
     <!-- <textarea ref="mycode" class="textarea" v-model="textarea"></textarea> -->
     <!-- codemirror -vue  onclick  -->
     <!-- title="外部表格弹窗" -->
+    <!-- z-index="10001" -->
     <el-dialog
-      z-index="10001"
+    :append-to-body="true"
+    :close-on-click-modal = "false"
+    @open="openCodeMirrorPopUp()"
    
       center
       :visible.sync="outVisible"
@@ -60,6 +63,7 @@
       <!-- :editorDataHtml="editorDataHtml"  -->
       <CodeMirrorPopUp 
       ref="CodeMirrorPopUp" 
+      
        :editorDataHtml="editorData" 
        :editorDataConf="editorDataConf"
       @updateData="updateData"
@@ -281,6 +285,15 @@ export default {
         // propA: Number,
   },
   methods: {
+    openCodeMirrorPopUp(){
+
+      console.log("openCodeMirrorPopUp");
+      setTimeout(() => {
+        this.$refs.CodeMirrorPopUp.autoFormatRangeAll()
+        // this.$refs.CodeMirrorPopUp.updateData(this.editorData) // 方法2:直接调用
+      }, 500);
+      
+    },
     updateData(){
 
       // this.editorData

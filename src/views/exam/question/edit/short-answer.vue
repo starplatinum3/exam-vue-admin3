@@ -35,7 +35,9 @@
         <!-- inputClickEditor -->
         <!-- <el-button type="" @click="makeTitle('title')">makeTitle</el-button> -->
         <!-- <el-button type="" @click="makeTitle">makeTitle</el-button> -->
-          <el-button type="" @click="inputClickEditor(form,'title')">makeTitle</el-button>
+        <el-button type="" @click="inputClickEditor(form, 'title')"
+          >makeTitle</el-button
+        >
         <!-- inputClickEditor -->
         <!-- <div  v-model="form.title"   @focus="inputClick(form,'title')"></div> -->
         <!-- <div  v-html="form.title"   @focus="inputClick(form,'title')"></div> -->
@@ -48,6 +50,9 @@
         <el-input v-model="form.title" @focus="inputClick(form, 'title')" />
       </el-form-item>
       <el-form-item label="答案：" prop="correct" required>
+        <el-button type="" @click="inputClickEditor(form, 'correct')"
+          >makeTitle</el-button >
+       
         <div v-html="form.correct" @click="inputClick(form, 'correct')"></div>
         <el-input v-model="form.correct" @focus="inputClick(form, 'correct')" />
       </el-form-item>
@@ -107,8 +112,9 @@
     >
 
     <el-button type="" @click="toSetDrawPage">toSetDrawPage</el-button>
-        <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button>
-        <!-- <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button> -->
+    <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button>
+    <!-- <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button> -->
+    <el-button type="" @click="toSetDrawPageG6Editor">toSetDrawPageG6Editor</el-button>
 
     <!-- shortAnswer -->
     <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\exam\question\edit\short-answer.vue -->
@@ -130,7 +136,7 @@
     <!-- width="1200px" -->
     <!-- el-dialog height 不变 -->
     <el-dialog
-    top="10px"
+      top="10px"
       :visible.sync="richEditor.dialogVisibleEditor"
       append-to-body
       :close-on-click-modal="false"
@@ -139,23 +145,24 @@
       :show-close="false"
       center
     >
-    <!-- ref='WangEdiorFormula' -->
+      <!-- ref='WangEdiorFormula' -->
       <!-- @getVal="getVal" -->
       <WangEdiorFormula
-      ref="WangEdiorFormula"
-      :editorDataHtml="editorData"
-      @getVal="editorConfirmFormula"
-      
-      @close="onClose"
-       class="sketch_content"></WangEdiorFormula>
+        ref="WangEdiorFormula"
+        :editorDataHtml="editorData"
+        @getVal="editorConfirmFormula"
+        @close="onClose"
+        class="sketch_content"
+      ></WangEdiorFormula>
       <!-- <div class="home sketch_content">
       <WangEdiorFormula></WangEdiorFormula>
       
   </div> -->
     </el-dialog>
-    
+
     <el-dialog
-    top="10px"
+      top="10px"
+      class="dialogG6Editor"
       :visible.sync="richEditor.dialogVisibleEditorG6"
       append-to-body
       :close-on-click-modal="false"
@@ -164,13 +171,29 @@
       :show-close="false"
       center
     >
-    <G6Editor @exportData="exportData" 
-    :data="form.drawIo"
-    mode="edit">
-
-</G6Editor>
+      <G6Editor @exportData="exportData" :data="form.drawIo" mode="edit">
+      </G6Editor>
     </el-dialog>
 
+    <el-dialog
+      top="10px"
+      class="dialogG6Editor"
+      :visible.sync="dialogVisibleEditorG6Code"
+      append-to-body
+      :close-on-click-modal="false"
+      width="1300px"
+      height="1200px"
+      :show-close="false"
+      center
+    >
+   
+      <G6Tree @onClose="onCloseG6Tree" 
+      
+      @onCloseNotSave="onCloseNotSaveG6Tree" 
+      @exportData="exportData" :data="form.g6Tree"></G6Tree>
+    </el-dialog>
+
+    <!-- dialogVisibleEditorG6Code -->
   </div>
 </template>
 
@@ -189,7 +212,8 @@ import WangEdiorFormula from "@/views/WangEdiorFormula";
 import "codemirror/theme/ambiance.css";
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/hint/show-hint.css";
-
+// D:\proj\bishe\exam-vue-admin3\src\components\G6Tree.vue
+import G6Tree from "@/components/G6Tree";
 // const CodeMirror = require('codemirror');
 // console.log("CodeMirror");
 // console.log(CodeMirror);
@@ -229,7 +253,7 @@ import Ueditor from "@/components/Ueditor";
 import { mapGetters, mapState, mapActions } from "vuex";
 import questionApi from "@/api/question";
 import questionDrawApi from "@/api/questionDraw";
-import G6Editor from '@/components/G6Editor/index'
+import G6Editor from "@/components/G6Editor/index";
 import eventBus from "@/utils/eventBus";
 import common from "@/utils/Common";
 import axios from "axios";
@@ -247,9 +271,11 @@ export default {
     codemirror,
     WangEdiorFormula,
     G6Editor,
+    G6Tree
   },
   data() {
     return {
+      dialogVisibleEditorG6Code:false,
       outVisible: false,
       editor: null,
       editorData: "",
@@ -268,7 +294,8 @@ export default {
       },
 
       form: {
-        drawIo:null,
+        g6Tree:null,
+        drawIo: null,
         id: null,
         questionType: 5,
         // gradeLevel: null,
@@ -285,6 +312,7 @@ export default {
         score: 1,
         // difficult: 0
         difficult: 3,
+       
       },
       subjectFilter: null,
       formLoading: false,
@@ -301,12 +329,12 @@ export default {
         score: [{ required: true, message: "请输入分数", trigger: "blur" }],
       },
       richEditor: {
-        dialogVisibleEditor:false,
+        dialogVisibleEditor: false,
         dialogVisible: false,
         object: null,
         parameterName: "",
         instance: null,
-        dialogVisibleEditorG6:false,
+        dialogVisibleEditorG6: false,
       },
       questionShow: {
         qType: 0,
@@ -335,79 +363,89 @@ export default {
         console.log("_this.form questionApi get");
         console.log(_this.form);
         _this.formLoading = false;
-        this.getQuestionDrawIoG6()
+        this.getQuestionDrawIoG6();
       });
 
       _this.questionDrawApiSelectPageEqual();
     }
 
-    eventBus.$on('exportData', (data) => {
-      console.log("data exportData emit")
-      console.log(data)
-    })
+    eventBus.$on("exportData", (data) => {
+      console.log("data exportData emit");
+      console.log(data);
+    });
     // onCloseNotSave
-    eventBus.$on('onCloseNotSave', (data) => {
-      this.richEditor.dialogVisibleEditorG6=false
-
-    })
-    eventBus.$on('onClose', (data) => {
-      console.log("data onClose emit")
-      console.log(data)
-      this.richEditor.dialogVisibleEditorG6=false
+    eventBus.$on("onCloseNotSave", (data) => {
+      this.richEditor.dialogVisibleEditorG6 = false;
+    });
+    eventBus.$on("onClose", (data) => {
+      console.log("data onClose emit");
+      console.log(data);
+      this.richEditor.dialogVisibleEditorG6 = false;
       // let questionId = this.$route.query?.question_id;
-      let questionId = this.form.id 
+      let questionId = this.form.id;
 
-      // this.form.questionId 
-      let qu={
-    "id": 145,
-    "questionType": 5,
-    "subjectId": 5,
-    "title": "drawio",
-    "gradeLevel": 2,
-    "items": [],
-    "analyze": "无",
-    "correctArray": null,
-    "correct": "drawio",
-    "score": 1,
-    "difficult": 3,
-    "itemOrder": null,
-    "videoLink": null,
-    "createUserId": null
-}
+      // this.form.questionId
+      let qu = {
+        id: 145,
+        questionType: 5,
+        subjectId: 5,
+        title: "drawio",
+        gradeLevel: 2,
+        items: [],
+        analyze: "无",
+        correctArray: null,
+        correct: "drawio",
+        score: 1,
+        difficult: 3,
+        itemOrder: null,
+        videoLink: null,
+        createUserId: null,
+      };
 
-let  drawObj={}
-let  drawObjContent=data
-      questionDrawApi.saveDrawOfQuestion(drawObj,
-      this.$message,questionId,drawObjContent).then((re) => {
-        console.log("re");
-        console.log(re);
-        // this.form.title = re.response;
-        // this.richEditor.dialogVisibleEditor = false;
-      });
-    })
+      let drawObj = {};
+      let drawObjContent = data;
+      questionDrawApi
+        .saveDrawOfQuestion(drawObj, this.$message, questionId, drawObjContent)
+        .then((re) => {
+          console.log("re");
+          console.log(re);
+          // this.form.title = re.response;
+          // this.richEditor.dialogVisibleEditor = false;
+        });
+    });
   },
 
   mounted() {
     this.mountedEditor();
   },
   methods: {
-    exportData(data){
+    onCloseG6Tree(JsonCodeMirrorVal){
+      // this.$emit('onClose',JsonCodeMirrorVal)
+
+      console.log("JsonCodeMirrorVal onCloseG6Tree");
+      console.log(JsonCodeMirrorVal);
+      this.form.g6Tree=JsonCodeMirrorVal
+      this.dialogVisibleEditorG6Code=false
+    },
+    onCloseNotSaveG6Tree(JsonCodeMirrorVal){
+      this.dialogVisibleEditorG6Code=false
+    },
+    exportData(data) {
       console.log(data);
     },
-    onClose(){
+    onClose() {
       // onClose
       // onClose
-      this.richEditor.dialogVisibleEditor =false
+      this.richEditor.dialogVisibleEditor = false;
     },
-    getVal(editorData){
-
+    getVal(editorData) {
       console.log("editorData");
       console.log(editorData);
-      this.form.title=editorData
+      this.form.title = editorData;
     },
-    makeTitle(){
-
-      this.richEditor.dialogVisibleEditor = !this.richEditor.dialogVisibleEditor ;
+    makeTitle() {
+      this.richEditor.dialogVisibleEditor =
+        !this.richEditor.dialogVisibleEditor;
     },
     see() {
       // this.outVisible=true
@@ -661,7 +699,6 @@ let  drawObjContent=data
       //     });
     },
 
-    
     getQuestionDrawIoG6() {
       let baseUrl = common.examUrl;
       // let postData={
@@ -669,11 +706,11 @@ let  drawObjContent=data
       //   "questionType": this.question.type,
       //   "questionDrawType": 1
       // }
-      let questionId=this.form.id 
+      let questionId = this.form.id;
       let postData = {
         drawId: null,
         id: null,
-        questionId:questionId,
+        questionId: questionId,
       };
       // axios
       //   .post(
@@ -701,9 +738,9 @@ let  drawObjContent=data
           let response = res.data.response;
           response.content = JSON.parse(response.content);
           // this.question.drawIo = response.content;
-          this.form.drawIo= response.content;
+          this.form.drawIo = response.content;
           console.log("  this.form.drawIo");
-          console.log(  this.form.drawIo);
+          console.log(this.form.drawIo);
 
           // this.questionDrawIoShowing = true;
         });
@@ -731,7 +768,7 @@ let  drawObjContent=data
           // }
         });
     },
-    toSetDrawPageG6(){
+    toSetDrawPageG6() {
       // let id = this.$route.query.id;
       // this.$router.push({
       //   path: "/exam/DrawIo",
@@ -739,7 +776,10 @@ let  drawObjContent=data
       //     question_id: id,
       //   },
       // });
-     this. richEditor.dialogVisibleEditorG6=true
+      this.richEditor.dialogVisibleEditorG6 = true;
+    },
+    toSetDrawPageG6Editor(){
+      this.dialogVisibleEditorG6Code = true;
     },
     toSetDrawPage() {
       // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\DrawIo.vue
@@ -765,7 +805,7 @@ let  drawObjContent=data
       this.richEditor.parameterName = parameterName;
       this.richEditor.dialogVisible = true;
     },
-    inputClickEditor(object, parameterName){
+    inputClickEditor(object, parameterName) {
       this.richEditor.object = object;
       this.richEditor.parameterName = parameterName;
       // this.richEditor.dialogVisibleEditor = true;
@@ -778,10 +818,9 @@ let  drawObjContent=data
       // this.$refs.WangEdiorFormula.onSetVal(this.editorData);
       console.log("currentContent");
       console.log(currentContent);
-      this.$nextTick(()=>{
+      this.$nextTick(() => {
         this.$refs.WangEdiorFormula.onSetVal(currentContent);
-            });
-
+      });
     },
     editorConfirmFormula(content) {
       // let content = this.richEditor.instance.getContent();
@@ -890,5 +929,12 @@ let  drawObjContent=data
 /* // 滚动条里面的轨道 */
 .sketch_content::-webkit-scrollbar-track {
   background: transparent;
+}
+.dialogG6Editor {
+  /* width: 1000px; */
+  /* height: 600px; */
+  /* padding: 0;
+  margin: 0;
+  border: none; */
 }
 </style>

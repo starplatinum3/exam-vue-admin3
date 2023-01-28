@@ -1,7 +1,7 @@
 /*
   此文件对element-ui的一些样式做一些修改，以更好地契合项目
 */
-
+// D:\proj\bishe\exam-vue-admin3\src\assets\scss\elementui.scss
 @import './base.scss';
 .el-dropdown-menu {
   background-color: $thirdColor !important;
@@ -31,7 +31,8 @@
   font-size: 16px !important;
   line-height: normal !important;
   padding: 0 0 5px 0 !important;
-  color: $afterFocus !important;
+  // color: $afterFocus !important;
+  color: $afterFocus;
 }
 .el-form-item__content {
   line-height: 20px !important;

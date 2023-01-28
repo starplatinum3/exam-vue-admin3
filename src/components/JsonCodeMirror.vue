@@ -54,6 +54,9 @@ export default {
 
     // this.value=JSON.stringify(this.data)
     this.value = this.data;
+    // this.value = this.data;
+    // console.log( "this.value");
+    // console.log( this.value);
     // CodeMirror的配置项，搜官网看这里的配置项配置
     this.jsonEditor = CodeMirror.fromTextArea(this.$refs.textarea, {
       lineNumbers: true, // 是否显示行数
@@ -63,7 +66,11 @@ export default {
       lint: true,
     });
 
-    this.jsonEditor.setValue(JSON.stringify(this.value, null, 2));
+    let  valueStr=JSON.stringify(this.value, null, 2)
+    // console.log("valueStr");
+    // console.log(valueStr);
+
+    this.jsonEditor.setValue(valueStr);
     this.jsonEditor.on("change", (cm) => {
       //   this.$emit("changed", cm.getValue());
       // 编辑json框里面的内容可以时刻监听到值，通过cm.getValue()获取到
@@ -77,6 +84,11 @@ export default {
 
   },
   methods: {
+    d(){
+
+      let root={}
+      root.indexList=[]
+    },
     getValue() {
       return this.jsonEditor.getValue();
     },

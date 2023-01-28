@@ -143,7 +143,13 @@ module.exports = {
     sourceMap: false,
     loaderOptions: {
       scss: {
-        additionalData: `@import "@scss/main.scss";`,
+        // D:\proj\bishe\exam-vue-admin3\src\assets\scss\mainExam.scss
+        // D:\proj\bishe\exam-vue-admin3\src\assets\scss\base.scss
+        // additionalData: `@import "@scss/main.scss";`,
+        // additionalData: `@import "@scss/base.scss";`,
+        additionalData: `@import "@scss/mainExam.scss";`,
+
+
       },
     },
   },

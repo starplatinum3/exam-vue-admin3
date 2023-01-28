@@ -15,7 +15,12 @@
     <h3>内容预览</h3>
     <!-- <el-button type="" @click="setEditorData">setEditorData</el-button> -->
     <el-button type="" @click="saveMirrorToWang">saveMirrorToWang</el-button>
-<el-button @click="setData">setData</el-button>
+    <el-button @click="setData">setData</el-button>
+    <el-button @click="autoFormatRange">autoFormatRange</el-button>
+    
+    <el-button @click="autoFormatRangeAll">autoFormatRangeAll</el-button>
+
+    <!-- this.editor.autoFormatRange( -->
     <!-- <textarea
       name=""
       id=""
@@ -35,6 +40,7 @@
     <textarea v-model="editorData"> </textarea>
     <!-- :options="cmOptions" -->
     <!-- textarea  v-model codemirror 没有赋值 -->
+    <!-- codemirror 自动 格式化  -->
     <textarea
       @onclick="codemirrorOnClick"
       @click="codemirrorOnClick"
@@ -44,7 +50,7 @@
       class="codesql"
       style="height: 200px; width: 600px"
     ></textarea>
-   <!-- @focus="onCmFocus" -->
+    <!-- @focus="onCmFocus" -->
     <!-- <codemirror
       @onclick="codemirrorOnClick"
       @click="codemirrorOnClick"
@@ -306,13 +312,15 @@ export default {
     },
   },
   methods: {
-    setData(){
-
-      this.editorData="3123131"
+    autoFormatRangeAll(){
+      this.editor.autoFormatRangeAll()
+      // this.editor.refresh()
+    },
+    setData() {
+      this.editorData = "3123131";
 
       // CodeMirror5
-// cm.setValue(text)
-
+      // cm.setValue(text)
     },
     // 选中部分格式化 indentAuto为codemirror自带api
 
@@ -327,14 +335,25 @@ export default {
       );
     },
 
+    refresh() {
+      this.editor.refresh();
+    },
+
+    autoFormatRange() {
+      this.editor.autoFormatRange(
+        { line: 0, ch: 0 },
+        { line: this.editor.lineCount() }
+      );
+    },
+
     updateData(data) {
       this.editorData = data;
-      this.editor.setValue(data)
+      this.editor.setValue(data);
     },
     saveMirrorToWang() {
       console.log("editorData");
       console.log(this.editorData);
-     let val=  this.editor.getValue()
+      let val = this.editor.getValue();
       // this.$emit("saveMirrorToWang", this.editorData);
       this.$emit("saveMirrorToWang", val);
 
@@ -471,6 +490,7 @@ export default {
           Ctrl: "autocomplete",
           "Shift-Tab": function () {
             // 选中部分格式化
+            console.log("选中部分格式化");
             that.formatSelection();
           },
           "Shift-Alt": function () {
@@ -532,10 +552,11 @@ export default {
           var cur = cm.getCursor();
           console.log("cur");
           console.log(cur);
-          let  res=cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
+          let res =
+            cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == "<";
           console.log("res");
           console.log(res);
-          return res
+          return res;
         });
       };
       CodeMirror.commands.completeIfInTag = function (cm) {
@@ -617,18 +638,230 @@ export default {
       //          "'='": "completeIfInTag",
       //     }
       // })
+
+      CodeMirror.extendMode("css", {
+        commentStart: "/*",
+        commentEnd: "*/",
+        newlineAfterToken: function (type, content) {
+          return /^[;{}]$/.test(content);
+        },
+      });
+
+      CodeMirror.extendMode("javascript", {
+        commentStart: "/*",
+        commentEnd: "*/",
+        // FIXME semicolons inside of for
+        newlineAfterToken: function (type, content, textAfter, state) {
+          if (this.jsonMode) {
+            return /^[\[,{]$/.test(content) || /^}/.test(textAfter);
+          } else {
+            if (content == ";" && state.lexical && state.lexical.type == ")")
+              return false;
+            return /^[;{}]$/.test(content) && !/^;/.test(textAfter);
+          }
+        },
+      });
+
+      CodeMirror.extendMode("xml", {
+        commentStart: "<!--",
+        commentEnd: "-->",
+        newlineAfterToken: function (type, content, textAfter) {
+          return (type == "tag" && />$/.test(content)) || /^</.test(textAfter);
+        },
+      });
+
+      // Comment/uncomment the specified range
+      CodeMirror.defineExtension(
+        "commentRange",
+        function (isComment, from, to) {
+          var cm = this,
+            curMode = CodeMirror.innerMode(
+              cm.getMode(),
+              cm.getTokenAt(from).state
+            ).mode;
+          cm.operation(function () {
+            if (isComment) {
+              // Comment range
+              cm.replaceRange(curMode.commentEnd, to);
+              cm.replaceRange(curMode.commentStart, from);
+              if (from.line == to.line && from.ch == to.ch)
+                // An empty comment inserted - put cursor inside
+                cm.setCursor(from.line, from.ch + curMode.commentStart.length);
+            } else {
+              // Uncomment range
+              var selText = cm.getRange(from, to);
+              var startIndex = selText.indexOf(curMode.commentStart);
+              var endIndex = selText.lastIndexOf(curMode.commentEnd);
+              if (startIndex > -1 && endIndex > -1 && endIndex > startIndex) {
+                // Take string till comment start
+                selText =
+                  selText.substr(0, startIndex) +
+                  // From comment start till comment end
+                  selText.substring(
+                    startIndex + curMode.commentStart.length,
+                    endIndex
+                  ) +
+                  // From comment end till string end
+                  selText.substr(endIndex + curMode.commentEnd.length);
+              }
+              cm.replaceRange(selText, from, to);
+            }
+          });
+        }
+      );
+
+      // Applies automatic mode-aware indentation to the specified range
+      CodeMirror.defineExtension("autoIndentRange", function (from, to) {
+        var cmInstance = this;
+        this.operation(function () {
+          for (var i = from.line; i <= to.line; i++) {
+            cmInstance.indentLine(i, "smart");
+          }
+        });
+      });
+
+      // Applies automatic formatting to the specified range
+      CodeMirror.defineExtension("autoFormatRange", function (from, to) {
+        var cm = this;
+        var outer = cm.getMode(),
+          text = cm.getRange(from, to).split("\n");
+        var state = CodeMirror.copyState(outer, cm.getTokenAt(from).state);
+        var tabSize = cm.getOption("tabSize");
+
+        var out = "",
+          lines = 0,
+          atSol = from.ch == 0;
+        function newline() {
+          out += "\n";
+          atSol = true;
+          ++lines;
+        }
+
+        for (var i = 0; i < text.length; ++i) {
+          var stream = new CodeMirror.StringStream(text[i], tabSize);
+          while (!stream.eol()) {
+            var inner = CodeMirror.innerMode(outer, state);
+            var style = outer.token(stream, state),
+              cur = stream.current();
+            stream.start = stream.pos;
+            if (!atSol || /\S/.test(cur)) {
+              out += cur;
+              atSol = false;
+            }
+            if (
+              !atSol &&
+              inner.mode.newlineAfterToken &&
+              inner.mode.newlineAfterToken(
+                style,
+                cur,
+                stream.string.slice(stream.pos) || text[i + 1] || "",
+                inner.state
+              )
+            )
+              newline();
+          }
+          if (!stream.pos && outer.blankLine) outer.blankLine(state);
+          if (!atSol) newline();
+        }
+
+        cm.operation(function () {
+          cm.replaceRange(out, from, to);
+          for (
+            var cur = from.line + 1, end = from.line + lines;
+            cur <= end;
+            ++cur
+          )
+            cm.indentLine(cur, "smart");
+          cm.setSelection(from, cm.getCursor(false));
+        });
+      });
+      // 2021年12月8日 10点08分 新增，支持格式化所有 Applies automatic formatting to the specified range
+      CodeMirror.defineExtension("autoFormatRangeAll", function () {
+        var cm = this;
+        let  editorPluginHtml=editor
+       let from = { line: editorPluginHtml.firstLine(), ch: 0, sticky: null };
+       let to = {
+          line: editorPluginHtml.lastLine(),
+          ch: editorPluginHtml.getLine(editorPluginHtml.lastLine()).length,
+          sticky: null,
+        };
+        var outer = cm.getMode(),
+          text = cm.getRange(from, to).split("\n");
+        var state = CodeMirror.copyState(outer, cm.getTokenAt(from).state);
+        var tabSize = cm.getOption("tabSize");
+        console.log("text");
+        console.log(text);
+
+        var out = "",
+          lines = 0,
+          atSol = from.ch == 0;
+        function newline() {
+          out += "\n";
+          atSol = true;
+          ++lines;
+        }
+
+        for (var i = 0; i < text.length; ++i) {
+          var stream = new CodeMirror.StringStream(text[i], tabSize);
+          while (!stream.eol()) {
+            var inner = CodeMirror.innerMode(outer, state);
+            var style = outer.token(stream, state),
+              cur = stream.current();
+            stream.start = stream.pos;
+            if (!atSol || /\S/.test(cur)) {
+              out += cur;
+              atSol = false;
+            }
+            if (
+              !atSol &&
+              inner.mode.newlineAfterToken &&
+              inner.mode.newlineAfterToken(
+                style,
+                cur,
+                stream.string.slice(stream.pos) || text[i + 1] || "",
+                inner.state
+              )
+            )
+              newline();
+          }
+          if (!stream.pos && outer.blankLine) outer.blankLine(state);
+          if (!atSol) newline();
+        }
+
+        cm.operation(function () {
+          cm.replaceRange(out, from, to);
+          for (
+            var cur = from.line + 1, end = from.line + lines;
+            cur <= end;
+            ++cur
+          )
+            cm.indentLine(cur, "smart");
+          cm.setSelection(from, cm.getCursor(false));
+        });
+      });
+      // ————————————————
+      // 版权声明：本文为CSDN博主「一苏沨来」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+      // 原文链接：https://blog.csdn.net/Kissyulu/article/details/124143161
+
       editor.setOption("hintOptions", { schemaInfo: tags });
 
-    console.log("editor?.text?.html");
-    console.log(editor?.text?.html);
+      console.log("editor?.text?.html");
+      console.log(editor?.text?.html);
 
-     // CodeMirror5
-     editor.setValue(this.editorDataHtml);
-// cm.setValue(text)
+      // CodeMirror5
+      editor.setValue(this.editorDataHtml);
+      // cm.setValue(text)
       // editor?.text?.html(this.editorData)
 
       this.editorData = this.editorDataHtml;
       this.editor = editor;
+
+      this.editor.refresh();
+
+      // setTimeout(()=>{
+      //   this.autoFormatRangeAll()
+      // },500)
+     
       // ————————————————
       // 版权声明：本文为CSDN博主「长臂人猿」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
       // 原文链接：https://blog.csdn.net/qq_37334150/article/details/109067869
@@ -655,6 +888,8 @@ export default {
       this.editorText.on("change", (cm) => {
         this.code = cm.getValue(); // 这里要用多一个载体去获取值,不然会重复赋值卡顿
       });
+
+      // this.editor.refresh()
     },
     getEditorData() {
       // 通过代码获取编辑器内容
