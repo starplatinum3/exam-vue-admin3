@@ -54,10 +54,10 @@ export default {
       type: Number,
       default: document.documentElement.clientWidth,
     },
-    data: {
-      type: Object,
-      default: () => {},
-    },
+    // data: {
+    //   type: Object,
+    //   default: () => {},
+    // },
   },
   created() {
     this.init();

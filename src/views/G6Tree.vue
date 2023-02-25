@@ -51,6 +51,9 @@ require("codemirror/mode/sql/sql");
 require("codemirror/addon/hint/show-hint");
 require("codemirror/addon/hint/sql-hint");
 
+// import {throttle} from "@/utils/throttle";
+import {throttle} from "@/utils/tools";
+
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/xml/xml"; // xml编辑器模式
 import "codemirror/theme/monokai.css"; // 主题
@@ -132,7 +135,13 @@ export default {
       //   this.showChart()
       // }
       if(graph?.destroy){
-        graph.destroy()
+        try{
+          graph.destroy()
+        }catch(e){
+          log.error(e)
+          
+        }
+      
       }
 
       // JsonCodeMirror

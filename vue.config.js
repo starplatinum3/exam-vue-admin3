@@ -29,12 +29,12 @@ const cdn = {
 const devNeedCdn = false
 
 module.exports = {
-  publicPath: IS_PROD ? './' : '/', // 默认'/'，部署应用包时的基本 URL
-  outputDir: 'dist', // 'dist', 生产环境构建文件的目录
-  assetsDir: 'assets', // 相对于outputDir的静态资源(js、css、img、fonts)目录
-  lintOnSave: false,
-  runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
-  productionSourceMap: !IS_PROD, // 生产环境的 source map
+  // publicPath: IS_PROD ? './' : '/', // 默认'/'，部署应用包时的基本 URL
+  // outputDir: 'dist', // 'dist', 生产环境构建文件的目录
+  // assetsDir: 'assets', // 相对于outputDir的静态资源(js、css、img、fonts)目录
+  // lintOnSave: false,
+  // runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
+  // productionSourceMap: !IS_PROD, // 生产环境的 source map
   parallel: require('os').cpus().length > 1,
   pwa: {},
 
@@ -93,31 +93,31 @@ module.exports = {
       filename: 'index.html'
     }
   },
-  configureWebpack: config => {
-    config.module.rules.push({
-      /*test: /\.extension$/,*/
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: 'javascript/auto'
-    })
-    // 配置gzip
-    //gzip压缩
-    const productionGzipExtensions = ['html', 'js', 'css']
-    config.plugins.push(
-      new CompressionWebpackPlugin({
-        filename: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: new RegExp(
-          '\\.(' + productionGzipExtensions.join('|') + ')$'
-        ),
-        threshold: 10240, // 只有大小大于该值的资源会被处理 10240
-        minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理
-        deleteOriginalAssets: false // 删除原文件
-      })
-    )
+  // configureWebpack: config => {
+  //   config.module.rules.push({
+  //     /*test: /\.extension$/,*/
+  //     test: /\.mjs$/,
+  //     include: /node_modules/,
+  //     type: 'javascript/auto'
+  //   })
+  //   // 配置gzip
+  //   //gzip压缩
+  //   const productionGzipExtensions = ['html', 'js', 'css']
+  //   config.plugins.push(
+  //     new CompressionWebpackPlugin({
+  //       filename: '[path].gz[query]',
+  //       algorithm: 'gzip',
+  //       test: new RegExp(
+  //         '\\.(' + productionGzipExtensions.join('|') + ')$'
+  //       ),
+  //       threshold: 10240, // 只有大小大于该值的资源会被处理 10240
+  //       minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理
+  //       deleteOriginalAssets: false // 删除原文件
+  //     })
+  //   )
 
-    if (IS_PROD || devNeedCdn) config.externals = cdn.externals
-  },
+  //   if (IS_PROD || devNeedCdn) config.externals = cdn.externals
+  // },
   // chainWebpack: (config) => {
   //   config.resolve.alias
   //     .set('@', resolve('src'))
@@ -174,11 +174,11 @@ module.exports = {
     //   return args
     // })
 
-    if (IS_PROD) {
-      config
-        .plugin('webpack-bundle-analyzer')
-        .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
-    }
+    // if (IS_PROD) {
+    //   config
+    //     .plugin('webpack-bundle-analyzer')
+    //     .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+    // }
 
     config.module
       .rule('svg')

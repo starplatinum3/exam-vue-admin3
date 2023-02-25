@@ -26,9 +26,13 @@
       <!-- <CodeMirrorEditorBlack 
       :data="getTreedata" 
       style="width:400px"></CodeMirrorEditorBlack> -->
+      <!-- :data="getTreedata"> -->
+      <!-- getTreedata -->
       <JsonCodeMirror
+      @changed="onChanged"
       v-if="JsonCodeMirrorShow"
-       ref='JsonCodeMirror' :data="getTreedata"></JsonCodeMirror>
+       ref='JsonCodeMirror' 
+       :data="JsonCodeMirrorData"></JsonCodeMirror>
     </div>
   </div>
 </template>
@@ -73,6 +77,7 @@ export default {
       editor: null,
       code: "//按Ctrl键进行代码提示",
       JsonCodeMirrorShow:false,
+      JsonCodeMirrorData:{},
       getTreedata: [
         // ..你的数据
         {
@@ -124,6 +129,8 @@ export default {
       ],
       treedata: [],
       graph: null,
+      // mode:"indexTree",
+      mode:"g6Tree"
     };
   },
   components: {
@@ -180,7 +187,7 @@ export default {
           ],
         },
       ]
-      let dd={
+      let treeDataOfDepth={
     "depth": 0,
     "label": "0-0",
     "status": 1,
@@ -306,31 +313,54 @@ export default {
         }
     }
 }
-    if(!this.data){
-      // this.data="{}"
-      this.data=  JSON.stringify(mockTreeDataList)
-    }
+// this.JsonCodeMirrorData=treeDataOfDepth
 
-    let getTreedata=   JSON.parse(this.data)
-    this.getTreedata=getTreedata
-    console.log("getTreedata mounted");
-    console.log(getTreedata);
-    // let getTreedata=this.data
-    let treeData=NodeUtil.changeTreeData(getTreedata)
+    if(!this.data||this.data=="{}"||this.data==""){
+      // this.data="{}"
+      // this.data=  JSON.stringify(this.JsonCodeMirrorData)
+      this.JsonCodeMirrorData=treeDataOfDepth
+      this.mode="g6Tree"
+      this.graph=   G6Util.showChartG6Tree("container",this.JsonCodeMirrorData)
+
+      // this.data=  JSON.stringify(mockTreeDataList)
+    }else if (this.data.startsWith("[")){
+      this.JsonCodeMirrorData=JSON.parse(this.data)
+      let treeData=NodeUtil.changeTreeData(this.JsonCodeMirrorData)
 
     let treeData0= treeData[0]
-  console.log("treeData0");
-  console.log(treeData0);
+     
+      this.graph=   G6Util.showChartG6Tree("container",treeData0)
+      this.mode="indexTree"
 
-  let  height3Tree= TreeUtil.makeTreeOfHeight(3)
-  // let  height3Tree= TreeUtil.makeTreeOfHeight(4)
-  console.log("height3Tree");
-  console.log(height3Tree);
+    }
+    else{
+      this.JsonCodeMirrorData=JSON.parse(this.data)
+      this.graph=   G6Util.showChartG6Tree("container",this.JsonCodeMirrorData)
+      this.mode="g6Tree"
+    }
 
-let  treeDataToshow=height3Tree
-// let  treeDataToshow=treeData0
 
-this.graph=   G6Util.showChartG6Tree("container",treeDataToshow)
+//     let getTreedata=   JSON.parse(this.data)
+//     this.getTreedata=getTreedata
+//     console.log("getTreedata mounted");
+//     console.log(getTreedata);
+//     // let getTreedata=this.data
+//     let treeData=NodeUtil.changeTreeData(getTreedata)
+
+//     let treeData0= treeData[0]
+//   console.log("treeData0");
+//   console.log(treeData0);
+
+//   let  height3Tree= TreeUtil.makeTreeOfHeight(3)
+//   // let  height3Tree= TreeUtil.makeTreeOfHeight(4)
+//   console.log("height3Tree");
+//   console.log(height3Tree);
+
+// let  treeDataToshow=height3Tree
+// // let  treeDataToshow=treeData0
+
+// this.graph=   G6Util.showChartG6Tree("container",treeDataToshow)
+// this.graph=   G6Util.showChartG6Tree("container",this.JsonCodeMirrorData)
 
 // this.graph=   G6Util.showChartG6Tree("container",treeData[0])
     // this.changeTreeData();
@@ -340,6 +370,10 @@ this.graph=   G6Util.showChartG6Tree("container",treeDataToshow)
     this.JsonCodeMirrorShow=true
   },
   methods: {
+    onChanged(){
+
+      this.getCode()
+    },
     mountedG6TreeIndex() {
     let mockTreeDataList= [
         // ..你的数据
@@ -562,6 +596,53 @@ this.graph=   G6Util.showChartG6Tree("container",treeDataToshow)
       this.$emit('onCloseNotSave',JsonCodeMirrorVal)
     },
     getCode() {
+      if( this.mode=="indexTree")
+     {
+        this.getCodePutTreeIndex()
+        return
+     }
+      this.getCodePutTree()
+      // code to graph 
+    //   console.log('getCode');
+    //   let graph=this.graph
+    //   // if(graph.destroyed){
+    //   //   this.showChart()
+    //   // }
+    //   if(graph?.destroy){
+    //     graph.destroy()
+    //   }
+
+    //   // JsonCodeMirror
+    //   // getValue
+    //   // let getTreedata=  this.$refs.JsonCodeMirror?.getValue()
+    //   let JsonCodeMirrorVal=  this.$refs.JsonCodeMirror?.getValue()
+
+    //   let getTreedata=    JSON.parse(JsonCodeMirrorVal)
+    // //  let getTreedata=  this.$refs.JsonCodeMirror?.data
+    //  console.log("getTreedata");
+    //   console.log(getTreedata);
+
+    //   // console.log("this.getTreedata");
+    //   // console.log(this.getTreedata);
+
+    //   // let data=NodeUtil.changeTreeData(this.getTreedata)
+    //   // let treeData=NodeUtil.changeTreeData(this.getTreedata)
+    //   let treeData=NodeUtil.changeTreeData(getTreedata)
+
+    //   this.graph=   G6Util.showChartG6Tree("container",treeData[0])
+    //        //初始化数据
+    //       //  graph.data(data);
+    //       // let  treeData0=treeData[0]
+    //       // console.log("treeData0");
+    //       // console.log(treeData0);
+    //       //  graph.data(treeData0);
+
+    //     // //渲染视图
+    //     // graph.render();
+    //     // //让画布内容适应视口
+    //     // graph.fitView();
+    },
+    getCodePutTreeIndex() {
       // code to graph 
       console.log('getCode');
       let graph=this.graph
@@ -590,6 +671,55 @@ this.graph=   G6Util.showChartG6Tree("container",treeDataToshow)
       let treeData=NodeUtil.changeTreeData(getTreedata)
 
       this.graph=   G6Util.showChartG6Tree("container",treeData[0])
+           //初始化数据
+          //  graph.data(data);
+          // let  treeData0=treeData[0]
+          // console.log("treeData0");
+          // console.log(treeData0);
+          //  graph.data(treeData0);
+
+        // //渲染视图
+        // graph.render();
+        // //让画布内容适应视口
+        // graph.fitView();
+    },
+    getCodePutTree() {
+      // code to graph 
+      console.log('getCode');
+      let graph=this.graph
+      // if(graph.destroyed){
+      //   this.showChart()
+      // }
+      if(graph?.destroy){
+        try{
+          graph.destroy()
+        }catch(e){
+          console.error(e)
+          // log.error(e)
+
+        }
+      
+      }
+
+      // JsonCodeMirror
+      // getValue
+      // let getTreedata=  this.$refs.JsonCodeMirror?.getValue()
+      let JsonCodeMirrorVal=  this.$refs.JsonCodeMirror?.getValue()
+
+      let getTreedata=    JSON.parse(JsonCodeMirrorVal)
+    //  let getTreedata=  this.$refs.JsonCodeMirror?.data
+     console.log("getTreedata");
+      console.log(getTreedata);
+
+      // console.log("this.getTreedata");
+      // console.log(this.getTreedata);
+
+      // let data=NodeUtil.changeTreeData(this.getTreedata)
+      // let treeData=NodeUtil.changeTreeData(this.getTreedata)
+      // let treeData=NodeUtil.changeTreeData(getTreedata)
+      // this.graph=   G6Util.showChartG6Tree("container",treeData[0])
+
+      this.graph=   G6Util.showChartG6Tree("container",getTreedata)
            //初始化数据
           //  graph.data(data);
           // let  treeData0=treeData[0]

@@ -22,6 +22,7 @@ export default {
   select: (query, data) => postWithQuery(`${apiPreffix}/select`, query, data),
   selectPageByCreateUserName: (query, data) => postWithQuery(`${apiPreffix}/selectPageByCreateUserName`, query, data),
   StatisticsPaperScoreOfUser: (query, data) => postWithQuery(`${apiPreffix}/StatisticsPaperScoreOfUser`, query, data),
+  StatisticsEyesightResOfUser: (query, data) => postWithQuery(`${apiPreffix}/StatisticsEyesightResOfUser`, query, data),
 
   selectByExamPaperId: (query, data) => postWithQuery(`${apiPreffix}/selectByExamPaperId`, query, data),
   

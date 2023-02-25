@@ -18,6 +18,23 @@ export default {
   data(){
 return {
   questionId:null,
+  question:{
+    id:null,
+    title:null,
+    type:null,
+    content:null,
+    answer:null,
+    analysis:null,
+    score:null,
+    level:null,
+    status:null,
+    createTime:null,
+    updateTime:null,
+    createUser:null,
+    updateUser:null,
+    delFlag:null,
+    g6GraghMove:null,
+  },
 }
   },
   components:{G6Editor},
@@ -28,6 +45,19 @@ return {
     questionApi.select( this.questionId).then(res=>{
       console.log("res questionApi select");
       console.log(res);
+      // if( res.data.code==2){
+     if( res.code==2){
+        this.$message({
+          // message: res.data.msg,
+          message: res.message,
+          type: 'error'
+        });
+        return;
+     }
+    //  this.question=res.data.response
+     this.question=res.response
+
+      // data.code
     })
     // this.save( ) 
     eventBus.$on('exportData', (data) => {

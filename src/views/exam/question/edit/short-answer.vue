@@ -115,6 +115,7 @@
     <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button>
     <!-- <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button> -->
     <el-button type="" @click="toSetDrawPageG6Editor">toSetDrawPageG6Editor</el-button>
+    <el-button type="" @click="toSetDrawPageG6EditorMove">toSetDrawPageG6EditorMove</el-button>
 
     <!-- shortAnswer -->
     <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\exam\question\edit\short-answer.vue -->
@@ -359,9 +360,18 @@ export default {
       // console.log('created  questionApi get id ok ');
       _this.formLoading = true;
       questionApi.select(id).then((re) => {
+    
+        
         _this.form = re.response;
+      
         console.log("_this.form questionApi get");
         console.log(_this.form);
+        if(!_this.form){
+          console.log(" null ")
+          console.log(" id ")
+          console.log(id)
+          
+        }
         _this.formLoading = false;
         this.getQuestionDrawIoG6();
       });
@@ -731,7 +741,10 @@ export default {
           console.log("res questionDraw/getDrawByQuestionId");
           console.log(res);
           if (res.data.code != 1) {
-            this.$message.error(res.data.response);
+            
+                        this.$message.error(res.data.message+ "  draw 没有找到");
+
+            // this.$message.error(res.data.response);
             return;
           }
 
@@ -791,7 +804,20 @@ export default {
         },
       });
     },
+    toSetDrawPageG6EditorMove(){
+      let id = this.$route.query.id;
+      // D:\proj\bishe\exam-vue-admin3\src\views\G6EditorTest.vue
+      // G6EditorMove
+        //  path: "/test/G6EditorTest",
+      this.$router.push({
+        path: "/test/G6EditorMove",
+        query: {
+          question_id: id,
+          questionId: id,
 
+        },
+      });
+    },
     editorReady(instance) {
       this.richEditor.instance = instance;
       let currentContent =

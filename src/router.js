@@ -219,6 +219,34 @@ const constantRoutes = [
         meta: { title: 'JsPlumbTest', icon: 'home', affix: true }
       },
       {
+        path: 'G6EditorMove',
+        component: () => import('@/views/G6EditorMove'),
+        name: 'G6EditorMove',
+        meta: { title: 'G6EditorMove', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\WebSocketTest.vue
+      {
+        path: 'WebSocketTest',
+        component: () => import('@/views/WebSocketTest'),
+        name: 'WebSocketTest',
+        meta: { title: 'WebSocketTest', icon: 'home', affix: true }
+      },
+      {
+        path: 'EchartsShow',
+        component: () => import('@/views/EchartsShow'),
+        name: 'EchartsShow',
+        meta: { title: 'EchartsShow', icon: 'home', affix: true }
+      },
+      {
+        path: 'EchartsShowEyesight',
+        component: () => import('@/views/EchartsShowEyesight'),
+        name: 'EchartsShowEyesight',
+        meta: { title: 'EchartsShowEyesight', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\EchartsShowEyesight.vue
+      // EchartsShow.vue
+      // D:\proj\bishe\exam-vue-admin3\src\views\G6EditorMove.vue
+      {
         path: 'G6Tree',
         component: () => import('@/views/G6Tree'),
         name: 'G6Tree',

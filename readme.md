@@ -2,6 +2,9 @@
 d:
 cd D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin
 npm run serve
+npm run build
+
+npm run 
 
  "xlsx": "^0.18.5",
     "xlsx": "^0.16.7",

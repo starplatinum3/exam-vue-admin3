@@ -10,16 +10,35 @@
  * @param {Number} delay
  * @returns {Function}
  */
-function debounce (func, delay) {
-  let timer = null
-  return function (...params) {
-    let self = this
-    timer && clearTimeout(timer)
-    timer = setTimeout(function () {
-      func.apply(self, params)
-    }, delay)
+// function debounce (func, delay) {
+//   let timer = null
+//   return function (...params) {
+//     let self = this
+//     timer && clearTimeout(timer)
+//     timer = setTimeout(function () {
+//       func.apply(self, params)
+//     }, delay)
+//   }
+// }
+
+// export 
+function debounce(fn,delay){
+  console.log("点击")
+  var timer = null;
+  var delay = delay || 200;
+  return function(e){
+      console.log(e)
+      var args = arguments;
+      var that = this;
+      clearTimeout(timer)
+      timer = setTimeout(function(){
+          fn.apply(that,args)
+      },delay)
   }
 }
+// ————————————————
+// 版权声明：本文为CSDN博主「code_源源」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+// 原文链接：https://blog.csdn.net/qq_41885295/article/details/110440371
 
 /**
  * 节流函数
@@ -29,17 +48,30 @@ function debounce (func, delay) {
  * @param {Number} delay
  * @returns {Function}
  */
-function throttle (func, delay) {
-  let start = 0
-  return (...params) => {
-    let now = new Date().getTime()
-    let self = this
-    if (now > start + delay) {
-      func.apply(self, params)
-      start = now
-    }
-  }
+// function throttle (func, delay) {
+//   let start = 0
+//   return (...params) => {
+//     let now = new Date().getTime()
+//     let self = this
+//     if (now > start + delay) {
+//       func.apply(self, params)
+//       start = now
+//     }
+//   }
+// }
+
+
+function throttle(func, wait){
+  let previous = 0;
+  return function(){
+      let now = Date.now(), context = this, args = [...arguments];
+      if(now - previous > wait){
+          func.apply(context, args);
+          previous = now; // 闭包，记录本次执行时间戳      
+      }    
+  }        
 }
+
 
 /**
  * 判断对象中是否存在循环引用
