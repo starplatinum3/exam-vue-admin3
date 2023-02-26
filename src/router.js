@@ -231,6 +231,20 @@ const constantRoutes = [
         name: 'WebSocketTest',
         meta: { title: 'WebSocketTest', icon: 'home', affix: true }
       },
+      // D:\proj\bishe\exam-vue-admin3\src\views\MyScrollTest.vue
+      // {
+      //   path: 'MyScrollTest',
+      //   component: () => import('@/views/MyScrollTest'),
+      //   name: 'MyScrollTest',
+      //   meta: { title: 'MyScrollTest', icon: 'home', affix: true }
+      // },
+      {
+        path: 'EyesightResList',
+        component: () => import('@/views/EyesightResList'),
+        name: 'EyesightResList',
+        meta: { title: 'EyesightResList', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\EyesightResList.vue
       {
         path: 'EchartsShow',
         component: () => import('@/views/EchartsShow'),

@@ -14,3 +14,6 @@ export default {
     selectPlusPage: (query, data) => postWithQuery(`${apiPreffix}/selectPlusPage`, query, data),
     select: (query, data) => postWithQuery(`${apiPreffix}/select`, query, data),
 }
+// eyesightResList
+// EyesightResList
+// src\api\eyesightRes.js
