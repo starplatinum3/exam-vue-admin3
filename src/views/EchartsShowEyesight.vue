@@ -1,14 +1,18 @@
 <template>
-  <div id="test_app">
-    <!--echarts的容器-->
-    <div id="main" style="width: 100%; height: 520px; background: #fff"></div>
+  <div>
+    <el-button type="" @click="toEyesightResList">显示测试记录</el-button>
+    <div id="test_app">
+      <!-- <div></div> -->
+      <!--echarts的容器-->
+      <div id="main" style="width: 100%; height: 520px; background: #fff"></div>
+    </div>
   </div>
 </template>
    
   <script>
 import * as echarts from "echarts";
 import eyesightResApi from "@/api/eyesightRes";
-import examPaperAnswerApi from '@/api/examPaperAnswer'
+import examPaperAnswerApi from "@/api/examPaperAnswer";
 
 export default {
   name: "",
@@ -17,54 +21,68 @@ export default {
       charts: "",
       // opinionData: ["155", "400", "900", "800", "300", "900", "270"], //数据
       // opinionData: ["5.3", "5.3", "5.3", "5.3",  "5.3", "5.3", "5.3"], //数据
-      
-      // opinionData: ["5.3", "5.3", "5.3", "5.3",  "5.2", 5.2, 5.2], //数据
-      opinionData: ["5.3", "5.3", "5.3", "5.3",  "5.2"], //数据
 
-     
+      // opinionData: ["5.3", "5.3", "5.3", "5.3",  "5.2", 5.2, 5.2], //数据
+      opinionData: ["5.3", "5.3", "5.3", "5.3", "5.2"], //数据
     };
   },
- 
+
   methods: {
-
-    getData(){
+    toEyesightResList() {
+      this.$router.push({ path: "/test/eyesightResList" });
+    },
+    getData() {
       // eyesightResApi.selectPageEqual
-//       eyesightResApi.selectPageEqual({ pageNumber: 1, pageSize: 10 }, { id: 1 })
-//       .then((res) => {
-//         this.tableData =  res.response.records
-// this.total =res.response.total
-// this.queryParam.pageIndex=res.response.current
-//       })
+      //       eyesightResApi.selectPageEqual({ pageNumber: 1, pageSize: 10 }, { id: 1 })
+      //       .then((res) => {
+      //         this.tableData =  res.response.records
+      // this.total =res.response.total
+      // this.queryParam.pageIndex=res.response.current
+      //       })
 
-let dataPost={}
+      let dataPost = {
+        createUser: 1,
+      };
+      // pageNumber:0, 不行
+      // pageSize:6
       examPaperAnswerApi
-        .StatisticsEyesightResOfUser({}, dataPost)
+        .StatisticsEyesightResOfUser(
+          {
+            pageNumber: 1,
+            // pageSize:3
+            // pageSize:6
+            pageSize: 8,
+          },
+          dataPost
+        )
         .then((res) => {
-         let  resp=  res.response
-         console.log("resp StatisticsEyesightResOfUser");
-         console.log(resp);
-         let d={
-    "create_time_str": "2022-02-23",
-    "left_eyesight": 5
-}
-let  create_time_str_list=resp.map(item=>item.create_time_str)
-let  left_eyesight_list=resp.map(item=>item.left_eyesight)
+          let resp = res.response;
+          console.log("resp StatisticsEyesightResOfUser");
+          console.log(resp);
+          let d = {
+            create_time_str: "2022-02-23",
+            left_eyesight: 5,
+          };
+          let create_time_str_list = resp.map((item) => item.create_time_str);
+          let left_eyesight_list = resp.map((item) => item.left_eyesight);
 
-this.drawLineEyeData("main",create_time_str_list,left_eyesight_list)
-        })
-
+          this.drawLineEyeData(
+            "main",
+            create_time_str_list,
+            left_eyesight_list
+          );
+        });
 
       // eyesightResApi.selectPlusPage().then(res => {
       //   console.log(res);
       //   this.opinionData = res.data;
       //   this.drawLine("main");
       // }
-
     },
     drawLine(id) {
       this.charts = echarts.init(document.getElementById(id));
-      
-    let  eyeData=  {
+
+      let eyeData = {
         title: {
           left: "3%",
           top: "5%",
@@ -101,12 +119,16 @@ this.drawLineEyeData("main",create_time_str_list,left_eyesight_list)
             alignWithLabel: true, //保证刻度线和标签对齐
           },
           // data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"], //x坐标的名称
-          // data: ["2022-1-15", "2022-4-15", "2022-7-15", "2022-10-15", 
-          // "2023-1-15", 
+          // data: ["2022-1-15", "2022-4-15", "2022-7-15", "2022-10-15",
+          // "2023-1-15",
           // "2023-4-15", "2023-7-15"],
-          data: ["2022-1-15", "2022-4-15", "2022-7-15", "2022-10-15", 
-          "2023-1-15", 
-         ],
+          data: [
+            "2022-1-15",
+            "2022-4-15",
+            "2022-7-15",
+            "2022-10-15",
+            "2023-1-15",
+          ],
         },
         yAxis: {
           type: "value",
@@ -151,8 +173,8 @@ this.drawLineEyeData("main",create_time_str_list,left_eyesight_list)
             data: this.opinionData,
           },
         ],
-      }
-      let  saleData=  {
+      };
+      let saleData = {
         title: {
           left: "3%",
           top: "5%",
@@ -232,13 +254,13 @@ this.drawLineEyeData("main",create_time_str_list,left_eyesight_list)
             data: this.opinionData,
           },
         ],
-      }
+      };
       this.charts.setOption(eyeData);
     },
-    drawLineEyeData(id,create_time_str_list,left_eyesight_list) {
+    drawLineEyeData(id, create_time_str_list, left_eyesight_list) {
       this.charts = echarts.init(document.getElementById(id));
-      
-    let  eyeData=  {
+
+      let eyeData = {
         title: {
           left: "3%",
           top: "5%",
@@ -275,8 +297,8 @@ this.drawLineEyeData("main",create_time_str_list,left_eyesight_list)
             alignWithLabel: true, //保证刻度线和标签对齐
           },
           // data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"], //x坐标的名称
-          // data: ["2022-1-15", "2022-4-15", "2022-7-15", "2022-10-15", 
-          // "2023-1-15", 
+          // data: ["2022-1-15", "2022-4-15", "2022-7-15", "2022-10-15",
+          // "2023-1-15",
           // "2023-4-15", "2023-7-15"],
           data: create_time_str_list,
         },
@@ -323,8 +345,8 @@ this.drawLineEyeData("main",create_time_str_list,left_eyesight_list)
             data: left_eyesight_list,
           },
         ],
-      }
-    
+      };
+
       this.charts.setOption(eyeData);
     },
   },
@@ -332,16 +354,20 @@ this.drawLineEyeData("main",create_time_str_list,left_eyesight_list)
   mounted() {
     this.$nextTick(function () {
       this.drawLine("main");
-      this.getData()
+      this.getData();
     });
   },
 };
 </script>
    
   <style scoped>
-* {
+.test_app {
+  background-color: #fff;
+  /* rgb(168, 22, 22) */
+}
+/* * {
   margin: 0;
   padding: 0;
   list-style: none;
-}
+} */
 </style>

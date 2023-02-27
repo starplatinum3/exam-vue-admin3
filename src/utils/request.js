@@ -3,7 +3,9 @@ import vue from 'vue'
 import Common from './Common'
 import StringUtil from './StringUtil'
 // let  baseUrl = 'http://43.142.150.223:8003'
-let  baseUrl = 'http://localhost:8003'
+// let  baseUrl = 'http://localhost:8003'
+let  baseUrl = Common.baseURL
+// Common.examUrl
 const request = function (loadtip, query) {
   let loading
   if (loadtip) {

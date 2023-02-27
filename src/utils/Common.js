@@ -61,6 +61,7 @@ let ip = '43.142.150.223'
 let drawUrl = `http://${ip}:3000/api/`
 let examUrl = `http://${ip}:8003/api/`
 let expressDemoBaseUrl = `http://${ip}:3001/api/`
+let baseURL =`http://${ip}:8003`
 // let  tenantId="exam";
 let tenantId = "public";
 let Common = {
@@ -71,7 +72,8 @@ let Common = {
   paperTypeMap,
   examUrl,
   tenantId,
-  examStatusMap
+  examStatusMap,
+  baseURL
 }
 
 

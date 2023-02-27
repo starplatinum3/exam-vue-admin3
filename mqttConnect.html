@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <button id="btn">push</button>
+    <script src="https://cdn.bootcss.com/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    <script>
+
+// new Paho.MQTT.Client 的port 怎么确定 
+// JSDoc: Class: Client
+// https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+//    client = new Paho.MQTT.Client("139.196.8.79", Number(1884), "websockets-test");//建立客户端实例
+//    client = new Paho.MQTT.Client("139.196.8.79", Number(1883), "websockets-test");//建立客户端实例
+//    8083
+// publish(topic, payload, qos, retained)
+
+   client = new Paho.MQTT.Client("139.196.8.79", Number(8083), "websockets-test");//建立客户端实例
+
+                // client = new Paho.MQTT.Client("139.196.8.79", Number(1883), "websockets-test");//建立客户端实例
+                // Paho.MQTT.Client 密码
+        // client = new Paho.MQTT.Client("192.168.0.99", Number(61614), "websockets-test");//建立客户端实例
+        client.connect({
+            onSuccess:onConnect,
+            // userName:"admin",
+            // password:"public",
+        });
+
+        // client.push("smartroom", "hello world", 0, false);//推送消息到服务器(主题，消息内容，Qos，是否保留
+
+
+//         JSDoc: Class: Client
+// https://www.eclipse.org/paho/files/jsdoc/Paho.MQTT.Client.html
+        
+        //连接服务器并注册连接成功处理事件
+            function onConnect(res) {
+                console.log("onConnected");
+                console.log(res);
+
+                topic = 'smartroom'; //订阅的主题
+
+                client.subscribe(topic);//订阅主题
+                console.log("subscribed");
+                //发送消息
+                // client.publish("smartroom", "hello world", 0, false);//推送消息到服务器(主题，消息内容，Qos，是否保留
+            }
+            client.onConnectionLost = onConnectionLost;//注册连接断开处理事件
+            client.onMessageArrived = onMessageArrived;//注册消息接收处理事件
+            function onConnectionLost(responseObject) {
+                console.log("responseObject");
+                console.log(responseObject);
+
+                if (responseObject.errorCode !== 0) {
+                    // console.log("onConnectionLost:"+responseObject.errorMessage);
+                    console.log("连接已断开");
+                 }
+            }
+            function onMessageArrived(message) {
+
+                console.log("收到消息:"+message.payloadString);
+                console.log("主题："+message.destinationName);
+
+            }
+
+            // publish 
+            // bt 
+            document.getElementById('btn').addEventListener('click',  () =>{
+                console.log(" client.publish");
+                console.log( client.publish);
+                console.log(" client");
+                console.log( client);
+                // send
+                client.send("smartroom", "hello world", 0, false);//推送消息到服务器(主题，消息内容，Qos，是否保留
+
+                // client.publish("smartroom", "hello world", 0, false);//推送消息到服务器(主题，消息内容，Qos，是否保留
+            })
+    </script>
+</body>
+</html>

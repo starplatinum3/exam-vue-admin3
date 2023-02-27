@@ -357,6 +357,9 @@ export default {
     },
     getDrawById() {
       // axios.
+      // axios.post(Common.examUrl + "draw/save", this.drawObj).then((res) => {
+
+// import Common from "@/utils/Common";
       axios.post(Common.drawUrl + "draw/getDrawById", { id: 1 }).then((res) => {
         console.log("res");
         console.log(res);

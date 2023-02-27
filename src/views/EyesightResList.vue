@@ -8,53 +8,31 @@
     infinite-scroll-disabled="loading"
     infinite-scroll-distance="10"
   >
-    <div class="progress_item" v-for="(item, index) in list" :key="index">
-      <div class="progress_title">{{ item.projectName }}</div>
-      <div class="progress_box">
-        <div class="progress_bar">
-          <div class="progress_value">{{ `${item.currVal}%` }}</div>
-          <div
-            class="progress_line"
-            :style="{ left: item.totalVal + '%' }"
-          ></div>
-        </div>
-        <div class="progress_text" v-if="item.status === '进度落后'">
-          <!-- <img src="@/assets/images/icon_down.png" alt /> -->
-          <span style="color: #ff371f">{{ item.status }}</span>
-        </div>
-        <div class="progress_text" v-if="item.status === '进度刚好'">
-          <!-- <img src="@/assets/images/icon_right.png" alt /> -->
-          <span style="color: #2d6efb">{{ item.status }}</span>
-        </div>
-        <div class="progress_text" v-if="item.status === '进度超前'">
-          <!-- <img src="@/assets/images/icon_up.png" alt /> -->
-          <span style="color: #38c8b5">{{ item.status }}</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="progress_item" v-for="(item, index) in list" :key="index">
-      <div class="progress_title">{{ item.projectName }}</div>
+  <!-- D:\proj\bishe\exam-vue-admin3\src\views\EchartsShowEyesight.vue -->
+  <el-button type="" @click="EchartsShowEyesight">统计图表显示</el-button>
+  
+
+    <div class="progress_item" v-for="(item, index) in tableData" :key="index">
+      <div class="progress_title">{{ item.userName }}</div>
       <div class="progress_box">
         <div class="progress_bar">
-          <div class="progress_value">{{ `${item.currVal}%` }}</div>
+          <!-- <div class="progress_value">{{ `${item.currVal}%` }}</div>
           <div
             class="progress_line"
             :style="{ left: item.totalVal + '%' }"
-          ></div>
+          ></div> -->
+          <!-- <span></span> -->
+          <!-- 左眼 -->
+          <span class="leftEyesight">  左眼 {{ item.leftEyesight }}</span>
+          <!-- 右眼 -->
+          <span class="rightEyesight">右眼  {{ item.rightEyesight }}</span>
+          <!-- 时间 -->
+          <span class="createTimeStr"> 时间 {{ item.createTimeStr }}</span>
+          <!-- <div class="">{{ item.leftEyesight }}</div>
+          <div class="">{{ item.rightEyesight }}</div> -->
         </div>
-        <div class="progress_text" v-if="item.status === '进度落后'">
-          <!-- <img src="@/assets/images/icon_down.png" alt /> -->
-          <span style="color: #ff371f">{{ item.status }}</span>
-        </div>
-        <div class="progress_text" v-if="item.status === '进度刚好'">
-          <!-- <img src="@/assets/images/icon_right.png" alt /> -->
-          <span style="color: #2d6efb">{{ item.status }}</span>
-        </div>
-        <div class="progress_text" v-if="item.status === '进度超前'">
-          <!-- <img src="@/assets/images/icon_up.png" alt /> -->
-          <span style="color: #38c8b5">{{ item.status }}</span>
-        </div>
+     
       </div>
     </div>
     
@@ -64,9 +42,15 @@
 </template>
 
 <script>
+import Common from "@/utils/Common";
+// formatDateTime ,
+import { formatTime} from "@/utils/DateUtil";
+import axios from "axios";
+// axios
 export default {
   data() {
     return {
+        pageTotal: 0, //总页数
       page: 1, //当前页数
       pageSize: 10, //每页10条
       loading: false,
@@ -103,7 +87,7 @@ export default {
         "updateUserId":null ,
         "userCode":null ,
         "userId":null ,
-        "userName":null ,
+        "userName":"starp" ,
         "userSex":null 
         
       },
@@ -224,9 +208,102 @@ export default {
     };
   },
   mounted() {
-    this.setList();
+    // this.setList();
+
+    
+let  pageNumber=1
+let  pageSize=10
+// let  pageSize=2
+let  postData= {  
+  "createTime":null ,
+  "createUserId":null ,
+  "departId":null ,
+  "departName":null ,
+  "deviceId":null ,
+  "deviceName":null ,
+  "enableMark":null ,
+  "id":null ,
+  "isDeleted":null ,
+  "leftEyesight":null ,
+  "memo":null ,
+  "rightEyesight":null ,
+  "testTime":null ,
+  "updateTime":null ,
+  "updateUserId":null ,
+  "userCode":null ,
+  "userId":null ,
+  "userName":null ,
+  "userSex":null 
+           }
+          //  selectPlusPageOrderByCreateTime
+          // selectPlusPage
+        //   this.$axios.post
+             axios.post
+            //  (Common.examUrl + "draw/save", this.drawObj).then((res) => {
+
+// import Common from "@/utils/Common";
+// app.jsonPost
+// `/api
+(Common.examUrl+`eyesightRes/selectPlusPageOrderByCreateTime?pageNumber=${pageNumber}&pageSize=${pageSize}`
+,postData)
+    // this.$axios.post(`/eyesightRes/selectPlusPage?pageNumber=${this.pageNumber}&pageSize=${this.pageSize}`,data)
+    .then(res => {
+
+      // formatTime
+      
+  
+      // selectPlusPageOrderByCreateTime
+    console.log("res pi/eyesightRes/selectPlusPag");
+    console.log(res);
+    // let response= res.response
+    let response=res.data.response|| res.response
+    // this.tableData = res.response.records;
+    // this.pageTotal= res.response.total
+
+    let  records=response.records
+
+    this.changeDateStr(records)
+//    this. setData({
+//       tableData:records,
+//       pageTotal:response.total
+//     })
+    this.tableData=records
+    this.pageTotal=response.total
+    // this.tableData = res.response.data.records;
+    // response
+    // this.tableData = res.data.data.records;
+    console.log(" this.tableData")
+    console.log( this.tableData)
+    // this.pageTotal= res.data.data.total
+    });
+
   },
   methods: {
+
+    EchartsShowEyesight(){
+
+        this.$router.push({
+          path: "/test/EchartsShowEyesight",
+          query: {
+            // id: this.id,
+            // name: this.name,
+          },
+        });
+    },
+    changeDateStr(records){
+
+        
+        // formatDateTime
+for(let o of records){
+  
+  o.createTimeStr=
+  formatTime(
+    new Date(
+      o.createTime
+    )
+  )
+}
+},
     // 滚动加载
     loadMore() {
       this.noMore = false;
@@ -269,7 +346,9 @@ export default {
 }
 .progress_title{
     margin-left: 10px;
-    font-size: 14px;
+    /* font-size: 14px; */
+    /* font-size: 24px; */
+    font-size: 20px;
     color: #333333;
     margin-bottom: 10px;
     margin-top: 5px;
@@ -370,6 +449,31 @@ export default {
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
 }
+
+.progress_bar{
+    font-size: 20px;
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+}
+.leftEyesight{
+    /* font-size: 10px; */
+    font-size: 15px;
+    margin-left: 10px;
+}
+.rightEyesight{
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.createTimeStr{
+    font-size: 15px;
+    /* margin-left: 10px; */
+    /* margin-left: 100px; */
+    margin-left: 60px;
+}
+
+
 .blue {
   color: #fff !important;
   background-color: #00a3ff !important;

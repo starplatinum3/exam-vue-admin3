@@ -11,7 +11,27 @@ export function formatDate(date) {
     } else {
       return '';
     }
+
   }
+
+  const formatNumber = n => {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  }
+
+  
+  export function  formatTime (date ) {
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    const second = date.getSeconds()
+  
+    return [year, month, day].map(formatNumber).join('/') + ' ' 
+    + [hour, minute, second].map(formatNumber).join(':')
+  }
+  
   
   // 日期必须是 符合格式的 但是金数据填表的就不是正常数据啊
   export function formatDateTime(date) {
