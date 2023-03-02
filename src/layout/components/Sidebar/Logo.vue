@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import Common from "@/utils/Common"
 export default {
   name: 'SidebarLogo',
   props: {
@@ -32,8 +33,12 @@ export default {
     }
   },
   data () {
+    
     return {
-      title: '考试管理系统'
+      // title: '考试管理系统'
+      title:   Common.sysTitle
+      // 中共青田县委党校
+   
     }
   },
   // methods(){

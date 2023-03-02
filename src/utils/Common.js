@@ -57,11 +57,26 @@ let paperTypeMap = {
 // let expressDemoBaseUrl= 'http://localhost:3001/api/'
 
 let ip = '43.142.150.223'
+// starp 服务器 腾讯 
+let examPort="8003"
+
+
+// 121.40.131.82
+// cailaoshi
+// let ip = '121.40.131.82'
+// let examPort="8000"
+// let ip = 'localhost'
+// let examPort="8004"
+
+
+// let ip = '43.142.150.223'
+
 
 let drawUrl = `http://${ip}:3000/api/`
-let examUrl = `http://${ip}:8003/api/`
+let examUrl = `http://${ip}:${examPort}/api/`
+let baseURL =`http://${ip}:${examPort}`
 let expressDemoBaseUrl = `http://${ip}:3001/api/`
-let baseURL =`http://${ip}:8003`
+
 // let  tenantId="exam";
 let tenantId = "public";
 let Common = {
@@ -73,7 +88,9 @@ let Common = {
   examUrl,
   tenantId,
   examStatusMap,
-  baseURL
+  baseURL,
+  sysTitle:"中共青田县委党校"
+  // sysTitle:"考试系统"
 }
 
 

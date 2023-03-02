@@ -9,7 +9,9 @@
       label-position="left"
     >
       <div class="title-container">
+        
         <h3 class="title">考试管理系统</h3>
+        <!-- <h3 class="title">{{ title }}</h3> -->
       </div>
 
       <el-form-item prop="userName">
@@ -92,6 +94,7 @@
 <script>
 import { mapMutations } from "vuex";
 import loginApi from "@/api/login";
+import Common from "@/utils/Common"
 
 export default {
   name: "Login",
@@ -111,6 +114,7 @@ export default {
       }
     };
     return {
+      title:Common.sysTitle,
       loginForm: {
         userName: "",
         password: "",
@@ -203,6 +207,7 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
+          console.log("this.$refs.loginForm.validate login");
           loginApi
             .login(this.loginForm)
             .then(function (result) {
@@ -247,8 +252,14 @@ $cursor: #fff;
   }
 }
 
+// css div 背景图片
 /* reset element-ui css */
+// "D:\proj\bishe\exam-vue-admin3\src\assets\dang.webp"
 .login-container {
+  // background-image: '@/assets/dang.webp';
+  // background-image: url("@/assets/dang.webp");
+  background-image: url("../../assets/dang.webp");
+
   .el-input {
     display: inline-block;
     height: 47px;
@@ -260,13 +271,15 @@ $cursor: #fff;
       -webkit-appearance: none;
       border-radius: 0px;
       padding: 12px 5px 12px 15px;
-      color: $light_gray;
+      // color: $light_gray;
       height: 47px;
       caret-color: $cursor;
 
       &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: $cursor !important;
+        opacity:50%;
+        // box-shadow: 0 0 0px 1000px $bg inset !important;
+        // box-shadow: 0 0 0px 1000px white inset !important;
+        // -webkit-text-fill-color: $cursor !important;
       }
     }
   }

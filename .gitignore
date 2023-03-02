@@ -5,7 +5,7 @@ node_modules
 .env.local
 .env.*.local
 
-/admin
+# /admin
 
 # Log files
 npm-debug.log*

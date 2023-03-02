@@ -175,75 +175,7 @@
       @pagination="search"
     />
 
-    <el-table
-      style="margin-top: 12px"
-      :header-cell-style="{ 'background-color': '#337AB7', color: '#ffffff' }"
-      ref="tableSort"
-      v-loading="listLoading"
-      :border="border"
-      :data="list.markTbValueSvTaskNodeVoList"
-      :height="height"
-      :size="lineHeight"
-      :stripe="stripe"
-      @selection-change="setSelectRows"
-    >
-      <!--1 表格头数组（动态表头）-->
-      <el-table-column
-        align="center"
-        v-for="(item2, FieldIdx) in list.tbFieldList"
-        :key="item2.id.toString()"
-        :property="item2.id.toString()"
-        :label="item2.name"
-        ><!--表头label数组-->
 
-        <!--2 表格体数组(动态表体)-->
-        <!-- formatDataMethod(scope.row.tbValueList, item2.id) -->
-        <template slot-scope="scope">
-          {{ getCellData(scope.row.tbValueList, FieldIdx)
-          }}<!--tbvaluelist：表格一行单元格数组、item2.id：表头label的ID-->
-          <!--<div v-for="(item, p_index) in list.markTbValueSvTaskNodeVoList" :key="p_index">-->
-          <!--<div v-for="(itemb ) in item.tbValueList">&lt;!&ndash;表格内容value数组&ndash;&gt;-->
-          <!--<span v-if="(itemb.tbFieldId)===(list.tbFieldList[index2].id)"> &lt;!&ndash;当前头的id === 列对应的父ID&ndash;&gt;-->
-          <!--{{(itemb.value)}}-->
-          <!--</span>-->
-          <!--</div>-->
-          <!--</div>-->
-        </template>
-      </el-table-column>
-
-      <!--3 公共的字段（固定表头+表体）-->
-      <!-- <el-table-column label="流程阶段" width="180">
-        <template slot-scope="scope">
-          {{ scope.row.svTaskNodeDto.nodeName }}
-        </template>
-      </el-table-column> -->
-
-
-      <!-- <el-table-column label="创建时间" width="180">
-        <template slot-scope="scope">
-          {{ scope.row.tbValuePub.createTime.substring(0, 10) }}
-        </template>
-      </el-table-column> -->
-
-      <el-table-column
-        align="center"
-        label="操作"
-        show-overflow-tooltip
-        width="120"
-      >
-        <template #default="{ row }">
-          <el-button type="text" @click="queryDetailIsShow = true"
-            >查看</el-button
-          >
-        </template>
-      </el-table-column>
-      <!-- <template #empty>
-          <el-image
-            class="vab-data-empty"
-            :src="require('@/assets/empty_images/data_empty.png')"
-          />
-        </template> -->
-    </el-table>
   </div>
 </template>
 
