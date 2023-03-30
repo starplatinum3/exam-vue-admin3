@@ -4,7 +4,8 @@
 // D:\proj\bishe\exam-vue-admin3\src\assets\scss\elementui.scss
 @import './base.scss';
 .el-dropdown-menu {
-  background-color: $thirdColor !important;
+  // background-color: $thirdColor !important;
+  background-color:  red !important;
   box-shadow: 0 5px 5px 0 $dialogShadow !important;
   border: none !important;
   padding: 5px 0;
@@ -13,7 +14,8 @@
     overflow: hidden !important;
     &:hover {
       color: $afterFocus !important;
-      background-color: $mainColor !important;
+      // background-color: $mainColor !important;
+      background-color: red !important;
     }
   }
   .popper__arrow {
@@ -40,7 +42,9 @@
 .el-input {
   & > .el-input__inner {
     border: 1px solid $thirdColor;
-    background-color: $deep;
+    // background-color: $deep;
+    // 背景的 黑色
+    background-color: red;
     color: $afterFocus;
     &:hover,
     &:focus {

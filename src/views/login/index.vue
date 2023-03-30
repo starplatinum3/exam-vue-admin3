@@ -81,6 +81,8 @@
       <el-button @click="toCodeMirrorTest">toCodeMirrorTest</el-button>
       <el-button @click="toFlowChart">toFlowChart</el-button>
       <el-button @click="toBusinessFlowChart">toBusinessFlowChart</el-button>
+      <!-- <></ a></a> -->
+      <a href="http://139.196.8.79/">计算题 mod 计算，笔试题计算</a>
       <!-- BusinessFlowChart -->
       <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\FlowChart.vue -->
     </el-form>
@@ -204,6 +206,10 @@ export default {
     },
     handleLogin() {
       let _this = this;
+      if(  Common.debug){
+        _this.$router.push({ path: "/" });
+        return
+       }
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
@@ -211,6 +217,8 @@ export default {
           loginApi
             .login(this.loginForm)
             .then(function (result) {
+             
+          
               console.log("result 登录");
               console.log(result);
               if (result && result.code === 1) {

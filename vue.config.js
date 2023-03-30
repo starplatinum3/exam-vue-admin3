@@ -38,8 +38,12 @@ module.exports = {
   parallel: require('os').cpus().length > 1,
   pwa: {},
 
+  // D:\proj\bishe\exam-vue-admin3\vue.config.js  outputDir 绝对路径
+  // D:\proj\springBoot\exam-sys-db2\src\main\resources\static\admin
   publicPath: './',
-  outputDir: 'admin',
+  // outputDir: 'admin',
+  // 有用 
+  outputDir: String.raw`D:\proj\springBoot\exam-sys-db2\src\main\resources\static\admin`,
   assetsDir: 'static',
   // lintOnSave: true,
   lintOnSave: false,

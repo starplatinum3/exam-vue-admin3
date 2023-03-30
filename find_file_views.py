@@ -8,6 +8,9 @@ G6Editor
 searchWord="""
 import G6Editor from '@/components/G6Editor/index'
 """
+searchWord="""
+CodeMirrorPopUp
+"""
 
 dir=r"."
 need_dir_name="student"
@@ -98,7 +101,20 @@ def doSearch(searchWord):
         view_dir='src/components'
         searchViews(viewRoute,view_dir)
         return
+    print('"@/views" in searchWord')
+    viewRoute=searchWord
+    # viewRoute=searchWord.split('from')[1].strip()
+    print("viewRoute")
+    print(viewRoute)
+    if viewRoute.endswith(";"):
+        viewRoute=viewRoute[:-1]
+    viewRoute=viewRoute[1:-1]
+    print("viewRoute",viewRoute)
+    # searchViews(searchWord)
+    view_dir='src/components'
+    searchViews(viewRoute,view_dir)
     
+
 # view_dir='src/views'
 view_dir='src/components'
 

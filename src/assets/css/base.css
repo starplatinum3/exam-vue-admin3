@@ -85,9 +85,9 @@
   top: 0;
 }
 /* 内容区域样式 */
-.el-main {
+/* .el-main {
   overflow: hidden;
-}
+} */
 .main {
   position: absolute;
   z-index: 0;

@@ -56,7 +56,9 @@ let paperTypeMap = {
 // let examUrl= 'http://localhost:8003/api/'
 // let expressDemoBaseUrl= 'http://localhost:3001/api/'
 
-let ip = '43.142.150.223'
+// let ip = '43.142.150.223'
+let ip = 'localhost'
+
 // starp 服务器 腾讯 
 let examPort="8003"
 
@@ -89,7 +91,8 @@ let Common = {
   tenantId,
   examStatusMap,
   baseURL,
-  sysTitle:"中共青田县委党校"
+  sysTitle:"中共青田县委党校",
+  debug:true
   // sysTitle:"考试系统"
 }
 

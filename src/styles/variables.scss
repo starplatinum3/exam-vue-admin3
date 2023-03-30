@@ -1,6 +1,9 @@
 // base color
 $blue:#324157;
 $light-blue:#3A71A8;
+// 一个地方 的按钮用到   $light-blue:#3A71A8;
+
+
 $red:#C03639;
 $pink: #E65D6E;
 $green: #30B08F;
@@ -9,15 +12,76 @@ $yellow:#FEC171;
 $panGreen: #30B08F;
 
 // sidebar
-$menuText:#bfcbd9;
-$menuActiveText:#409EFF;
-$subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
 
-$menuBg:#304156;
-$menuHover:#263445;
+// $menuText:#ecf014;
 
-$subMenuBg:#1f2d3d;
-$subMenuHover:#001528;
+$menuText:#e92626;
+// $menuText:#fede00;
+// $menuActiveText:#ffa040;
+$menuActiveText:#e02828;
+// #ffedbd
+// $menuActiveText:#409EFF;
+// $subMenuActiveText:#f4f4f5; 
+$subMenuActiveText:#db2424; 
+// https://github.com/ElemeFE/element/issues/12951
+// $menuBg:#f12711;
+// $menuBg:#ba070b;
+
+$menuBg:#fef4b6;
+// #fef4b6
+// #ba070b
+// $menuHover:#f5af19;
+// #fef4b6
+// $menuHover:#f09e0f;
+
+$menuHover:#fef7cc;
+// $menuHover:#fef4b6;
+// $subMenuBg:#e9b122;
+// #fffadb
+// $subMenuBg:#fffadb;
+
+$subMenuBg:#fef5bd;
+// $subMenuBg:#b2ab7f;
+// $subMenuHover:#ed4217;
+// $subMenuHover:#fef4b6;
+// $subMenuHover:#f0e51be4;
+
+$subMenuHover:#fffce9;
+
+
+// 党建红色 。。。。。。。。。。。。。
+// $menuText:#fede00;
+// // $menuActiveText:#ffa040;
+// $menuActiveText:#ffedbd;
+// // #ffedbd
+// // $menuActiveText:#409EFF;
+// // $subMenuActiveText:#f4f4f5; 
+// $subMenuActiveText:#ffedbd; 
+// // https://github.com/ElemeFE/element/issues/12951
+// // $menuBg:#f12711;
+// $menuBg:#ba070b;
+// // #fef4b6
+// // #ba070b
+// // $menuHover:#f5af19;
+// // #fef4b6
+// $menuHover:#e54a1b;
+// // $menuHover:#fef4b6;
+// $subMenuBg:#ea5515;
+// // $subMenuHover:#ed4217;
+// // $subMenuHover:#fef4b6;
+// $subMenuHover:#e01a1a;
+// 党建红色   。。。。。。。。。。。。。
+
+
+
+// $menuText:#bfcbd9;
+// $menuBg:#dd4213;
+// // #f12711
+// // $menuBg:#304156;
+// // $menuHover:#263445;
+// $menuHover:#e01313;
+// $subMenuBg:#1f2d3d;
+// $subMenuHover:#001528;
 
 $sideBarWidth: 210px;
 

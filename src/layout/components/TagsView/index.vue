@@ -223,10 +223,12 @@ export default {
       }
       &.active {
         // background-color: #42b983;
-        background-color: #3a8bdb;
+        // background-color: #3a8bdb;
+        background-color: #f12711;
         color: #fff;
         // border-color: #42b983;
-        background-color: #3a8bdb;
+        // background-color: #3a8bdb;
+        // background-color: #3a8bdb;
         &::before {
           content: '';
           background: #fff;

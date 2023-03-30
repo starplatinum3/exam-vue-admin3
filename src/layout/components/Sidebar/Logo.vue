@@ -69,7 +69,10 @@ this.$router.push({path:'/dbmanager'})
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #2b2f3a;
+  // background: #2b2f3a;
+  // background:#ba070b;
+  // background:#ba070b;
+  background: #fef4b6;
   text-align: center;
   overflow: hidden;
 
@@ -86,7 +89,8 @@ this.$router.push({path:'/dbmanager'})
     & .sidebar-title {
       display: inline-block;
       margin: 0;
-      color: #fff;
+      // color: #fff;
+      color: #f12711;
       font-weight: 600;
       line-height: 50px;
       font-size: 14px;

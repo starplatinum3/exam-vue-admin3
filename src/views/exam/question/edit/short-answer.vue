@@ -115,7 +115,9 @@
     <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button>
     <!-- <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button> -->
     <el-button type="" @click="toSetDrawPageG6Editor">toSetDrawPageG6Editor</el-button>
-    <el-button type="" @click="toSetDrawPageG6EditorMove">toSetDrawPageG6EditorMove</el-button>
+    <!-- 这个toSetDrawPageG6EditorMove 不要了 右边的下拉条 会没有 ，刷新之后会有  -->
+    <!-- 现在用的这个 toSetDrawPageG6 弹窗 不会有下拉条的问题  -->
+    <!-- <el-button type="" @click="toSetDrawPageG6EditorMove">toSetDrawPageG6EditorMove</el-button> -->
 
     <!-- shortAnswer -->
     <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\exam\question\edit\short-answer.vue -->

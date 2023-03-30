@@ -1,6 +1,8 @@
 
-d:
 cd D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin
+
+d:
+cd D:\proj\bishe\exam-vue-admin3
 npm run serve
 npm run build
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="appG6Editor">
     <G6Editor @exportData="exportData" mode="edit">
 
     </G6Editor>
@@ -14,7 +14,7 @@
 import G6Editor from '@/components/G6Editor/index'
 import questionApi from "@/api/question";
 export default {
-  name: 'app',
+  name: 'appG6Editor',
   data(){
 return {
   questionId:null,
@@ -80,12 +80,14 @@ return {
 
 <style>
 html, body {
-    overflow: hidden;
+    /* overflow: hidden; */
+    overflow: auto;
     margin: 0;
     font-size: 12px;
 }
-#app{
+/* #app{
   margin: 0;
   padding: 0;
-}
+} */
 </style>
+
