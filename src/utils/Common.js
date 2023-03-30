@@ -56,8 +56,17 @@ let paperTypeMap = {
 // let examUrl= 'http://localhost:8003/api/'
 // let expressDemoBaseUrl= 'http://localhost:3001/api/'
 
+// 获得服务器地址
+// 这是不管什么地址都会去访问的意思吗
+let url = window.location.href;
+let urlStr = url.split('/');
+let ip = urlStr[2].split(':')[0] 
+
+console.log("ip base");
+console.log(ip);
+
 // let ip = '43.142.150.223'
-let ip = 'localhost'
+// let ip = 'localhost'
 
 // starp 服务器 腾讯 
 let examPort="8003"
