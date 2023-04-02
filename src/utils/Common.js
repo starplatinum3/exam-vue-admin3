@@ -103,8 +103,8 @@ let Common = {
   examStatusMap,
   baseURL,
   sysTitle:"中共青田县委党校",
-  debug:true
-  // debug:false 
+  // debug:true
+  debug:false 
   // sysTitle:"考试系统"
 }
 

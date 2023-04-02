@@ -225,7 +225,8 @@ let QuestionParser = {
           analyze: '',
           correct: '',
           score: '',
-          difficult: 0
+          difficult: 0,
+          g6tree:null,
         }
         quesList.push(oneQuestion)
       }

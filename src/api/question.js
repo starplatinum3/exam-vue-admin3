@@ -19,6 +19,7 @@ export default {
   pageList: query => post('/api/admin/question/page', query),
   edit: query => post('/api/admin/question/edit', query),
   select: id => post('/api/admin/question/select/' + id),
+  autoPaper:  query => post('/api/admin/question/autoPaper', query),
   deleteQuestion: id => post('/api/admin/question/delete/' + id),
   insertBatch: query => post('/api/admin/question/insertBatch/' ,query),
   findAllEs: query => post('/api/admin/question/findAllEs/' ,query),

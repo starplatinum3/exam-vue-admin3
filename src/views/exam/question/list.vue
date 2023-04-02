@@ -1,18 +1,18 @@
 <template>
   <!-- exam/question/list -->
   <div class="app-container">
-    <el-button type="" @click="select_by_content_like_do"
+    <!-- <el-button type="" @click="select_by_content_like_do"
       >select_by_content_like_do</el-button
-    >
+    > -->
 
-    textContentSearch
-    <el-button type="" @click="textContentSearch">textContentSearch</el-button>
+    <!-- textContentSearch -->
+    <!-- <el-button type="" @click="textContentSearch">textContentSearch</el-button> -->
 
-    http://localhost:8003/es/textContent/findAllEs
+    <!-- findAllEs -->
+    <!-- http://localhost:8003/es/textContent/findAllEs -->
     <el-button type="" @click="findAllEs">findAllEs</el-button>
-    <el-button type="" @click="select_by_content_like_go"
-      >select_by_content_like_go</el-button
-    >
+
+    <!-- select_by_content_like_go -->
 
     <div v-show="by_content_like.length > 0" class="grid-container">
       <!-- frostedGlassPlace   -->
@@ -137,8 +137,9 @@
         </el-select>
       </el-form-item>
       <el-form-item>
+        <!-- select_by_content_like_do -->
         <el-button type="" @click="select_by_content_like_do"
-          >select_by_content_like_do</el-button
+          >模糊查询</el-button
         >
 
         <el-button type="primary" @click="submitForm">查询</el-button>
@@ -159,6 +160,10 @@
         <el-button type="primary" class="link-left" @click="toBatchInsert"
           >批量插入
         </el-button>
+
+        <el-button type="" @click="select_by_content_like_go"
+      >去根据内容搜索</el-button
+    >
       </el-form-item>
     </el-form>
     <el-table

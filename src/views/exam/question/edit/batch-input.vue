@@ -86,9 +86,20 @@
     <!--    版权声明：本文为CSDN博主「杨北林」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。-->
     <!--    原文链接：https://blog.csdn.net/qq_43405812/article/details/120455497-->
     <!--    -->
-    <el-button @click="parse">parse</el-button>
-    <el-button @click="insertBatch">insertBatch</el-button>
-    <el-button @click="getVal">getVal</el-button>
+    <!-- parse -->
+    <div v-if="sameQuestions.length>0">
+      <!-- :key="index" -->
+      <!-- (item,index)  -->
+      有和题库重复的题目
+      <div v-for="(item,index) in sameQuestions" :key="index" >
+        {{ item }}
+      </div>
+    </div>
+    <el-button @click="parse">解析</el-button>
+    <!-- // insertBatch -->
+    <el-button @click="insertBatch">批量插入解析好的题目</el-button>
+    <!-- getVal -->
+    <el-button @click="getVal">查看内容</el-button>
     <!--    <Ueditor @ready="editorReady"/>-->
 
     <!--    <wysiwyg-editor @input="onInput" v-model="someText" :value="someText" />-->
@@ -138,6 +149,7 @@
       return {
         markdownObj: null,
 
+        sameQuestions:[],
         someText: '',
         richEditor: {
           dialogVisible: false,
@@ -323,12 +335,15 @@
               console.log(shortTitleDbTrimed)
               console.log('现在解析的')
               console.log(parsedDataTrimed)
+            // this.$message(`数据库里面有一样的题目了  ${shortTitleDbTrimed}`)
               this.errorHappen = true
               // this.allQues=this.allQues.replace(shortTitleDbTrimed,
               //   '<span style=\'color: red;\' >' + shortTitleDbTrimed + '</span>')
               this.errorContent = this.errorContent.replace(shortTitleDbTrimed,
                 '<span style=\'color: red;\' >' + shortTitleDbTrimed + '</span>')
 
+                console.log(  "this.errorContent ");
+                console.log(  this.errorContent );
             }
           }
 

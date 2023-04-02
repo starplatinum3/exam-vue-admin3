@@ -35,6 +35,7 @@
         <router-link :to="{path:'/exam/paper/edit'}" class="link-left">
           <el-button type="primary">添加</el-button>
         </router-link>
+        <el-button type="primary" @click="autoPaper">自动组卷</el-button>
       </el-form-item>
         
     </el-form>
@@ -86,6 +87,9 @@
 import { mapGetters, mapState, mapActions } from 'vuex'
 import Pagination from '@/components/Pagination'
 import examPaperApi from '@/api/examPaper'
+// questionApi
+import questionApi from '@/api/question'
+// D:\proj\bishe\exam-vue-admin3\src\api\question.js
 import { groupBy } from '@/utils/SqlLike'
 import {showEchartsById,showEchartsByConf} from '@/utils/EchartsUtil'
 import Common  from '@/utils/Common'
@@ -347,6 +351,16 @@ let conf={
     submitForm () {
       this.queryParam.pageIndex = 1
       this.search()
+    },
+    autoPaper(){
+
+      questionApi.autoPaper({}).then(re => {
+        if (re.code === 1) {
+          this.$message.success(re.message)
+        } else {
+          this.$message.error(re.message)
+        }
+      })
     },
     search () {
       this.listLoading = true

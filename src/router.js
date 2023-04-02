@@ -128,8 +128,9 @@ const constantRoutes = [
       {
         path: "question/select_by_content_like",
         component: () => import('@/views/exam/question/select_by_content_like'),
-        name: 'select_by_content_like',
-        meta: { title: 'select_by_content_like', 
+        name: '内容查找',
+        // select_by_content_like
+        meta: { title: '内容查找', 
         noCache: false }
       },
       {

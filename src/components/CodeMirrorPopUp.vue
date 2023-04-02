@@ -14,11 +14,16 @@
     </button> -->
     <h3>内容预览</h3>
     <!-- <el-button type="" @click="setEditorData">setEditorData</el-button> -->
-    <el-button type="" @click="saveMirrorToWang">saveMirrorToWang</el-button>
-    <el-button @click="setData">setData</el-button>
-    <el-button @click="autoFormatRange">autoFormatRange</el-button>
+    <!-- saveMirrorToWang -->
+    <el-button type="" @click="saveMirrorToWang">保存修改</el-button>
+    <!-- setData -->
+    <!-- setData -->
+    <el-button @click="setData">设置数据</el-button>
+    <!-- autoFormatRange -->
+    <!-- autoFormatRange -->
+    <el-button @click="autoFormatRange">整理格式</el-button>
     
-    <el-button @click="autoFormatRangeAll">autoFormatRangeAll</el-button>
+    <el-button @click="autoFormatRangeAll">整理所有格式</el-button>
 
     <!-- this.editor.autoFormatRange( -->
     <!-- <textarea

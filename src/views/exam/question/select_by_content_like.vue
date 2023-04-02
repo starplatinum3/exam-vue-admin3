@@ -91,23 +91,11 @@
       </el-form-item> -->
       <el-form-item>
         <!-- select_by_content_like_do -->
-        <el-button type="" @click="select_by_content_like_do"
-          >查询内容</el-button >
+        <!-- <el-button type="" @click="select_by_content_like_do"
+          >查询内容</el-button > -->
 
         <!-- <el-button type="primary" @click="submitForm">查询</el-button> -->
-        <el-popover placement="bottom" trigger="click">
-          <el-button
-            type="warning"
-            size="mini"
-            v-for="item in editUrlEnum"
-            :key="item.key"
-            @click="$router.push({ path: item.value })"
-            >{{ item.name }}
-          </el-button>
-          <!-- <el-button slot="reference" type="primary" class="link-left"
-            >添加
-          </el-button> -->
-        </el-popover>
+     
 
         <!-- <el-button type="primary" class="link-left" @click="toBatchInsert"
           >批量插入
@@ -199,7 +187,7 @@
     >
       <el-table-column
         prop="content"
-        label="content"
+        label="内容"
         width="200"
         align="center"
       >
@@ -210,7 +198,7 @@
       <!-- width="200" -->
       <el-table-column
         prop="contentShow"
-        label="contentShow"
+        label="重点内容"
         width="250"
         align="center"
       >
@@ -219,20 +207,15 @@
           <div v-html="scope.row.contentShow"></div>
         </template>
       </el-table-column>
-      width="200"
-      <el-table-column
+      <!-- width="200" -->
+      <!-- <el-table-column
         prop="id"
         label="id"
         width="50"
         align="center"
-      ></el-table-column>
+      ></el-table-column> -->
 
-      <el-table-column
-        prop="createTime"
-        label="createTime"
-        width="200"
-        align="center"
-      ></el-table-column>
+   
 
       <!-- <el-table-column
         prop="subjectId"
@@ -264,6 +247,13 @@
           </el-button>
         </template>
       </el-table-column>
+
+      <el-table-column
+        prop="createTime"
+        label="创建时间"
+        width="200"
+        align="center"
+      ></el-table-column>
 
       <el-table-column prop="id" label="Id" width="90px" />
     </el-table>
