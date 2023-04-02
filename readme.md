@@ -6,6 +6,8 @@ cd D:\proj\bishe\exam-vue-admin3
 npm run serve
 npm run build
 
+引入 vite
+
 npm run 
 
  "xlsx": "^0.18.5",

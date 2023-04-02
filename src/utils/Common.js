@@ -61,9 +61,11 @@ let paperTypeMap = {
 let url = window.location.href;
 let urlStr = url.split('/');
 let ip = urlStr[2].split(':')[0] 
-
+// ip = 'localhost'
+ip = '10.61.186.236'
 console.log("ip base");
 console.log(ip);
+
 
 // let ip = '43.142.150.223'
 // let ip = 'localhost'
@@ -102,6 +104,7 @@ let Common = {
   baseURL,
   sysTitle:"中共青田县委党校",
   debug:true
+  // debug:false 
   // sysTitle:"考试系统"
 }
 

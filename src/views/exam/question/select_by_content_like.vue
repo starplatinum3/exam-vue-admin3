@@ -1,24 +1,32 @@
 <template>
   <div class="app-container">
-    <el-button type="" @click="select_by_content_like_do"
+    <!-- <el-button type="" @click="select_by_content_like_do"
       >select_by_content_like_do</el-button
-    >
+    > -->
 
-    textContentSearch
-    <el-button type="" @click="textContentSearch">textContentSearch</el-button>
+    <!-- textContentSearch
+    <el-button type="" @click="textContentSearch">textContentSearch</el-button> -->
 
-    http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper
-    <el-button type="" @click="TextContentEsHilightSearchResultMapper"
-      >TextContentEsHilightSearchResultMapper</el-button
-    >
+<!-- // TextContentEsHilightSearchResultMapper -->
+    <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
 
-    http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper
-    <el-button type="" @click="contentInId">contentInId</el-button>
+
+    <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
+    <!-- <el-button type="" @click="TextContentEsHilightSearchResultMapperFuzziness"
+      >TextContentEsHilightSearchResultMapperFuzziness</el-button
+    > -->
+
+
+    <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
+
+    <!-- <el-button type="" @click="contentInId">contentInId</el-button> -->
+
+
     <!-- <el-button type="" @click="select_by_content_like_go"
       >select_by_content_like_go</el-button
     > -->
   
-    <el-button type="" @click="selectPageTextContent">selectPageTextContent</el-button>
+    <!-- <el-button type="" @click="selectPageTextContent">selectPageTextContent</el-button> -->
     
 
     <el-dialog
@@ -40,9 +48,9 @@
     </el-dialog>
 
     <el-form :model="queryParam" ref="queryForm" :inline="true">
-      <el-form-item label="题目ID：">
+      <!-- <el-form-item label="题目ID：">
         <el-input v-model="queryParam.id" clearable></el-input>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="内容">
         <el-input v-model="queryParam.content" clearable></el-input>
       </el-form-item>
@@ -82,11 +90,11 @@
         </el-select>
       </el-form-item> -->
       <el-form-item>
+        <!-- select_by_content_like_do -->
         <el-button type="" @click="select_by_content_like_do"
-          >select_by_content_like_do</el-button
-        >
+          >查询内容</el-button >
 
-        <el-button type="primary" @click="submitForm">查询</el-button>
+        <!-- <el-button type="primary" @click="submitForm">查询</el-button> -->
         <el-popover placement="bottom" trigger="click">
           <el-button
             type="warning"
@@ -96,14 +104,17 @@
             @click="$router.push({ path: item.value })"
             >{{ item.name }}
           </el-button>
-          <el-button slot="reference" type="primary" class="link-left"
+          <!-- <el-button slot="reference" type="primary" class="link-left"
             >添加
-          </el-button>
+          </el-button> -->
         </el-popover>
 
-        <el-button type="primary" class="link-left" @click="toBatchInsert"
+        <!-- <el-button type="primary" class="link-left" @click="toBatchInsert"
           >批量插入
-        </el-button>
+        </el-button> -->
+
+        <el-button type="" @click="TextContentEsHilightSearchResultMapper"
+      >内容搜索</el-button >
       </el-form-item>
     </el-form>
 
@@ -387,8 +398,28 @@ export default {
         {
           pageNumber: 0,
           pageSize: 10,
+         
         },
         {
+          fuzziness:'fuzziness',
+          keyword: this.queryParam.content,
+        }
+      ).then((res) => {
+        console.log(res);
+        this.tableData = res.content;
+        this.forTableData();
+      });
+    },
+   TextContentEsHilightSearchResultMapperFuzziness() {
+      postWithQuery(
+        "/es/textContent/TextContentEsHilightSearchResultMapperFuzziness",
+        {
+          pageNumber: 0,
+          pageSize: 10,
+        
+        },
+        {
+          fuzziness:'fuzziness',
           keyword: this.queryParam.content,
         }
       ).then((res) => {
