@@ -8,8 +8,10 @@
       <div class="flexCol g6Part">
         <el-button type="" @click="getCode">getCode</el-button>
         
-        <el-button type="" @click="onClose">onClose</el-button>
-        <el-button type="" @click="onCloseNotSave">onCloseNotSave</el-button>
+        <!-- onClose -->
+        <el-button type="" @click="onClose">保存并关闭</el-button>
+        <!-- onCloseNotSave -->
+        <el-button type="" @click="onCloseNotSave">关闭不保存</el-button>
 
         <!-- :style="{ height: '800px', width: '70%' }"  -->
         <div id="container" :style="{ height: '800px', width: '700px' }"></div>
@@ -41,7 +43,7 @@ import G6 from "@antv/g6";
 // D:\proj\bishe\exam-vue-admin3\src\utils\CodeMirrorUtil.js
 import CodeMirrorUtil from "@/utils/CodeMirrorUtil";
 import NodeUtil from "@/utils/NodeUtil";
-
+// D:\proj\bishe\exam-vue-admin3\src\components\G6Tree.vue
 import G6Util from "@/utils/G6Util";
 import TreeUtil from "@/utils/TreeUtil";
 

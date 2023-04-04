@@ -17,6 +17,10 @@ searchWord="""
 searchWord="""
 select_by_con"""
 
+searchWord="""
+import G6Editor from "@/components/G6Editor/index";"""
+
+
 dir=r"."
 need_dir_name="student"
 # dir_name_contain="store"

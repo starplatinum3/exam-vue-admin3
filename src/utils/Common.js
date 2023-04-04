@@ -71,8 +71,10 @@ console.log(ip);
 // let ip = 'localhost'
 
 // starp 服务器 腾讯 
-let examPort="8003"
-
+// let examPort="8003"
+// let examPort="8002"
+// 8088
+let examPort="8088"
 
 // 121.40.131.82
 // cailaoshi

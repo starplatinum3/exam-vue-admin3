@@ -354,7 +354,28 @@ let conf={
     },
     autoPaper(){
 
-      questionApi.autoPaper({}).then(re => {
+      questionApi.autoPaper({
+  "analyze": "String",
+  "title": "String",
+  "difficultLow": 0,
+  "difficultHigh": 0,
+  "items": [],
+  "id": 0,
+  "quesContent": "String",
+  "questionType": 0,
+  "subjectId": 0,
+  "score": 0,
+  "gradeLevel": 0,
+  "difficult": 3,
+  "correct": "String",
+  "infoTextContentId": 0,
+  "createUser": 0,
+  "status": 0,
+  "createTime": "2023-04-02 22:30:09",
+  "deleted": false,
+  "pageNumber": 0,
+  "pageSize": 0
+}).then(re => {
         if (re.code === 1) {
           this.$message.success(re.message)
         } else {

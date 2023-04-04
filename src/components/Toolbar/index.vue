@@ -85,9 +85,12 @@
     ></i>
     <i data-command="unGroup" class="command iconfont icon-ungroup disable" title="解组"></i>
     <el-button @click="consoleData" type="primary">控制台输出数据</el-button>
-    <el-button @click="exportData" type="primary">exportData</el-button>
-    <el-button @click="onClose" type="primary">onClose</el-button>
-    <el-button @click="onCloseNotSave" type="primary">onCloseNotSave</el-button>
+    <!-- exportData -->
+    <el-button @click="exportData" type="primary">导出数据</el-button>
+    <!-- onClose -->
+    <el-button @click="onClose" type="primary">关闭并保存</el-button>
+    <!-- onCloseNotSave -->
+    <el-button @click="onCloseNotSave" type="primary">关闭不保存</el-button>
 
 
   </div>

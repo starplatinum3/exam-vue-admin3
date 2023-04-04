@@ -54,10 +54,10 @@ export default {
       type: Number,
       default: document.documentElement.clientWidth,
     },
-    // data: {
-    //   type: Object,
-    //   default: () => {},
-    // },
+    data: {
+      type: Object,
+      default: () => {},
+    },
   },
   created() {
     this.init();
@@ -160,9 +160,9 @@ export default {
         groups: [],
       };
 
-      this.data = drawG6;
+      // this.data = drawG6;
 
-      this.row2Get();
+      // this.row2Get();
       this.editor = new Editor();
       this.command = new command(this.editor);
     },

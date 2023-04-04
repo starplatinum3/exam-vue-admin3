@@ -6,7 +6,8 @@
     <!-- '100%' -->
     <div class="flexRow">
       <div class="flexCol g6Part">
-        <el-button type="" @click="getCode">getCode</el-button>
+        <!-- getCode -->
+        <el-button type="" @click="getCode">根据代码重绘图形</el-button>
 
         <!-- :style="{ height: '800px', width: '70%' }"  -->
         <div id="container" :style="{ height: '800px', width: '700px' }"></div>
@@ -37,7 +38,7 @@ import G6Util from "@/utils/G6Util";
 
 import CodeMirrorEditorBlack from "@/components/CodeMirrorEditorBlack";
 import JsonCodeMirror from "@/components/JsonCodeMirror";
-
+// D:\proj\bishe\exam-vue-admin3\src\views\G6Tree.vue
 // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\CodeMirrorItTest.vue
 import "codemirror/theme/ambiance.css";
 import "codemirror/lib/codemirror.css";
