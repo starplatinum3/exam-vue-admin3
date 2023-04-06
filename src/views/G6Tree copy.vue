@@ -284,7 +284,7 @@ export default {
             },
           },
         });
-// D:\proj\bishe\exam-vue-admin3\src\views\G6Tree.vue
+
         // 为不同节点进行不同的配置 必须在 render 之前调用
         graph.node(function (node) {
           return {
