@@ -54,7 +54,57 @@
         </div> -->
 
         <!-- paper/list.vue -->
-    <el-table
+        <el-table
+      v-loading="listLoading"
+      :data="tableData"
+      border
+      fit
+      highlight-current-row
+      style="width: 100%"
+    >
+      <el-table-column
+        prop="subjectId"
+        label="学科"
+        :formatter="subjectFormatter"
+        width="120px"
+      />
+      <el-table-column
+        prop="questionType"
+        label="题型"
+        :formatter="questionTypeFormatter"
+        width="70px"
+      />
+      <el-table-column prop="shortTitle" label="题干" show-overflow-tooltip />
+      <el-table-column prop="score" label="分数" width="60px" />
+      <el-table-column prop="difficult" label="难度" width="60px" />
+      <el-table-column prop="createTime" label="创建时间" width="160px" />
+      <el-table-column label="操作" align="center" width="220px">
+        <template slot-scope="{ row }">
+          <el-button size="mini" @click="showQuestion(row)">预览</el-button>
+          <el-button size="mini" @click="editQuestion(row)">编辑</el-button>
+          <!-- confirmDeleteQuestion -->
+          <!-- deleteQuestion -->
+          <el-button
+            size="mini"
+            type="danger"
+            @click="confirmDeleteQuestion(row)"
+            class="link-left"
+            >删除
+          </el-button>
+        </template>
+      </el-table-column>
+
+      <el-table-column prop="id" label="Id" width="90px" />
+    </el-table>
+    <pagination
+      v-show="total > 0"
+      :total="total"
+      :page.sync="queryParam.pageIndex"
+      :limit.sync="queryParam.pageSize"
+      @pagination="search"
+    />
+
+    <!-- <el-table
     @cell-click="handleCellClick"
      v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
       <!-- <el-table-column prop="id" label="Id" width="90px"/> -->
@@ -74,7 +124,7 @@
           <!-- examPaperId -->
         </template>
       </el-table-column>
-    </el-table>
+    </el-table> -->
     <pagination v-show="total>0" :total="total" :page.sync="queryParam.pageIndex" :limit.sync="queryParam.pageSize"
                 @pagination="search"/>
 
@@ -129,6 +179,13 @@ export default {
     console.log(this.subjects);
   },
   methods: {
+    questionTypeFormatter(row, column, cellValue, index) {
+      return this.enumFormat(this.questionType, cellValue);
+    },
+    subjectFormatter(row, column, cellValue, index) {
+      return this.subjectEnumFormat(cellValue);
+    },
+    ...mapActions("exam", { initSubject: "initSubject" }),
  // 点击判断显示
  handleCellClick(row, column, cell, event) {
   console.log("row");
@@ -352,13 +409,7 @@ let conf={
       this.queryParam.pageIndex = 1
       this.search()
     },
-    autoPaperGo(){
-
-      this.$router.push('/exam/paper/AutoPaper')
-    },
     autoPaper(){
-      this.autoPaperGo()
-      return
 
       questionApi.autoPaper({
   "analyze": "String",
@@ -382,7 +433,15 @@ let conf={
   "pageNumber": 0,
   "pageSize": 0
 }).then(re => {
+  console.log("re");
+  console.log(re);
+
         if (re.code === 1) {
+          let data= re
+          // let data= re.data
+          const response = data.response
+          this.tableData = response
+        // this.tableData = response.list
           this.$message.success(re.message)
         } else {
           this.$message.error(re.message)

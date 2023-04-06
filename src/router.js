@@ -104,6 +104,15 @@ const constantRoutes = [
         meta: { title: '试卷编辑', noCache: true, activeMenu: '/exam/paper/list' },
         hidden: true
       },
+      {
+        // /exam', '/exam/paper', '/exam/paper/AutoPaper'
+        path: 'paper/AutoPaper',
+        component: () => import('@/views/exam/paper/AutoPaper'),
+        name: 'AutoPaper',
+        meta: { title: 'AutoPaper', noCache: true, activeMenu: '/exam/paper/list' },
+        hidden: true
+      },
+      // this.$router.push('/question/AutoPaper')
       
       {
         path: 'question/list',

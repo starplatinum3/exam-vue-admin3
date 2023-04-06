@@ -62,7 +62,7 @@ let url = window.location.href;
 let urlStr = url.split('/');
 let ip = urlStr[2].split(':')[0] 
 // ip = 'localhost'
-ip = '10.61.186.236'
+// ip = '10.61.186.236'
 console.log("ip base");
 console.log(ip);
 
@@ -71,10 +71,10 @@ console.log(ip);
 // let ip = 'localhost'
 
 // starp 服务器 腾讯 
-// let examPort="8003"
+let examPort="8003"
 // let examPort="8002"
 // 8088
-let examPort="8088"
+// let examPort="8088"
 
 // 121.40.131.82
 // cailaoshi
