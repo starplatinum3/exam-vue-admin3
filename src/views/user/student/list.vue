@@ -104,11 +104,11 @@
       <el-table-column sortable prop="phone" label="手机号" />
 
       <!-- width="200" -->
-      <el-table-column sortable prop="tenantId" label="tenantId" align="center">
+      <!-- <el-table-column sortable prop="tenantId" label="tenantId" align="center">
         <template slot-scope="scope">
           <div v-html="scope.row.tenantId"></div>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <!-- width="70px" -->
       <el-table-column sortable label="状态" prop="status" >
@@ -142,19 +142,21 @@
             class="link-left"
             >删除</el-button
           >
+          <!-- seeRecord -->
           <el-button
             size="mini"
             type="danger"
             @click="seeRecord(row)"
             class="link-left"
-            >seeRecord</el-button
+            >查看考试记录</el-button
           >
+          <!-- seeStatistics -->
           <el-button
             size="mini"
             type="danger"
             @click="seeStatistics(row)"
             class="link-left"
-            >seeStatistics</el-button
+            >查看学生数据统计</el-button
           >
         </template>
       </el-table-column>

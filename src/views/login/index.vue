@@ -74,20 +74,28 @@
         >登录</el-button
       >
 
-      <el-button @click="toDbManager">toDbManager</el-button>
+      <!-- <el-button @click="toDbManager">toDbManager</el-button>
       D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\WangEdiorFormula.vue
       <el-button @click="toWangEdiorFormula">toWangEdiorFormula</el-button>
       toCodeMirrorTest
       <el-button @click="toCodeMirrorTest">toCodeMirrorTest</el-button>
       <el-button @click="toFlowChart">toFlowChart</el-button>
-      <el-button @click="toBusinessFlowChart">toBusinessFlowChart</el-button>
+      <el-button @click="toBusinessFlowChart">toBusinessFlowChart</el-button> -->
       <!-- <></ a></a> -->
-      <a href="http://139.196.8.79/">计算题 mod 计算，笔试题计算</a>
+      <!-- <a href="http://139.196.8.79/">计算题 mod 计算，笔试题计算</a> -->
       <!-- BusinessFlowChart -->
       <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\FlowChart.vue -->
     </el-form>
 
     <div class="account-foot-copyright">
+      <span>
+        <a href="http://139.196.8.79/">计算题 mod 计算，笔试题计算</a>
+       
+      </span>
+<span>
+  <a href="#/test">test</a>
+</span>
+    
       <!-- <span>Copyright © 2021 starplatinumora 版权所有</span> -->
     </div>
   </div>

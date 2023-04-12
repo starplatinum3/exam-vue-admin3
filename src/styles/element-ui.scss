@@ -118,3 +118,74 @@ user-select: unset;
 // 版权声明：本文为CSDN博主「雷电影的小厨师、」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 // 原文链接：https://blog.csdn.net/weixin_45438028/article/details/127683722 */
 // }
+
+// .el-table {
+//   border-collapse: collapse;
+//   text-align: center;
+// }
+
+// .el-table th,
+// .el-table td {
+//   padding: 10px;
+//   border: 1px solid #d9d9d9;
+// }
+
+// .el-table th {
+//   background-color: #0072c6;
+//   color: #fff;
+//   font-weight: bold;
+// }
+
+// .el-table td {
+//   background-color: #f2f2f2;
+//   color: #333;
+// }
+
+// .el-pagination__total {
+//   color: #333;
+// }
+
+// .el-pagination__sizes .el-select-dropdown__item {
+//   color: #333;
+// }
+
+// .el-pagination__jump .el-input__inner {
+//   border: 1px solid #d9d9d9;
+//   color: #333;
+// }
+
+
+.el-table {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.el-table th,
+.el-table td {
+  padding: 10px;
+  border: 1px solid #FFC107;
+}
+
+.el-table th {
+  background-color: #E53935;
+  // color: #fff;
+  font-weight: bold;
+}
+
+.el-table td {
+  // background-color: #FFEB3B;
+  color: #333;
+}
+
+.el-pagination__total {
+  color: #333;
+}
+
+.el-pagination__sizes .el-select-dropdown__item {
+  color: #333;
+}
+
+.el-pagination__jump .el-input__inner {
+  border: 1px solid #FFC107;
+  color: #333;
+}

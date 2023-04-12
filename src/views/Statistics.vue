@@ -3,10 +3,14 @@
   <!-- record/index -->
   <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\Statistics.vue -->
   <div style="margin-top: 10px" class="app-contain">
-    createUserName
+    <!-- createUserName -->
+    <!-- 用户名 -->
+    学生名字
+    <!-- selectPageByCreateUserName -->
     <el-input v-model="query.createUserName"></el-input>
+    <!-- selectPageByCreateUserName -->
     <el-button type="" @click="selectPageByCreateUserName"
-      >selectPageByCreateUserName</el-button
+      >根据学生名字查询</el-button
     >
     <el-button type="" @click="search">search</el-button>
 
@@ -110,6 +114,179 @@ export default {
     scrollTo(0, 800);
   },
   methods: {
+    echartsDataSet(res){
+      let paper_name_list = ListUtil.getListOfProp(
+            res.response,
+            "paper_name"
+          );
+          let user_score_percent_avg_list = ListUtil.getListOfProp(
+            res.response,
+            "user_score_percent_avg"
+          );
+          let system_score_percent_avg_list = ListUtil.getListOfProp(
+            res.response,
+            "system_score_percent_avg"
+          );
+          let user_score_max_list = ListUtil.getListOfProp(
+            res.response,
+            "user_score_max"
+          );
+          let user_score_avg_list = ListUtil.getListOfProp(
+            res.response,
+            "user_score_avg"
+          );
+          let user_score_min_list = ListUtil.getListOfProp(
+            res.response,
+            "user_score_min"
+          );
+          
+          // user_score_avg
+          // user_score_max
+
+          let confs = [
+            {
+              echartsId: "showStuEchartsByType",
+              title: "试卷成绩统计,最终成绩/试卷总分,低的说明成绩低了",
+              legend: ["获得成绩 百分之"],
+              valName: "获得成绩 百分之",
+              names: paper_name_list,
+              datas: user_score_percent_avg_list,
+            },
+            {
+              echartsId: "system_score_percent_avg",
+              title: "试卷成绩统计 系统判定得分/试卷总分",
+              legend: ["获得成绩 百分之"],
+              valName: "获得成绩 百分之",
+              names: paper_name_list,
+              datas: system_score_percent_avg_list,
+              series: [
+                {
+                  name: "system_score",
+                  type: "bar",
+                  data: system_score_percent_avg_list,
+                },
+              ],
+            },
+            {
+              echartsId: "system_score_percent_avg_of_user_score",
+              title: "试卷成绩统计 系统判定得分/最终得分",
+              legend: ["获得成绩 百分之"],
+              valName: "获得成绩 百分之",
+              names: paper_name_list,
+              datas: ListUtil.getListOfProp(
+                res.response,
+                "system_score_percent_avg_of_user_score"
+              ),
+            },
+          ];
+
+          let itemStyle = {
+            normal: {
+              label: {
+                show: true, //开启显示
+                position: 'top', //在上方显示
+                textStyle: {
+                  //数值样式
+                  color: "black",
+                  fontSize: 16,
+                },
+              },
+              // color: function (d) {
+              //   return (
+              //     "#" +
+              //     Math.floor(Math.random() * (256 * 256 * 256 - 1)).toString(16)
+              //   );
+              // },
+            },
+          };
+
+          let confsSeries = [
+            // {
+            //   echartsId: "showStuEchartsByType",
+            //   title: "试卷成绩统计",
+            //   legend: ["获得成绩 百分之"],
+            //   valName: "获得成绩 百分之",
+            //   names: paper_name_list,
+            //   datas: user_score_percent_avg_list,
+            // },
+            // {
+            //   echartsId: "system_score_percent_avg",
+            //   title: "试卷成绩统计 系统判定得分/试卷总分",
+            //   legend: ["获得成绩 百分之"],
+            //   valName: "获得成绩 百分之",
+            //   names: paper_name_list,
+            //   datas: system_score_percent_avg_list,
+            //   series: [
+            //     {
+            //       name: "system_score",
+            //       type: "bar",
+            //       data: system_score_percent_avg_list,
+            //     },
+            //   ],
+            // },
+            // {
+            //   echartsId: "system_score_percent_avg_of_user_score",
+            //   title: "试卷成绩统计 系统判定得分/最终得分",
+            //   legend: ["获得成绩 百分之"],
+            //   valName: "获得成绩 百分之",
+            //   names: paper_name_list,
+            //   datas: ListUtil.getListOfProp(
+            //     res.response,
+            //     "system_score_percent_avg_of_user_score"
+            //   ),
+            // },
+            {
+              echartsId: "muchLines",
+              title: "试卷成绩统计 最高 /平均",
+              legend: ["获得成绩 百分之"],
+              valName: "获得成绩 百分之",
+              names: paper_name_list,
+              datas: user_score_max_list,
+              // user_score_percent_avg_list
+              series: [
+                // {
+                //   name: "system_score_avg",
+                //   type: "bar",
+                //   data: system_score_percent_avg_list,
+                // },
+                // {
+                //   name: "system_score_avg",
+                //   type: "bar",
+                //   data: user_score_percent_avg_list,
+                // },
+                {
+                  name: "user_score_max",
+                  type: "bar",
+                  data: user_score_max_list,
+                  // itemStyle: itemStyle,
+                  // ————————————————
+                  // 版权声明：本文为CSDN博主「thomas.he」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+                  // 原文链接：https://blog.csdn.net/elvishehai/article/details/120687900
+                },
+                {
+                  name: "user_score_avg",
+                  type: "bar",
+                  data: user_score_avg_list,
+                  itemStyle: itemStyle,
+                },
+                {
+                  name: "user_score_min_list",
+                  type: "bar",
+                  data: user_score_min_list,
+                  // itemStyle: itemStyle,
+                },
+                
+              ],
+            },
+          ];
+
+          for (let conf of confs) {
+            showEchartsByConf(conf);
+          }
+          for (let conf of confsSeries) {
+            showEchartsByConfSeries(conf);
+          }
+    },
     // http://localhost:8002/#/test/Statistics?createUserId=19
     search() {
       let createUserId = this.$route.query.createUserId || null;
@@ -177,7 +354,7 @@ export default {
           let confs = [
             {
               echartsId: "showStuEchartsByType",
-              title: "试卷成绩统计",
+              title: "试卷成绩统计,最终成绩/试卷总分,低的说明成绩低了",
               legend: ["获得成绩 百分之"],
               valName: "获得成绩 百分之",
               names: paper_name_list,
@@ -403,6 +580,15 @@ export default {
           // _this.queryParam.pageIndex = re.pageNum
           // _this.listLoading = false
         });
+
+        examPaperAnswerApi
+        .StatisticsPaperScoreOfUser({}, dataPost)
+        .then((res) => {
+          console.log("res");
+          console.log(res);
+          this.echartsDataSet(res)
+        }
+        )
     },
 
     exportTableDataToXlsx() {

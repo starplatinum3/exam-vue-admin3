@@ -402,6 +402,7 @@ export default {
       let questionId = this.form.id;
 
       // this.form.questionId
+      // node_draw
       let qu = {
         id: 145,
         questionType: 5,

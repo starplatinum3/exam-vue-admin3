@@ -104,29 +104,10 @@
       @pagination="search"
     />
 
-    <!-- <el-table
-    @cell-click="handleCellClick"
-     v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
-      <!-- <el-table-column prop="id" label="Id" width="90px"/> -->
-      <el-table-column prop="subjectId" label="学科" :formatter="subjectFormatter" width="120px" />
-      <el-table-column prop="name" label="名称"  />
-      <el-table-column prop="createTime" label="创建时间" width="160px"/>
-      <el-table-column prop="paperType"  :formatter="paperTypeFormatter" label="paperType" width="160px"/>
-      <!-- questionCount -->
-      <el-table-column prop="questionCount"  label="questionCount" width="160px"/>
-      <el-table-column  label="操作" align="center"  width="160px">
-        <template slot-scope="{row}">
-          <el-button size="mini" 
-          @click="$router.push({path:'/exam/paper/Statistics',query:{examPaperId:row.id}})" >Statistics</el-button>
-          <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\exam\paper\Statistics.vue -->
-          <el-button size="mini" @click="$router.push({path:'/exam/paper/edit',query:{id:row.id}})" >编辑</el-button>
-          <el-button size="mini" type="danger"  @click="deletePaper(row)" class="link-left">删除</el-button>
-          <!-- examPaperId -->
-        </template>
-      </el-table-column>
-    </el-table> -->
-    <pagination v-show="total>0" :total="total" :page.sync="queryParam.pageIndex" :limit.sync="queryParam.pageSize"
-                @pagination="search"/>
+
+    <!-- <pagination v-show="total>0" :total="total" :page.sync="queryParam.pageIndex"
+       :limit.sync="queryParam.pageSize"
+                @pagination="search"/> -->
 
                 <!-- showStuEchartsByType -->
     <div id="showStuEchartsByType"   style="width: 100%;height:400px;"></div>
@@ -488,6 +469,7 @@ let conf={
     ...mapActions('exam', { initSubject: 'initSubject' })
   },
   computed: {
+    // ...mapGetters("enumItem", ["enumFormat"]),
     ...mapGetters('enumItem', ['enumFormat']),
     ...mapState('enumItem', {
       levelEnum: state => state.user.levelEnum

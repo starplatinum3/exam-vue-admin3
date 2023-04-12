@@ -35,8 +35,11 @@ userScore  <el-input v-model="query.userScore"></el-input>
 paperScore  <el-input v-model="query.paperScore"></el-input>
 questionCorrect  <el-input v-model="query.questionCorrect"></el-input>
 questionCount  <el-input v-model="query.questionCount"></el-input>
-doTime  <el-input v-model="query.doTime"></el-input>
-status  <el-input v-model="query.status"></el-input>
+doTime  <el-input v-model="query.doTime" width="20" ></el-input>
+
+status
+<div>
+  <!-- <el-input v-model="query.status"></el-input> -->
 <el-select
 			v-model="query.status"
 			style="width: 312px;"
@@ -49,6 +52,8 @@ status  <el-input v-model="query.status"></el-input>
 				<el-option v-for="item in options" :key="item" :label="item" :value="item">
 				</el-option>
 			</el-select>
+</div>
+
 			<!-- <el-input v-model="ruleForm.tranname" style="width: 280px;position: absolute;left: 0px;"
        @blur="valInputBlur" ref="valInput"
 			 @focus="valInputFocus"></el-input> -->
@@ -63,6 +68,10 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
 
 
     <el-button type="" @click="search">search</el-button>
+       <!-- exportTableDataToXlsx -->
+       <el-button @click="exportTableDataToXlsx"
+          >导出考试记录</el-button
+        >
 
     <el-row :gutter="50">
       <el-col :span="18">
@@ -135,13 +144,14 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
           @pagination="search"
           style="margin-top: 20px"
         />
+        <!-- exportTableDataToXlsx -->
         <el-button @click="exportTableDataToXlsx"
-          >exportTableDataToXlsx</el-button
+          >导出考试记录</el-button
         >
       </el-col>
       <el-col :span="6">
         <el-card class="record-answer-info">
-          selectItem  {{selectItem}}
+          <!-- selectItem  {{selectItem}} -->
           <el-form label-width="50%">
             <el-form-item label="系统判分：">
               <span>{{ selectItem.systemScore }}</span>
@@ -165,19 +175,44 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
               <span>{{  selectItem.status}}</span>
             </el-form-item>
 
+           <div class="pageTitle">
+            这页的总体统计
+           </div>
+            <el-form-item label="计算的分数">
+              <span>{{  systemScoreSum}}</span>
+            </el-form-item>
+            <el-form-item label="得到的成绩">
+              <span>{{  userScoreSum}}</span>
+            </el-form-item>
+            <el-form-item label="试卷的满分">
+              <span>{{  paperScoreSum}}</span>
+            </el-form-item>
+            <el-form-item label="作对的题目数量">
+              <span>{{  questionCorrectSum}}</span>
+            </el-form-item>
+            <el-form-item label="一共有多少题目">
+              <span>{{  questionCountSum}}</span>
+            </el-form-item>
+
+            <el-form-item label="花了时间">
+              <span>{{  doTimeSum}}</span>
+            </el-form-item>
+
+            <!-- <div>systemScoreSum  计算的分数 {{ systemScoreSum }}</div> -->
+    <!-- <div>userScoreSum {{ userScoreSum }}</div> -->
+    <!-- <div>userScoreSum 得到的成绩 {{ userScoreSum }}</div>
+<div>paperScoreSum 试卷的满分 {{ paperScoreSum }}</div>
+<div>questionCorrectSum 作对的题目数量 {{ questionCorrectSum }}</div>
+<div>questionCountSum 一共有多少题目 {{ questionCountSum }}</div>
+<div>doTimeSum 花了时间 {{ doTimeSum }}  秒</div> -->
+
            
           </el-form>
         </el-card>
       </el-col>
     </el-row>
 
-    <div>systemScoreSum  计算的分数 {{ systemScoreSum }}</div>
-    <!-- <div>userScoreSum {{ userScoreSum }}</div> -->
-    <div>userScoreSum 得到的成绩 {{ userScoreSum }}</div>
-<div>paperScoreSum 试卷的满分 {{ paperScoreSum }}</div>
-<div>questionCorrectSum 作对的题目数量 {{ questionCorrectSum }}</div>
-<div>questionCountSum 一共有多少题目 {{ questionCountSum }}</div>
-<div>doTimeSum 花了时间 {{ doTimeSum }}  秒</div>
+
 
 
 showStuEchartsByType

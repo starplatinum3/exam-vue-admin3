@@ -55,8 +55,10 @@ module.exports = {
     https: false,
     hotOnly: false,
     proxy: {
+      // http://10.61.186.236:8090/#/user/student/list
+      // target: 'http://localhost:8000',
       '/api': {
-        target: 'http://localhost:8000',
+        target: 'http://10.61.186.236:8003',
         changeOrigin: true
       },
       // '/': {

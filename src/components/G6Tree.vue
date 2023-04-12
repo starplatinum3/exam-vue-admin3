@@ -6,7 +6,8 @@
     <!-- '100%' -->
     <div class="flexRow">
       <div class="flexCol g6Part">
-        <el-button type="" @click="getCode">getCode</el-button>
+        <!-- getCode -->
+        <el-button type="" @click="getCode">编译</el-button>
         
         <!-- onClose -->
         <el-button type="" @click="onClose">保存并关闭</el-button>
