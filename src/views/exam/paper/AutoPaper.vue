@@ -36,6 +36,7 @@
           <el-button type="primary">添加</el-button>
         </router-link>
         <el-button type="primary" @click="autoPaper">自动组卷</el-button>
+        <el-button type="primary" @click="submitFormPaper">submitFormPaper</el-button>
       </el-form-item>
         
     </el-form>
@@ -62,18 +63,123 @@
       highlight-current-row
       style="width: 100%"
     >
+
+   
+ <el-table-column prop="questionType" label="题目类型（1.单选题  2.多选题  3.判断题 4.填空题 5.简答题）"
+ :formatter="questionTypeFormatter"
+  width="200" align="center">
+  <!-- <template slot-scope="scope">
+          <div v-html="scope.row.questionType"></div>
+        </template> -->
+</el-table-column>
+ <el-table-column prop="subjectId" label="学科" width="200"
+ :formatter="subjectFormatter"
+  align="center">
+  <!-- <template slot-scope="scope">
+          <div v-html="scope.row.subjectId"></div>
+        </template> -->
+</el-table-column>
+ <el-table-column prop="score" label="题目总分(千分制)" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.score"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="gradeLevel" label="级别" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.gradeLevel"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="difficult" label="题目难度" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.difficult"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="correct" label="正确答案" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.correct"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="infoTextContentId" label="内容信息" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.infoTextContentId"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="createUser" label="创建人" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.createUser"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="status" label="状态" width="200" align="center">
+  <template slot-scope="{ row }">
+              <el-tag :type="statusTagFormatter(row.status)">
+                {{ statusTextFormatter(row.status) }}
+              </el-tag>
+            </template>
+  <!-- <template slot-scope="scope">
+          <div v-html="scope.row.status"></div>
+        </template> -->
+</el-table-column>
+ <el-table-column 
+ :formatter="dateFormatter"
+  prop="createTime" label="创建时间" width="200" align="center">
+  <!-- <template slot-scope="scope">
+          <div v-html="scope.row.createTime"></div>
+        </template> -->
+</el-table-column>
+ <el-table-column prop="deleted" label="是否删除" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.deleted"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="videoLink" label="视频链接" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.videoLink"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="tenantId" label="租户" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.tenantId"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="cosAnsSimilarity" label="相似度" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.cosAnsSimilarity"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="g6Tree" label="图画结构" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.g6Tree"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="nodeDraw" label="节点图数据" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.nodeDraw"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="bigNodeDraw" label="非g6的大圆" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.bigNodeDraw"></div>
+        </template>
+</el-table-column>
+
+<el-table-column prop="id" label="id" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.id"></div>
+        </template>
+</el-table-column>
+
       <el-table-column
         prop="subjectId"
         label="学科"
         :formatter="subjectFormatter"
         width="120px"
       />
-      <el-table-column
+      <!-- <el-table-column
         prop="questionType"
         label="题型"
         :formatter="questionTypeFormatter"
         width="70px"
-      />
+      /> -->
       <el-table-column prop="shortTitle" label="题干" show-overflow-tooltip />
       <el-table-column prop="score" label="分数" width="60px" />
       <el-table-column prop="difficult" label="难度" width="60px" />
@@ -122,12 +228,35 @@ import examPaperApi from '@/api/examPaper'
 import questionApi from '@/api/question'
 // D:\proj\bishe\exam-vue-admin3\src\api\question.js
 import { groupBy } from '@/utils/SqlLike'
+
+import {formatDateTime} from '@/utils/DateUtil'
+
 import {showEchartsById,showEchartsByConf} from '@/utils/EchartsUtil'
 import Common  from '@/utils/Common'
 export default {
   components: { Pagination },
   data () {
+    let  paperName="数据结构"
     return {
+      formPaper: {
+        id: null,
+        // level: null,
+        level: 2, 
+        // 大二
+        subjectId: 5,
+        // 数据结构 
+        paperType: 1,
+        // 固定试卷 
+        limitDateTime: [],
+        // name: '',
+        name:paperName,
+        // suggestTime: null,
+        suggestTime: 60,
+        titleItems: [{
+        name: paperName,
+        questionItems: []
+      }]
+      },
       queryParam: {
         id: null,
         // level: null,
@@ -138,16 +267,17 @@ export default {
         pageSize: 10
       },
       subjectFilter: null,
-      listLoading: true,
+      // listLoading: true,
+      listLoading: false,
       tableData: [],
       total: 0
     }
   },
   created () {
     this.initSubject()
-    this.search()
+    // this.search()
 
-    
+    // DateUtil 
 
     console.log("this.subjectFilter");
     console.log(this.subjectFilter);
@@ -155,12 +285,35 @@ export default {
     console.log(this.exam);
   },
   mounted () {
+    // TimeU 
+    // DateU 
+    console.log("this.subjects mounted");
+    console.log(this.subjects);
+    console.log("this.queryParam");
+    console.log(this.queryParam);
+    if(!this.queryParam){
+      this.queryParam ={
+        id: null,
+        // level: null,
+        level: 1,
+        // 这里没有默认的1  就不显示下拉 
+        subjectId: null,
+        pageIndex: 1,
+        pageSize: 10
+      }
+    }
+    console.log("this.queryParam");
+    console.log(this.queryParam);
     this.subjectFilter = this.subjects.filter(data => data.level === this.queryParam.level)
     console.log("this.subjects");
     console.log(this.subjects);
   },
   methods: {
     questionTypeFormatter(row, column, cellValue, index) {
+      // console.log("this.questionType");
+      // console.log(this.questionType);
+      // console.log("cellValue");
+      // console.log(cellValue);
       return this.enumFormat(this.questionType, cellValue);
     },
     subjectFormatter(row, column, cellValue, index) {
@@ -422,12 +575,90 @@ let conf={
           // let data= re.data
           const response = data.response
           this.tableData = response
+          console.log( "this.tableData");
+          console.log( this.tableData);
+          this.
+      formPaper
+      .titleItems[0].questionItems=this.tableData
         // this.tableData = response.list
           this.$message.success(re.message)
         } else {
           this.$message.error(re.message)
         }
       })
+    },
+    submitFormPaper () {
+      let _this = this
+      console.log("submitForm");
+      // if(! this.$refs.form.validate){
+      //   console.log("no validate");
+      //   return;
+      // }
+     
+      // console.log("valid");
+      //   console.log(valid);
+        // this.formLoading = true
+          console.log("this.form edit");
+          examPaperApi.edit(this.formPaper).then(re => {
+            console.log("re");
+            console.log(re);
+
+            if (re.code === 1) {
+              _this.$message.success(re.message)
+              _this.delCurrentView(_this).then(() => {
+                _this.$router.push('/exam/paper/list')
+              })
+            } else {
+              _this.$message.error(re.message)
+              this.formLoading = false
+            }
+          }).catch(e => {
+            console.log(e);
+            this.formLoading = false
+          })
+
+        // if (valid) {
+        
+        // } else {
+        //   console.log('error submit!! 不合格');
+        //   _this.$message.error("不合格")
+        //   return false
+        // }
+
+      // this.$refs.form.validate((valid) => {
+      //   console.log("valid");
+      //   console.log(valid);
+      //   if (valid) {
+      //     this.formLoading = true
+      //     console.log("this.form edit");
+      //     examPaperApi.edit(this.formPaper).then(re => {
+      //       console.log("re");
+      //       console.log(re);
+
+      //       if (re.code === 1) {
+      //         _this.$message.success(re.message)
+      //         _this.delCurrentView(_this).then(() => {
+      //           _this.$router.push('/exam/paper/list')
+      //         })
+      //       } else {
+      //         _this.$message.error(re.message)
+      //         this.formLoading = false
+      //       }
+      //     }).catch(e => {
+      //       console.log(e);
+      //       this.formLoading = false
+      //     })
+      //   } else {
+      //     console.log('error submit!! 不合格');
+      //     _this.$message.error("不合格")
+      //     return false
+      //   }
+      // })
+    },
+    dod(){
+      this.
+      formPaper
+      .titleItems[0].questionItems
     },
     search () {
       this.listLoading = true
@@ -451,6 +682,15 @@ let conf={
         }
       })
     },
+    statusTextFormatter(status) {
+      return this.enumFormat(this.statusEnum, status);
+    },
+    itemSelect(row, column, event) {
+      this.selectItem = row;
+    },
+    statusTagFormatter(status) {
+      return this.enumFormat(this.statusTag, status);
+    },
     levelChange () {
       this.queryParam.subjectId = null
     
@@ -459,6 +699,11 @@ let conf={
       console.log( "this.subjectFilter");
       console.log( this.subjectFilter);
       this.search()
+    },
+    dateFormatter(row, column, cellValue, index){
+      // return   formatDateTime(cellValue, 'yyyy-MM-dd hh:mm:ss')
+      return   formatDateTime(cellValue)
+
     },
     subjectFormatter  (row, column, cellValue, index) {
       // console.log("cellValue");
@@ -470,10 +715,24 @@ let conf={
   },
   computed: {
     // ...mapGetters("enumItem", ["enumFormat"]),
-    ...mapGetters('enumItem', ['enumFormat']),
-    ...mapState('enumItem', {
-      levelEnum: state => state.user.levelEnum
+    ...mapState("enumItem", {
+      statusEnum: (state) => state.exam.examPaperAnswer.statusEnum,
+      questionType: (state) => state.exam.question.typeEnum,
+      editUrlEnum: (state) => state.exam.question.editUrlEnum,
+      levelEnum: (state) => state.user.levelEnum,
+      statusTag: (state) => state.exam.examPaperAnswer.statusTag,
     }),
+    // ...mapState("enumItem", {
+    //   statusEnum: (state) => state.exam.examPaperAnswer.statusEnum,
+    //   statusTag: (state) => state.exam.examPaperAnswer.statusTag,
+    // }),
+    // ...mapGetters("exam", ["subjectEnumFormat"]),
+    ...mapState("exam", { subjects: (state) => state.subjects }),
+    // ...mapGetters("enumItem", ["enumFormat"]),
+    ...mapGetters('enumItem', ['enumFormat']),
+    // ...mapState('enumItem', {
+    //   levelEnum: state => state.user.levelEnum
+    // }),
     ...mapGetters('exam', ['subjectEnumFormat']),
     ...mapState('enumItem', {
       questionTypeEnum: state => state.exam.question.typeEnum,

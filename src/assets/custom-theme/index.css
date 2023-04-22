@@ -1609,10 +1609,10 @@
 }
 
 .custom-theme .el-pager {
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none; */
     list-style: none;
     display: inline-block;
     vertical-align: top;
@@ -2499,9 +2499,9 @@
     -webkit-transition: .1s;
     transition: .1s;
     font-weight: 500;
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 4px
@@ -4555,9 +4555,9 @@
     white-space: nowrap;
     outline: 0;
     font-size: 14px;
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none
+    -ms-user-select: none */
 }
 
 .custom-theme .el-radio.is-bordered {
@@ -4880,10 +4880,10 @@
     cursor: pointer;
     display: inline-block;
     white-space: nowrap;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-checkbox.is-bordered {
@@ -5136,9 +5136,9 @@
     position: relative;
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 0
@@ -6922,10 +6922,10 @@
     cursor: pointer;
     display: inline-block;
     white-space: nowrap;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-checkbox.is-bordered {
@@ -7178,9 +7178,9 @@
     position: relative;
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 0
@@ -7600,10 +7600,10 @@
 .custom-theme .el-table th {
     white-space: nowrap;
     overflow: hidden;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none; */
     text-align: left
 }
 
@@ -7968,11 +7968,11 @@
     position: relative;
     cursor: pointer;
     display: inline-block;
-    white-space: nowrap;
+    /* white-space: nowrap;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-checkbox.is-bordered {
@@ -8225,9 +8225,9 @@
     position: relative;
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 0
@@ -8559,10 +8559,10 @@
 
 .custom-theme .el-date-table {
     font-size: 12px;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-date-table.is-week-mode .el-date-table__row:hover div {
@@ -9571,10 +9571,10 @@
     width: 180px;
     left: 0;
     z-index: 1000;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-time-panel__content {
@@ -11359,10 +11359,10 @@
     width: 180px;
     left: 0;
     z-index: 1000;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-time-panel__content {
@@ -12279,9 +12279,9 @@
     -webkit-transition: .1s;
     transition: .1s;
     font-weight: 500;
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 4px
@@ -15644,10 +15644,10 @@
     transform: translateX(-50%);
     background-color: transparent;
     text-align: center;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-slider__button-wrapper::after {
@@ -15681,10 +15681,10 @@
     border-radius: 50%;
     -webkit-transition: .2s;
     transition: .2s;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-slider__button.dragging,
@@ -19911,10 +19911,10 @@
 
 .custom-theme .el-step__icon-inner {
     display: inline-block;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+    user-select: none; */
     text-align: center;
     font-weight: 700;
     line-height: 1;
@@ -21863,9 +21863,9 @@
     -webkit-transition: .1s;
     transition: .1s;
     font-weight: 500;
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 4px
@@ -22459,10 +22459,10 @@
     cursor: pointer;
     display: inline-block;
     white-space: nowrap;
-    -webkit-user-select: none;
+    /* -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none */
 }
 
 .custom-theme .el-checkbox.is-bordered {
@@ -22715,9 +22715,9 @@
     position: relative;
     -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
     transition: all .3s cubic-bezier(.645, .045, .355, 1);
-    -moz-user-select: none;
+    /* -moz-user-select: none;
     -webkit-user-select: none;
-    -ms-user-select: none;
+    -ms-user-select: none; */
     padding: 12px 20px;
     font-size: 14px;
     border-radius: 0

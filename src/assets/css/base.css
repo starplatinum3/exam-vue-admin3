@@ -7,6 +7,14 @@
   -ms-user-select: none;
   user-select: none;
 } */
+* {
+  -moz-user-select: initial;
+  -o-user-select: initial;
+  -khtml-user-select: initial;
+  -webkit-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+} 
 .node-text, .node-begin {
   width:200px;
   height:50px;

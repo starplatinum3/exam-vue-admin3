@@ -209,6 +209,13 @@ const constantRoutes = [
     alwaysShow: true,
     children: [
       {
+        path: 'AutoPaper',
+        component: () => import('@/views/exam/paper/AutoPaper'),
+        name: 'AutoPaper',
+        meta: { title: 'AutoPaper', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\exam\paper\AutoPaper.vue
+      {
         path: 'test',
         component: () => import('@/views/test/test'),
         // component: () => import('@/views/dashboard/index'),
