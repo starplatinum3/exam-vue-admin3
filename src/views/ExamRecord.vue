@@ -2,11 +2,13 @@
   <!-- D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\ExamRecord.vue -->
   <!-- record/index -->
   <div style="margin-top: 10px" class="app-contain">
-    createUserName
+    <!-- createUserName -->
+    学生名字
     <el-input style="width: 200px" v-model="query.createUserName"></el-input>
     <el-button type="" @click="selectPageByCreateUserName"
-      >selectPageByCreateUserName</el-button
+      >根据用户名查询</el-button
     >
+    <!-- selectPageByCreateUserName -->
 
     <!-- <el-input v-model="query.id"></el-input>
 <el-input v-model="query.exam_paper_id"></el-input>
@@ -28,7 +30,153 @@
     <div></div>
     <div></div>
 
-    <el-form>
+
+    考试id  <el-input
+          placeholder="请输入考试id"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.examPaperId"
+        ></el-input>
+ 试卷名称  <el-input
+          placeholder="请输入试卷名称"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.paperName"
+        ></el-input>
+ 试卷类型( 1固定试卷  2临时试卷 3班级试卷 4.时段试卷 )  <el-input
+          placeholder="请输入试卷类型( 1固定试卷  2临时试卷 3班级试卷 4.时段试卷 )"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.paperType"
+        ></el-input>
+ 学科  <el-input
+          placeholder="请输入学科"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.subjectId"
+        ></el-input>
+ 系统判定得分  <el-input
+          placeholder="请输入系统判定得分"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.systemScore"
+        ></el-input>
+ 最终得分(千分制)  <el-input
+          placeholder="请输入最终得分(千分制)"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.userScore"
+        ></el-input>
+ 试卷总分  <el-input
+          placeholder="请输入试卷总分"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.paperScore"
+        ></el-input>
+ 做对题目数量  <el-input
+          placeholder="请输入做对题目数量"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.questionCorrect"
+        ></el-input>
+ 题目总数量  <el-input
+          placeholder="请输入题目总数量"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.questionCount"
+        ></el-input>
+ 做题时间(秒)  <el-input
+          placeholder="请输入做题时间(秒)"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.doTime"
+        ></el-input>
+ 试卷状态(1待判分 2完成) 
+ 
+  <!-- <el-input
+          placeholder="请输入试卷状态(1待判分 2完成)"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.status"
+        ></el-input> -->
+
+
+        <el-select
+      clearable
+      v-model="query.status"
+      style="width: 212px"
+      ref="valSelect"
+      filterable
+      @blur="valSelectBlur"
+      @focus="valSelectFocus"
+      @change="valSelectChange"
+    >
+      <el-option
+        v-for="item in options"
+        :key="item"
+        :label="item"
+        :value="item"
+      >
+      </el-option>
+    </el-select>
+
+
+ 学生  <el-input
+          placeholder="请输入学生"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.createUser"
+        ></el-input>
+ 提交时间  <el-input
+          placeholder="请输入提交时间"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.createTime"
+        ></el-input>
+ 试卷任务  <el-input
+          placeholder="请输入试卷任务"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.taskExamId"
+        ></el-input>
+ 租户  <el-input
+          placeholder="请输入租户"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.tenantId"
+        ></el-input>
+
+    <!-- <el-form>
       <el-form-item label="id">
         <el-input
           placeholder="请输入内容"
@@ -199,8 +347,11 @@
           v-model="query.drawIo"
         ></el-input>
       </el-form-item>
-    </el-form>
-    id
+    </el-form> -->
+
+
+
+    <!-- id
     <el-input width="200" v-model="query.id" style="width: 200px"></el-input>
     examPaperId
     <el-input
@@ -269,14 +420,14 @@
       style="width: 200px"
       v-model="query.doTime"
       width="20"
-    ></el-input>
+    ></el-input> -->
 
-    status
+    <!-- status -->
 
     <!-- <el-input v-model="query.status"></el-input> -->
     <!-- style="width: 312px;" -->
     <!-- multiple -->
-    <el-select
+    <!-- <el-select
       clearable
       v-model="query.status"
       style="width: 212px"
@@ -293,7 +444,7 @@
         :value="item"
       >
       </el-option>
-    </el-select>
+    </el-select> -->
 
     <div></div>
 
@@ -304,13 +455,13 @@
 版权声明：本文为CSDN博主「马宁马宁请你吃饭」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/m0_63006013/article/details/127017251 -->
 
-    createUser
+    <!-- createUser
     <el-input style="width: 200px" v-model="query.createUser"></el-input>
     createTime
     <el-input style="width: 200px" v-model="query.createTime"></el-input>
     taskExamId
     <el-input style="width: 200px" v-model="query.taskExamId"></el-input>
-    tenantId <el-input style="width: 200px" v-model="query.tenantId"></el-input>
+    tenantId <el-input style="width: 200px" v-model="query.tenantId"></el-input> -->
 
     用户名 {{ createUserName }}
     <el-button type="" @click="search">search</el-button>
@@ -320,15 +471,25 @@
     <el-row :gutter="50">
       <el-col :span="18">
         <el-table
+        border
+      highlight-current-row
           v-loading="listLoading"
           :data="tableData"
           fit
-          highlight-current-row
           style="width: 100%"
           @row-click="itemSelect"
         >
           <el-table-column sortable prop="id" label="序号" width="90px" />
-          <el-table-column sortable prop="paperName" label="名称" />
+          <!-- <el-table-column sortable prop="paperName" label="名称" /> -->
+          <!-- width="100" -->
+          <el-table-column :formatter="formatPaperName"  prop="paperName" label="试卷名称"
+           align="center" sortable show-overflow-tooltip>
+  <template slot-scope="scope">
+    <div v-html="scope.row.paperName"></div>
+  </template>
+  <!-- :formatter="formatpaperName" -->
+</el-table-column>
+
           <!-- width="70" -->
           <el-table-column
             sortable
@@ -665,7 +826,11 @@ export default {
       // ExcelUtil.openDownloadDialog(ExcelUtil.sheet2blob(sheet), 'exportdata.xlsx');
       // openDownloadDialog(sheet2blob(sheet), 'exportdata.xlsx');
 
-      ExcelUtil.openDownloadDialogOfData(this.tableData, "exportdata.xlsx");
+      let excelName='examRecord.xlsx'
+      // examRecord 
+      ExcelUtil.openDownloadDialogOfData(this.tableData,excelName);
+
+      // ExcelUtil.openDownloadDialogOfData(this.tableData, "exportdata.xlsx");
     },
     changeDate(records) {
       // DateUtil

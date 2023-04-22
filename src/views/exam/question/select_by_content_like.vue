@@ -383,6 +383,7 @@ export default {
       }
     },
     TextContentEsHilightSearchResultMapper() {
+      // /api
       postWithQuery(
         "/es/textContent/TextContentEsHilightSearchResultMapper",
         {
