@@ -214,6 +214,13 @@ const constantRoutes = [
         name: 'AutoPaper',
         meta: { title: 'AutoPaper', icon: 'home', affix: true }
       },
+      {
+        path: 'TablePartyTest',
+        component: () => import('@/views/TablePartyTest'),
+        name: 'TablePartyTest',
+        meta: { title: 'TablePartyTest', icon: 'home', affix: true }
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\TablePartyTest.vue
       // D:\proj\bishe\exam-vue-admin3\src\views\exam\paper\AutoPaper.vue
       {
         path: 'test',

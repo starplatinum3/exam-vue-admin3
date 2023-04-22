@@ -3,7 +3,7 @@
   <!-- record/index -->
   <div style="margin-top: 10px" class="app-contain">
     createUserName
-    <el-input v-model="query.createUserName"></el-input>
+    <el-input style="width: 200px" v-model="query.createUserName"></el-input>
     <el-button type="" @click="selectPageByCreateUserName"
       >selectPageByCreateUserName</el-button
     >
@@ -25,53 +25,297 @@
 <el-input v-model="query.task_exam_id"></el-input>
 <el-input v-model="query.tenant_id"></el-input> -->
 
-id  <el-input v-model="query.id"></el-input>
-examPaperId  <el-input v-model="query.examPaperId"></el-input>
-paperName  <el-input v-model="query.paperName"></el-input>
-paperType  <el-input v-model="query.paperType"></el-input>
-subjectId  <el-input v-model="query.subjectId"></el-input>
-systemScore  <el-input v-model="query.systemScore"></el-input>
-userScore  <el-input v-model="query.userScore"></el-input>
-paperScore  <el-input v-model="query.paperScore"></el-input>
-questionCorrect  <el-input v-model="query.questionCorrect"></el-input>
-questionCount  <el-input v-model="query.questionCount"></el-input>
-doTime  <el-input v-model="query.doTime" width="20" ></el-input>
+    <div></div>
+    <div></div>
 
-status
-<div>
-  <!-- <el-input v-model="query.status"></el-input> -->
-<el-select
-			v-model="query.status"
-			style="width: 312px;"
-			ref="valSelect"
-			filterable
-			@blur="valSelectBlur"
-			@focus="valSelectFocus"
-			@change="valSelectChange"
-			>
-				<el-option v-for="item in options" :key="item" :label="item" :value="item">
-				</el-option>
-			</el-select>
-</div>
+    <el-form>
+      <el-form-item label="id">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.id"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="题目Id">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.questionId"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="答案Id">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.examPaperId"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="考试卷答案id">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.examPaperAnswerId"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="题型">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.questionType"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="学科">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.subjectId"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="得分">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.customerScore"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="题目原始分数">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.questionScore"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="问题内容">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.questionTextContentId"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="做题答案">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.answer"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="做题内容">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.textContentId"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="是否正确">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.doRight"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="做题人">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.createUser"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="创建时间">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.createTime"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="题目顺序">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.itemOrder"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="租户">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.tenantId"
+        ></el-input>
+      </el-form-item>
+      <el-form-item label="图画">
+        <el-input
+          placeholder="请输入内容"
+          :maxlength="10"
+          size="small"
+          clearable
+          style="width: 200px"
+          v-model="query.drawIo"
+        ></el-input>
+      </el-form-item>
+    </el-form>
+    id
+    <el-input width="200" v-model="query.id" style="width: 200px"></el-input>
+    examPaperId
+    <el-input
+      width="200"
+      style="width: 200px"
+      v-model="query.examPaperId"
+    ></el-input>
 
-			<!-- <el-input v-model="ruleForm.tranname" style="width: 280px;position: absolute;left: 0px;"
+    paperName
+    <el-input style="width: 200px" v-model="query.paperName"></el-input>
+    paperType
+    <el-input style="width: 200px" v-model="query.paperType"></el-input>
+    subjectId
+    <el-input style="width: 200px" v-model="query.subjectId"></el-input>
+    systemScore
+    <el-input
+      placeholder="请输入内容"
+      :maxlength="10"
+      size="small"
+      clearable
+      style="width: 200px"
+      v-model="query.systemScore"
+    ></el-input>
+    userScore
+    <el-input
+      placeholder="请输入内容"
+      :maxlength="10"
+      size="small"
+      clearable
+      style="width: 200px"
+      v-model="query.userScore"
+    ></el-input>
+    paperScore
+    <el-input
+      placeholder="请输入内容"
+      :maxlength="10"
+      size="small"
+      clearable
+      style="width: 200px"
+      v-model="query.paperScore"
+    ></el-input>
+    questionCorrect
+    <el-input
+      placeholder="请输入内容"
+      :maxlength="10"
+      size="small"
+      clearable
+      style="width: 200px"
+      v-model="query.questionCorrect"
+    ></el-input>
+    questionCount
+    <el-input
+      placeholder="请输入内容"
+      :maxlength="10"
+      size="small"
+      clearable
+      style="width: 200px"
+      v-model="query.questionCount"
+    ></el-input>
+    doTime
+    <el-input
+      placeholder="请输入内容"
+      :maxlength="10"
+      size="small"
+      clearable
+      style="width: 200px"
+      v-model="query.doTime"
+      width="20"
+    ></el-input>
+
+    status
+
+    <!-- <el-input v-model="query.status"></el-input> -->
+    <!-- style="width: 312px;" -->
+    <!-- multiple -->
+    <el-select
+      clearable
+      v-model="query.status"
+      style="width: 212px"
+      ref="valSelect"
+      filterable
+      @blur="valSelectBlur"
+      @focus="valSelectFocus"
+      @change="valSelectChange"
+    >
+      <el-option
+        v-for="item in options"
+        :key="item"
+        :label="item"
+        :value="item"
+      >
+      </el-option>
+    </el-select>
+
+    <div></div>
+
+    <!-- <el-input v-model="ruleForm.tranname" style="width: 280px;position: absolute;left: 0px;"
        @blur="valInputBlur" ref="valInput"
 			 @focus="valInputFocus"></el-input> -->
-<!-- ————————————————
+    <!-- ————————————————
 版权声明：本文为CSDN博主「马宁马宁请你吃饭」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/m0_63006013/article/details/127017251 -->
 
-createUser  <el-input v-model="query.createUser"></el-input>
-createTime  <el-input v-model="query.createTime"></el-input>
-taskExamId  <el-input v-model="query.taskExamId"></el-input>
-tenantId  <el-input v-model="query.tenantId"></el-input>
+    createUser
+    <el-input style="width: 200px" v-model="query.createUser"></el-input>
+    createTime
+    <el-input style="width: 200px" v-model="query.createTime"></el-input>
+    taskExamId
+    <el-input style="width: 200px" v-model="query.taskExamId"></el-input>
+    tenantId <el-input style="width: 200px" v-model="query.tenantId"></el-input>
 
-
+    用户名 {{ createUserName }}
     <el-button type="" @click="search">search</el-button>
-       <!-- exportTableDataToXlsx -->
-       <el-button @click="exportTableDataToXlsx"
-          >导出考试记录</el-button
-        >
+    <!-- exportTableDataToXlsx -->
+    <el-button @click="exportTableDataToXlsx">导出考试记录</el-button>
 
     <el-row :gutter="50">
       <el-col :span="18">
@@ -83,8 +327,8 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
           style="width: 100%"
           @row-click="itemSelect"
         >
-          <el-table-column prop="id" label="序号" width="90px" />
-          <el-table-column prop="paperName" label="名称" />
+          <el-table-column sortable prop="id" label="序号" width="90px" />
+          <el-table-column sortable prop="paperName" label="名称" />
           <!-- width="70" -->
           <el-table-column
             sortable
@@ -92,12 +336,12 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
             label="学科"
             width="100"
           />
-          <el-table-column
+          <!-- <el-table-column
             sortable
             prop="createUserName"
             label="createUserName"
             width="100"
-          />
+          /> -->
 
           <el-table-column sortable label="状态" prop="status" width="100px">
             <template slot-scope="{ row }">
@@ -109,8 +353,13 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
           <!-- createTime -->
           <!-- setCreateTimeStr -->
           <!-- createTimeStr  -->
-          <el-table-column prop="createTimeStr" label="做题时间" width="170" />
-          <el-table-column align="right" width="70">
+          <el-table-column
+            sortable
+            prop="createTimeStr"
+            label="做题时间"
+            width="170"
+          />
+          <el-table-column sortable align="right" width="70">
             <template slot-scope="{ row }">
               <!-- 学生不该有批改的权限呀 -->
               <!-- <router-link target="_blank" :to="{path:'/edit',query:{id:row.id}}" v-if="row.status === 1 ">
@@ -120,10 +369,14 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
                  <el-button  type="text" size="small">查看试卷</el-button>
                </router-link> -->
 
-               <!-- EditExamRecord -->
-              <router-link target="_blank" :to="{path:'/exam/EditExamRecord',query:{id:row.id}}" v-if="row.status === 1 ">
-                 <el-button  type="text" size="small">批改</el-button>
-               </router-link>
+              <!-- EditExamRecord -->
+              <router-link
+                target="_blank"
+                :to="{ path: '/exam/EditExamRecord', query: { id: row.id } }"
+                v-if="row.status === 1"
+              >
+                <el-button type="text" size="small">批改</el-button>
+              </router-link>
               <router-link
                 target="_blank"
                 :to="{ path: '/read', query: { id: row.id } }"
@@ -145,9 +398,7 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
           style="margin-top: 20px"
         />
         <!-- exportTableDataToXlsx -->
-        <el-button @click="exportTableDataToXlsx"
-          >导出考试记录</el-button
-        >
+        <el-button @click="exportTableDataToXlsx">导出考试记录</el-button>
       </el-col>
       <el-col :span="6">
         <el-card class="record-answer-info">
@@ -172,52 +423,44 @@ tenantId  <el-input v-model="query.tenantId"></el-input>
               <span>{{ selectItem.doTime }}</span>
             </el-form-item>
             <el-form-item label="status">
-              <span>{{  selectItem.status}}</span>
+              <span>{{ selectItem.status }}</span>
             </el-form-item>
 
-           <div class="pageTitle">
-            这页的总体统计
-           </div>
+            <div class="pageTitle">这页的总体统计</div>
             <el-form-item label="计算的分数">
-              <span>{{  systemScoreSum}}</span>
+              <span>{{ systemScoreSum }}</span>
             </el-form-item>
             <el-form-item label="得到的成绩">
-              <span>{{  userScoreSum}}</span>
+              <span>{{ userScoreSum }}</span>
             </el-form-item>
             <el-form-item label="试卷的满分">
-              <span>{{  paperScoreSum}}</span>
+              <span>{{ paperScoreSum }}</span>
             </el-form-item>
             <el-form-item label="作对的题目数量">
-              <span>{{  questionCorrectSum}}</span>
+              <span>{{ questionCorrectSum }}</span>
             </el-form-item>
             <el-form-item label="一共有多少题目">
-              <span>{{  questionCountSum}}</span>
+              <span>{{ questionCountSum }}</span>
             </el-form-item>
 
             <el-form-item label="花了时间">
-              <span>{{  doTimeSum}}</span>
+              <span>{{ doTimeSum }}</span>
             </el-form-item>
 
             <!-- <div>systemScoreSum  计算的分数 {{ systemScoreSum }}</div> -->
-    <!-- <div>userScoreSum {{ userScoreSum }}</div> -->
-    <!-- <div>userScoreSum 得到的成绩 {{ userScoreSum }}</div>
+            <!-- <div>userScoreSum {{ userScoreSum }}</div> -->
+            <!-- <div>userScoreSum 得到的成绩 {{ userScoreSum }}</div>
 <div>paperScoreSum 试卷的满分 {{ paperScoreSum }}</div>
 <div>questionCorrectSum 作对的题目数量 {{ questionCorrectSum }}</div>
 <div>questionCountSum 一共有多少题目 {{ questionCountSum }}</div>
 <div>doTimeSum 花了时间 {{ doTimeSum }}  秒</div> -->
-
-           
           </el-form>
         </el-card>
       </el-col>
     </el-row>
 
-
-
-
-showStuEchartsByType
+    showStuEchartsByType
     <div id="showStuEchartsByType" style="width: 100%; height: 400px"></div>
-
   </div>
 </template>
 
@@ -240,14 +483,15 @@ export default {
   components: { Pagination },
   data() {
     return {
+      createUserName: null,
       // '待批改':1,
-  // '完成':2,
-      options: ['待批改','完成'],
-      userScoreSum:0,
-paperScoreSum:0,
-questionCorrectSum:0,
-questionCountSum:0,
-doTimeSum:0,
+      // '完成':2,
+      options: ["待批改", "完成"],
+      userScoreSum: 0,
+      paperScoreSum: 0,
+      questionCorrectSum: 0,
+      questionCountSum: 0,
+      doTimeSum: 0,
       query: {
         id: null,
         examPaperId: null,
@@ -269,7 +513,7 @@ doTimeSum:0,
       queryParam: {
         pageIndex: 1,
         pageSize: 10,
-        pageNumber:1,
+        pageNumber: 1,
       },
       // { pageNumber: 1, pageSize: 10 }
       listLoading: false,
@@ -291,15 +535,13 @@ doTimeSum:0,
     scrollTo(0, 800);
   },
   methods: {
-    valSelectBlur(){
-      
-    },
-    valInputFocus(){},
-    valSelectFocus(){},
-    valSelectChange(){},
+    valSelectBlur() {},
+    valInputFocus() {},
+    valSelectFocus() {},
+    valSelectChange() {},
     // @blur="valSelectBlur"
-		// 	@focus="valSelectFocus"
-		// 	@change="valSelectChange"
+    // 	@focus="valSelectFocus"
+    // 	@change="valSelectChange"
     search() {
       let createUserId = this.$route.query.createUserId || null;
       this.listLoading = true;
@@ -326,44 +568,44 @@ doTimeSum:0,
         // taskExamId: null,
         // tenantId: null,
 
-        
-id: this.query.id,
-examPaperId: this.query.examPaperId,
-paperName: this.query.paperName,
-paperType: this.query.paperType,
-subjectId: this.query.subjectId,
-systemScore: this.query.systemScore,
-userScore: this.query.userScore,
-paperScore: this.query.paperScore,
-questionCorrect: this.query.questionCorrect,
-questionCount: this.query.questionCount,
-doTime: this.query.doTime,
-status:Common.examStatusMap[ this.query.status],
-createUser: createUserId,
-createTime: this.query.createTime,
-taskExamId: this.query.taskExamId,
-tenantId: this.query.tenantId,
+        id: this.query.id,
+        examPaperId: this.query.examPaperId,
+        paperName: this.query.paperName,
+        paperType: this.query.paperType,
+        subjectId: this.query.subjectId,
+        systemScore: this.query.systemScore,
+        userScore: this.query.userScore,
+        paperScore: this.query.paperScore,
+        questionCorrect: this.query.questionCorrect,
+        questionCount: this.query.questionCount,
+        doTime: this.query.doTime,
+        status: Common.examStatusMap[this.query.status],
+        createUser: createUserId,
+        createTime: this.query.createTime,
+        taskExamId: this.query.taskExamId,
+        tenantId: this.query.tenantId,
       };
       // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\test\query_postDataGet.js
       // this.query.status=Common.examStatusMap[ this.query.status]
-      console.log( "this.query.status");
-      console.log( this.query.status);
-      this.query.  createUser=createUserId
+      console.log("this.query.status");
+      console.log(this.query.status);
+      this.query.createUser = createUserId;
       // this.papr
       // _this.queryParam
       // { pageNumber: 1, pageSize: 10 }
       // this._this.queryParam
-      let pageParams={
-        pageNumber: 1, pageSize: 10
-      }
+      let pageParams = {
+        pageNumber: 1,
+        pageSize: 10,
+      };
       examPaperAnswerApi
-        .selectPage( _this.queryParam, dataPost)
+        .selectPage(_this.queryParam, dataPost)
         // examPaperAnswerApi.pageList(this.queryParam)
         .then((data) => {
           console.log("data");
           console.log(data);
-          console.log( "this.query.status get data");
-      console.log( _this.query.status);
+          console.log("this.query.status get data");
+          console.log(_this.query.status);
           _this.setDataMybatisPls(data);
           // response.records
           // const re = data.response
@@ -622,6 +864,7 @@ tenantId: this.query.tenantId,
       _this.tableData = data.response.records;
       console.log("_this.tableData");
       console.log(_this.tableData);
+      _this.createUserName = _this.tableData[0].createUserName;
       _this.changeDate(_this.tableData);
       _this.calAll(_this.tableData);
       // _this.  groupByEchartsShow( _this.tableData)
@@ -630,9 +873,9 @@ tenantId: this.query.tenantId,
       _this.queryParam.pageIndex = re.current;
       _this.queryParam.pageNumber = re.current;
       console.log(" _this.queryParam");
-      console.log( _this.queryParam);
+      console.log(_this.queryParam);
       console.log("_this.total");
-      console.log( _this.total);
+      console.log(_this.total);
       console.log("_this.query");
       console.log(_this.query);
       _this.listLoading = false;

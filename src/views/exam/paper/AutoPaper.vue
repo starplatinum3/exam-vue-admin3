@@ -64,7 +64,8 @@
       style="width: 100%"
     >
 
-   
+    <el-table-column prop="title" label="题干" show-overflow-tooltip />
+
  <el-table-column prop="questionType" label="题目类型（1.单选题  2.多选题  3.判断题 4.填空题 5.简答题）"
  :formatter="questionTypeFormatter"
   width="200" align="center">
@@ -126,7 +127,67 @@
           <div v-html="scope.row.createTime"></div>
         </template> -->
 </el-table-column>
- <el-table-column prop="deleted" label="是否删除" width="200" align="center">
+ 
+
+
+<!-- <el-table-column prop="id" label="id" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.id"></div>
+        </template>
+</el-table-column> -->
+
+      <el-table-column
+        prop="subjectId"
+        label="学科"
+        :formatter="subjectFormatter"
+        width="120px"
+      />
+      <!-- <el-table-column
+        prop="questionType"
+        label="题型"
+        :formatter="questionTypeFormatter"
+        width="70px"
+      /> -->
+
+      <!-- <el-table-column prop="shortTitle" label="题干" show-overflow-tooltip /> -->
+      <el-table-column prop="score" label="分数" width="60px" />
+      <el-table-column prop="difficult" label="难度" width="60px" />
+      <!-- <el-table-column prop="createTime" label="创建时间" width="160px" /> -->
+      <el-table-column label="操作" align="center" width="220px">
+        <template slot-scope="{ row }">
+          <el-button size="mini" @click="showQuestion(row)">预览</el-button>
+          <el-button size="mini" @click="editQuestion(row)">编辑</el-button>
+          <!-- confirmDeleteQuestion -->
+          <!-- deleteQuestion -->
+          <el-button
+            size="mini"
+            type="danger"
+            @click="confirmDeleteQuestion(row)"
+            class="link-left"
+            >删除
+          </el-button>
+        </template>
+      </el-table-column>
+
+      <el-table-column prop="id" label="Id" width="90px" />
+
+      <el-table-column prop="g6Tree" label="图画结构" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.g6Tree"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="nodeDraw" label="节点图数据" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.nodeDraw"></div>
+        </template>
+</el-table-column>
+ <el-table-column prop="bigNodeDraw" label="非g6的大圆" width="200" align="center">
+  <template slot-scope="scope">
+          <div v-html="scope.row.bigNodeDraw"></div>
+        </template>
+</el-table-column>
+
+<el-table-column prop="deleted" label="是否删除" width="200" align="center">
   <template slot-scope="scope">
           <div v-html="scope.row.deleted"></div>
         </template>
@@ -146,61 +207,9 @@
           <div v-html="scope.row.cosAnsSimilarity"></div>
         </template>
 </el-table-column>
- <el-table-column prop="g6Tree" label="图画结构" width="200" align="center">
-  <template slot-scope="scope">
-          <div v-html="scope.row.g6Tree"></div>
-        </template>
-</el-table-column>
- <el-table-column prop="nodeDraw" label="节点图数据" width="200" align="center">
-  <template slot-scope="scope">
-          <div v-html="scope.row.nodeDraw"></div>
-        </template>
-</el-table-column>
- <el-table-column prop="bigNodeDraw" label="非g6的大圆" width="200" align="center">
-  <template slot-scope="scope">
-          <div v-html="scope.row.bigNodeDraw"></div>
-        </template>
-</el-table-column>
 
-<el-table-column prop="id" label="id" width="200" align="center">
-  <template slot-scope="scope">
-          <div v-html="scope.row.id"></div>
-        </template>
-</el-table-column>
 
-      <el-table-column
-        prop="subjectId"
-        label="学科"
-        :formatter="subjectFormatter"
-        width="120px"
-      />
-      <!-- <el-table-column
-        prop="questionType"
-        label="题型"
-        :formatter="questionTypeFormatter"
-        width="70px"
-      /> -->
-      <el-table-column prop="shortTitle" label="题干" show-overflow-tooltip />
-      <el-table-column prop="score" label="分数" width="60px" />
-      <el-table-column prop="difficult" label="难度" width="60px" />
-      <el-table-column prop="createTime" label="创建时间" width="160px" />
-      <el-table-column label="操作" align="center" width="220px">
-        <template slot-scope="{ row }">
-          <el-button size="mini" @click="showQuestion(row)">预览</el-button>
-          <el-button size="mini" @click="editQuestion(row)">编辑</el-button>
-          <!-- confirmDeleteQuestion -->
-          <!-- deleteQuestion -->
-          <el-button
-            size="mini"
-            type="danger"
-            @click="confirmDeleteQuestion(row)"
-            class="link-left"
-            >删除
-          </el-button>
-        </template>
-      </el-table-column>
 
-      <el-table-column prop="id" label="Id" width="90px" />
     </el-table>
     <pagination
       v-show="total > 0"
@@ -543,6 +552,21 @@ let conf={
       this.queryParam.pageIndex = 1
       this.search()
     },
+    questionItemsSetUpTitle(){
+      for(let o of  this.tableData){
+        console.log("o");
+        console.log(o);
+
+        let contentObj= JSON.parse(o.content)
+        console.log("contentObj");
+        console.log(contentObj);
+        // titleContent
+        o.title= contentObj.titleContent
+        // o.title=  JSON.parse(o.content).titleCotent
+        // o.title=o.content.titleCotent
+      }
+     
+    },
     autoPaper(){
 
       questionApi.autoPaper({
@@ -569,7 +593,7 @@ let conf={
 }).then(re => {
   console.log("re");
   console.log(re);
-
+  // 题干
         if (re.code === 1) {
           let data= re
           // let data= re.data
@@ -577,6 +601,7 @@ let conf={
           this.tableData = response
           console.log( "this.tableData");
           console.log( this.tableData);
+          this.questionItemsSetUpTitle()
           this.
       formPaper
       .titleItems[0].questionItems=this.tableData
