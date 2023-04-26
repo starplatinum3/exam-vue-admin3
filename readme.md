@@ -6,6 +6,11 @@ cd D:\proj\bishe\exam-vue-admin3
 npm run serve
 npm run build
 
+cd D:\proj\springBoot\exam-sys-db2
+git add .
+git commit -m "exam-vue-admin3 build"
+git push origin master
+
 引入 vite
 
 npm run 
