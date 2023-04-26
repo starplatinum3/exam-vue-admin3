@@ -12,9 +12,9 @@
 
 
     <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
-    <!-- <el-button type="" @click="TextContentEsHilightSearchResultMapperFuzziness"
+    <el-button type="" @click="TextContentEsHilightSearchResultMapperFuzziness"
       >TextContentEsHilightSearchResultMapperFuzziness</el-button
-    > -->
+    >
 
 
     <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
@@ -385,7 +385,7 @@ export default {
     TextContentEsHilightSearchResultMapper() {
       // /api
       postWithQuery(
-        "/es/textContent/TextContentEsHilightSearchResultMapper",
+        "/api/es/textContent/TextContentEsHilightSearchResultMapper",
         {
           pageNumber: 0,
           pageSize: 10,
@@ -403,7 +403,7 @@ export default {
     },
    TextContentEsHilightSearchResultMapperFuzziness() {
       postWithQuery(
-        "/es/textContent/TextContentEsHilightSearchResultMapperFuzziness",
+        "/api/es/textContent/TextContentEsHilightSearchResultMapperFuzziness",
         {
           pageNumber: 0,
           pageSize: 10,
