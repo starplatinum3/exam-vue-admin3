@@ -196,6 +196,19 @@ const constantRoutes = [
     ]
   },
 
+  {
+    path: '/auto',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/intelligent-exam/index'),
+        name: 'Papertrain',
+        meta: { title: '智能训练' }
+      }
+    ]
+  },
+
   // DbManager
   {
     path: '/test',

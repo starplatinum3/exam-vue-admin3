@@ -23,6 +23,7 @@ export default {
   deleteQuestion: id => post('/api/admin/question/delete/' + id),
   insertBatch: query => post('/api/admin/question/insertBatch/' ,query),
   findAllEs: query => post('/api/admin/question/findAllEs/' ,query),
+  // findAllEs: query => post('/api/admin/question/findAllEs/' ,query),
 
   
   save: (query, data) => postWithQuery(`${apiPreffix}/save`, query, data),

@@ -2,7 +2,10 @@ import { post } from '@/utils/request'
 
 export default {
   select_table_name_list: (data) => post('/api/all/SELECT_table_name_list',data),
+  testPaper: (data) => post('/api/all/testPaper',data),
   
+  autoPaperByRule: (data) => post('/api/all/autoPaperByRule',data),
+
   select_information_schema_columns: (data) => post('/api/all/select_information_schema_columns',data),
   select_limit_10: (data) => post('/api/all/select_limit_10',data),
   select_by_content_like: (data) => post('/api/all/select_by_content_like',data),

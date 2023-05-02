@@ -6,6 +6,10 @@ import { post ,postWithQuery} from '@/utils/request'
 let apiPreffix=`/api/examPaperAnswer`
 
 export default {
+  // examInsert: query => post('/api/student/exam/paper/intelligence', query),
+  insert: query => post('/api/student/exampaper/autoInsert', query),
+  examInsert: query => post('/api/student/exampaper/intelligence', query),
+  deletePaper: id => post('/api/admin/exam/paper/delete/' + id),
   page: query => post('/api/admin/examPaperAnswer/page', query),
   pageList: query => post('/api/student/exampaper/answer/pageList', query),
   answerSubmit: form => post('/api/student/exampaper/answer/answerSubmit', form),

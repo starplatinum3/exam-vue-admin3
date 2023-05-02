@@ -60,7 +60,13 @@ let paperTypeMap = {
 // 这是不管什么地址都会去访问的意思吗
 let url = window.location.href;
 let urlStr = url.split('/');
-let ip = urlStr[2].split(':')[0] 
+let parts= urlStr[2].split(':')
+let ip =parts[0]
+
+let port =parts[1]
+console.log("port base");
+console.log(port);
+// let ip = urlStr[2].split(':')[0] 
 // ip = 'localhost'
 // ip = '10.61.186.236'
 console.log("ip base");
@@ -71,7 +77,11 @@ console.log(ip);
 // let ip = 'localhost'
 
 // starp 服务器 腾讯 
-let examPort="8003"
+// let examPort="8003" 
+// local
+let examPort=port
+// let examPort="8002"
+// dev 腾讯
 // 8002
 // devserver 
 // let examPort="8002"

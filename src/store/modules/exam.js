@@ -1,7 +1,9 @@
 import subjectApi from '@/api/subject'
+import chapterApi from '@/api/chapter'
 
 const state = {
-  subjects: []
+  subjects: [],
+  chapters: []
 }
 
 const getters = {
@@ -12,9 +14,23 @@ const getters = {
       }
     }
     return null
+  },
+  chapterEnumFormat: (state) => (key) => {
+    for ( let item of state.chapters) {
+      if (item.id === key) {
+        return item.name
+      }
+    }
+    return null
   }
 }
 
+/* eslint-disable */
+//如果通过异步操作变更数据，必须通过action，而不能使用mutation，但是在action中还是要通过触发Mutation的方式间接变更数据
+//在actions中，不能直接修改state中的数据，必须通过context.commit()触发某个mutation
+//在this.&store.dispatch("initSubject"):触发某个action
+//...mapActions('exam', { initSubject: 'initSubject' }):mapActions将全局的actions函数，映射为methods中的方法
+/* eslint-disable */
 // actions
 const actions = {
   initSubject ({ commit }, action) {
@@ -24,6 +40,17 @@ const actions = {
       console.log(re.response);
       commit('setSubjects', re.response)
       if (action !== undefined) {
+        action()
+      }
+    })
+  },
+  initChapter ({commit}, action) {
+    chapterApi.list().then(re => {
+      console.log("re");
+      console.log(re);
+
+      commit('setChapters', re.response)
+      if(action != undefined){
         action()
       }
     })
@@ -143,6 +170,10 @@ const mutations = {
           "deleted": false
       }
   ]
+  }
+  ,
+  setChapters: (state, chapters) => {
+    state.chapters = chapters
   }
 }
 

@@ -11,10 +11,17 @@ const state = {
     statusBtn: [{ key: 1, value: '禁用' }, { key: 2, value: '启用' }]
   },
   exam: {
+    // 试卷类型( 1固定试卷  2临时试卷 3班级试卷 4.时段试卷 )
+    // Fixed(1, "固定试卷"),
+    // TimeLimit(4, "时段试卷"),
+    // Task(6, "任务试卷");
     examPaper: {
-      paperTypeEnum: [{ key: 1, value: '固定试卷' }, { key: 4, value: '时段试卷' }, { key: 6, value: '任务试卷' },
-      { key: 8, value: '好试卷' },
-      { key: 10, value: '坏试卷' },
+      paperTypeEnum: [{ key: 1, value: '固定试卷' }, 
+      { key: 4, value: '时段试卷' }, { key: 6, value: '任务试卷' },
+      { key: 8, value: '测试试卷' },
+      // 好试卷
+      { key: 10, value: '智能试卷' },
+      // 坏试卷
     ]
     },
     examPaperAnswer: {

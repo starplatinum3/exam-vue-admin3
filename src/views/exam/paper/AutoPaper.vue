@@ -36,6 +36,16 @@
           <el-button type="primary">添加</el-button>
         </router-link>
         <el-button type="primary" @click="autoPaper">自动组卷</el-button>
+        <el-button type="primary" @click="testPaper">testPaper</el-button>
+
+
+<div>
+  设置试卷名字
+  <!-- formPaper -->
+  <!-- paperName -->
+        <el-input v-model="formPaper.name" clearable  placeholder="试卷名字"></el-input>
+</div>
+        
         <el-button type="primary" @click="submitFormPaper">submitFormPaper</el-button>
       </el-form-item>
         
@@ -64,9 +74,16 @@
       style="width: 100%"
     >
 
-    <el-table-column prop="title" label="题干" show-overflow-tooltip />
+    <el-table-column prop="title" label="题干"
+    width="400" 
+     show-overflow-tooltip >
+     <template slot-scope="scope">
+          <div v-html="scope.row.title"></div>
+        </template>
+        </el-table-column>
 
- <el-table-column prop="questionType" label="题目类型（1.单选题  2.多选题  3.判断题 4.填空题 5.简答题）"
+        <!-- （1.单选题  2.多选题  3.判断题 4.填空题 5.简答题） -->
+ <el-table-column prop="questionType" label="题目类型"
  :formatter="questionTypeFormatter"
   width="200" align="center">
   <!-- <template slot-scope="scope">
@@ -234,6 +251,9 @@ import { mapGetters, mapState, mapActions } from 'vuex'
 import Pagination from '@/components/Pagination'
 import examPaperApi from '@/api/examPaper'
 // questionApi
+
+import allApi from '@/api/all'
+
 import questionApi from '@/api/question'
 // D:\proj\bishe\exam-vue-admin3\src\api\question.js
 import { groupBy } from '@/utils/SqlLike'
@@ -247,6 +267,7 @@ export default {
   data () {
     let  paperName="数据结构"
     return {
+      paperName:paperName,
       formPaper: {
         id: null,
         // level: null,
@@ -318,6 +339,70 @@ export default {
     console.log(this.subjects);
   },
   methods: {
+
+    testPaper() {
+      // let data = {
+      //   id: this.id,
+      //   questionType: this.questionType,
+      //   subjectId: this.subjectId,
+      //   score: this.score,
+      //   gradeLevel: this.gradeLevel,
+      //   difficult: 2,
+      //   infoTextContentId: this.infoTextContentId,
+      //   createUser: this.createUser,
+      //   status: this.status,
+      //   createTime: this.createTime,
+      //   deleted: this.deleted,
+      //   correct: this.correct,
+      // };
+      let data = {
+    
+      };
+
+      allApi.testPaper(data).then((res) => {
+        console.log("res autoPaper");
+        console.log(res);
+        // response
+        // questions
+                this.tableData = res.response.questions
+                // quesContent
+                this.quesContentSetUp(this.tableData)
+
+        // this.tableData = res.list
+        // this.autoPaper = res.response;
+      });
+    },
+    autoPaperByRule() {
+   
+      let data = {
+    
+      };
+
+      allApi.autoPaperByRule(data).then((res) => {
+        console.log("res autoPaper");
+        console.log(res);
+        // response
+        // questions
+                this.tableData = res.response.questions
+                // quesContent
+                this.quesContentSetUp(this.tableData)
+
+        // this.tableData = res.list
+        // this.autoPaper = res.response;
+      });
+    },
+    // autoPaperByRule
+    quesContentSetUp(lst){
+
+      // quesContent
+      for(let o of lst){
+        o.content= o.quesContent
+        // quesContent
+       let  quesContent=JSON.parse( o.quesContent)
+      //  titleContent
+      o.title= quesContent.titleContent
+      }
+    },
     questionTypeFormatter(row, column, cellValue, index) {
       // console.log("this.questionType");
       // console.log(this.questionType);
