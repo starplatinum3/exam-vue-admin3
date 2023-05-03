@@ -26,7 +26,7 @@
         </el-select>
       </el-form-item>
 
-       <el-form-item label="名字">
+       <el-form-item label="名字" >
           <el-input v-model="queryParam.name" clearable  placeholder="名字"></el-input>
       </el-form-item>
 
@@ -58,15 +58,16 @@
     @cell-click="handleCellClick"
      v-loading="listLoading" :data="tableData" border fit highlight-current-row style="width: 100%">
       <!-- <el-table-column prop="id" label="Id" width="90px"/> -->
-      <el-table-column prop="subjectId" label="学科" :formatter="subjectFormatter" width="120px" />
-      <el-table-column prop="name" label="名称"  />
-      <el-table-column prop="createTime" label="创建时间" width="160px"/>
+      <el-table-column  sortable prop="subjectId" label="学科" :formatter="subjectFormatter" width="120px" />
+      <el-table-column  sortable prop="name" label="名称"  />
+      <el-table-column  sortable prop="createTime" label="创建时间" width="160px"/>
       <!-- paperType -->
-      <el-table-column prop="paperType"  :formatter="paperTypeFormatter" label="试卷类型" width="160px"/>
+      <el-table-column  sortable  prop="paperType"  :formatter="paperTypeFormatter" 
+      label="试卷类型" width="160px"/>
       <!-- questionCount -->
       <!-- questionCount -->
-      <el-table-column prop="questionCount"  label="问题个数" width="160px"/>
-      <el-table-column  label="操作" align="center"  width="160px">
+      <el-table-column  sortable  prop="questionCount"  label="问题个数" width="160px"/>
+      <el-table-column  sortable  label="操作" align="center"  width="160px">
         <template slot-scope="{row}">
           <!-- Statistics -->
           <el-button size="mini" 
