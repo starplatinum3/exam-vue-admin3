@@ -4,6 +4,273 @@ import Layout from '@/layout'
 
 Vue.use(Router)
 
+let  testRouter=  // DbManager
+{
+  path: '/test',
+  component: Layout,
+  // component: () => import('@/views/test/test'),
+  name: 'test',
+  meta: {
+    title: 'test',
+    icon: 'task'
+  },
+  alwaysShow: true,
+  children: [
+    {
+      path: 'AutoPaper',
+      component: () => import('@/views/exam/paper/AutoPaper'),
+      name: 'AutoPaper',
+      meta: { title: 'AutoPaper', icon: 'home', affix: true }
+    },
+    {
+      path: 'TablePartyTest',
+      component: () => import('@/views/TablePartyTest'),
+      name: 'TablePartyTest',
+      meta: { title: 'TablePartyTest', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\TablePartyTest.vue
+    // D:\proj\bishe\exam-vue-admin3\src\views\exam\paper\AutoPaper.vue
+    {
+      path: 'test',
+      component: () => import('@/views/test/test'),
+      // component: () => import('@/views/dashboard/index'),
+      name: 'test',
+      meta: { title: 'test', icon: 'home', affix: true }
+    },
+    {
+      path: 'G6EditorTest',
+      component: () => import('@/views/G6EditorTest'),
+      // component: () => import('@/views/dashboard/index'),
+      name: 'G6EditorTest',
+      meta: { title: 'G6EditorTest', icon: 'home', affix: true }
+    },
+    {
+      path: 'JsPlumbTest',
+      component: () => import('@/views/JsPlumbTest'),
+      name: 'JsPlumbTest',
+      meta: { title: 'JsPlumbTest', icon: 'home', affix: true }
+    },
+    {
+      path: 'G6EditorMove',
+      component: () => import('@/views/G6EditorMove'),
+      name: 'G6EditorMove',
+      meta: { title: 'G6EditorMove', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\WebSocketTest.vue
+    {
+      path: 'WebSocketTest',
+      component: () => import('@/views/WebSocketTest'),
+      name: 'WebSocketTest',
+      meta: { title: 'WebSocketTest', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\MyScrollTest.vue
+    // {
+    //   path: 'MyScrollTest',
+    //   component: () => import('@/views/MyScrollTest'),
+    //   name: 'MyScrollTest',
+    //   meta: { title: 'MyScrollTest', icon: 'home', affix: true }
+    // },
+    {
+      path: 'EyesightResList',
+      component: () => import('@/views/EyesightResList'),
+      name: 'EyesightResList',
+      meta: { title: 'EyesightResList', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\EyesightResList.vue
+    {
+      path: 'EchartsShow',
+      component: () => import('@/views/EchartsShow'),
+      name: 'EchartsShow',
+      meta: { title: 'EchartsShow', icon: 'home', affix: true }
+    },
+    {
+      path: 'EchartsShowEyesight',
+      component: () => import('@/views/EchartsShowEyesight'),
+      name: 'EchartsShowEyesight',
+      meta: { title: 'EchartsShowEyesight', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\EchartsShowEyesight.vue
+    // EchartsShow.vue
+    // D:\proj\bishe\exam-vue-admin3\src\views\G6EditorMove.vue
+    {
+      path: 'G6Tree',
+      component: () => import('@/views/G6Tree'),
+      name: 'G6Tree',
+      meta: { title: 'G6Tree', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\G6Tree.vue
+    // JsPlumbTest
+    // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\G6EditorTest.vue
+    {
+      path: 'DragDiv',
+      component: () => import('@/views/DragDiv'),
+      // component: () => import('@/views/dashboard/index'),
+      name: 'DragDiv',
+      meta: { title: 'DragDiv', icon: 'home', affix: true }
+    },
+    {
+      path: 'CodeMirrorEditorTest',
+      component: () => import('@/views/CodeMirrorEditorTest'),
+      name: 'CodeMirrorEditorTest',
+      meta: { title: 'CodeMirrorEditorTest', icon: 'home', affix: true }
+    },
+    {
+      path: 'GraphEditorIframe',
+      component: () => import('@/views/GraphEditorIframe'),
+      name: 'GraphEditorIframe',
+      meta: { title: 'GraphEditorIframe', icon: 'home', affix: true }
+    },
+    {
+      path: 'CodeMirrorUtilTest',
+      component: () => import('@/views/CodeMirrorUtilTest'),
+      name: 'CodeMirrorUtilTest',
+      meta: { title: 'CodeMirrorUtilTest', icon: 'home', affix: true }
+    },
+    {
+      path: 'G6TreeAdd',
+      component: () => import('@/views/G6TreeAdd'),
+      name: 'G6TreeAdd',
+      meta: { title: 'G6TreeAdd', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\G6TreeAdd.vue
+    // JsEditor.vue
+    {
+      path: 'JsEditor',
+      component: () => import('@/views/JsEditor'),
+      name: 'JsEditor',
+      meta: { title: 'JsEditor', icon: 'home', affix: true }
+    },
+    {
+      path: 'Instance',
+      component: () => import('@/views/Instance'),
+      name: 'Instance',
+      meta: { title: 'Instance', icon: 'home', affix: true }
+    },
+     {
+      path: 'JsonEditor2',
+      component: () => import('@/views/JsonEditor2'),
+      name: 'JsonEditor2',
+      meta: { title: 'JsonEditor2', icon: 'home', affix: true }
+    },
+    // JsonEditor2
+    // D:\proj\bishe\exam-vue-admin3\src\views\Instance.vue
+    // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorEditorBlackTest.vue
+    // D:\proj\bishe\exam-vue-admin3\src\views\JsonEditor.vue
+    // {
+    //   path: 'JsonEditor',
+    //   component: () => import('@/views/JsonEditor'),
+    //   name: 'JsonEditor',
+    //   meta: { title: 'JsonEditor', icon: 'home', affix: true }
+    // },
+    // D:\proj\bishe\exam-vue-admin3\src\views\JsonEditorTest.vue
+    {
+      path: 'JsonEditorTest',
+      component: () => import('@/views/JsonEditorTest'),
+      name: 'JsonEditorTest',
+      meta: { title: 'JsonEditorTest', icon: 'home', affix: true }
+    },
+    {
+      path: 'CodeMirrorEditorBlackTest',
+      component: () => import('@/views/CodeMirrorEditorBlackTest'),
+      name: 'CodeMirrorEditorBlackTest',
+      meta: { title: 'CodeMirrorEditorBlackTest', icon: 'home', affix: true }
+    },
+    {
+      path: 'CodeMirrorG6',
+      component: () => import('@/views/CodeMirrorG6'),
+      name: 'CodeMirrorG6',
+      meta: { title: 'CodeMirrorG6', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorG6.vue
+    // GraphEditorIframe
+    // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorUtilTest.vue
+    {
+      path: 'PythonEditor',
+      component: () => import('@/views/PythonEditor'),
+      name: 'PythonEditor',
+      meta: { title: 'PythonEditor', icon: 'home', affix: true }
+    },
+    // D:\proj\bishe\exam-vue-admin3\src\views\PythonEditor.vue
+    // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\DragDiv.vue
+    {
+      path: 'FlowChart',
+      component: () => import('@/views/FlowChart'),
+      name: 'FlowChart',
+      meta: { title: 'FlowChart', icon: 'home', affix: true }
+    },
+    // {
+    //   path: 'BusinessFlowChart',
+    //   component: () => import('@/views/BusinessFlowChart'),
+    //   name: 'BusinessFlowChart',
+    //   meta: { title: 'BusinessFlowChart', icon: 'home', affix: true }
+    // },
+    // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\BusinessFlowChart.vue
+    // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\FlowChart.vue
+    {
+      path: 'LatexDisplay',
+      component: () => import('@/views/LatexDisplay'),
+      name: 'LatexDisplay',
+      meta: { title: 'LatexDisplay', icon: 'home', affix: true }
+    },
+    // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\LatexDisplay.vue
+    // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\DataImport.vue
+    {
+      path: 'DataImport',
+      component: () => import('@/views/DataImport'),
+      name: 'DataImport',
+      meta: { title: 'DataImport', icon: 'home', affix: true }
+    },
+    {
+      path: 'DbManager',
+      component: () => import('@/views/DbManager/index'),
+      name: 'DbManager',
+      meta: { title: 'DbManager', icon: 'home', affix: true }
+    },
+    {
+      path: 'WangEdiorFormula',
+      component: () => import('@/views/WangEdiorFormula'),
+      name: 'WangEdiorFormula',
+      meta: { title: 'WangEdiorFormula', icon: 'home', affix: true }
+    },
+    {
+      path: 'CodeMirrorItTest',
+      component: () => import('@/views/CodeMirrorItTest'),
+      name: 'CodeMirrorItTest',
+      meta: { title: 'CodeMirrorItTest', icon: 'home', affix: true }
+      // meta: { title: 'CodeMirrorItTest', noCache: true, activeMenu: '/CodeMirrorItTest' },
+      // hidden: true
+    },
+    
+
+    {
+      path: 'CodeMirrorTest',
+      component: () => import('@/views/CodeMirrorTest'),
+      name: 'CodeMirrorTest',
+      meta: { title: 'CodeMirrorTest', icon: 'home', affix: true }
+    },
+    {
+      path: 'EditableTable',
+      component: () => import('@/views/EditableTable'),
+      name: 'EditableTable',
+      meta: { title: 'EditableTable', icon: 'home', affix: true }
+    },
+    {
+      path: 'ExamRecord',
+      component: () => import('@/views/ExamRecord'),
+      name: 'ExamRecord',
+      meta: { title: 'ExamRecord', icon: 'home', affix: true }
+    },
+    {
+      path: 'Statistics',
+      component: () => import('@/views/Statistics'),
+      name: 'ExamRStatisticsecord',
+      meta: { title: 'Statistics', icon: 'home', affix: true }
+    },
+    
+    // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\Statistics.vue
+  ]
+
+}
 const constantRoutes = [
   {
     path: '/redirect',
@@ -209,273 +476,6 @@ const constantRoutes = [
     ]
   },
 
-  // DbManager
-  {
-    path: '/test',
-    component: Layout,
-    // component: () => import('@/views/test/test'),
-    name: 'test',
-    meta: {
-      title: 'test',
-      icon: 'task'
-    },
-    alwaysShow: true,
-    children: [
-      {
-        path: 'AutoPaper',
-        component: () => import('@/views/exam/paper/AutoPaper'),
-        name: 'AutoPaper',
-        meta: { title: 'AutoPaper', icon: 'home', affix: true }
-      },
-      {
-        path: 'TablePartyTest',
-        component: () => import('@/views/TablePartyTest'),
-        name: 'TablePartyTest',
-        meta: { title: 'TablePartyTest', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\TablePartyTest.vue
-      // D:\proj\bishe\exam-vue-admin3\src\views\exam\paper\AutoPaper.vue
-      {
-        path: 'test',
-        component: () => import('@/views/test/test'),
-        // component: () => import('@/views/dashboard/index'),
-        name: 'test',
-        meta: { title: 'test', icon: 'home', affix: true }
-      },
-      {
-        path: 'G6EditorTest',
-        component: () => import('@/views/G6EditorTest'),
-        // component: () => import('@/views/dashboard/index'),
-        name: 'G6EditorTest',
-        meta: { title: 'G6EditorTest', icon: 'home', affix: true }
-      },
-      {
-        path: 'JsPlumbTest',
-        component: () => import('@/views/JsPlumbTest'),
-        name: 'JsPlumbTest',
-        meta: { title: 'JsPlumbTest', icon: 'home', affix: true }
-      },
-      {
-        path: 'G6EditorMove',
-        component: () => import('@/views/G6EditorMove'),
-        name: 'G6EditorMove',
-        meta: { title: 'G6EditorMove', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\WebSocketTest.vue
-      {
-        path: 'WebSocketTest',
-        component: () => import('@/views/WebSocketTest'),
-        name: 'WebSocketTest',
-        meta: { title: 'WebSocketTest', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\MyScrollTest.vue
-      // {
-      //   path: 'MyScrollTest',
-      //   component: () => import('@/views/MyScrollTest'),
-      //   name: 'MyScrollTest',
-      //   meta: { title: 'MyScrollTest', icon: 'home', affix: true }
-      // },
-      {
-        path: 'EyesightResList',
-        component: () => import('@/views/EyesightResList'),
-        name: 'EyesightResList',
-        meta: { title: 'EyesightResList', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\EyesightResList.vue
-      {
-        path: 'EchartsShow',
-        component: () => import('@/views/EchartsShow'),
-        name: 'EchartsShow',
-        meta: { title: 'EchartsShow', icon: 'home', affix: true }
-      },
-      {
-        path: 'EchartsShowEyesight',
-        component: () => import('@/views/EchartsShowEyesight'),
-        name: 'EchartsShowEyesight',
-        meta: { title: 'EchartsShowEyesight', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\EchartsShowEyesight.vue
-      // EchartsShow.vue
-      // D:\proj\bishe\exam-vue-admin3\src\views\G6EditorMove.vue
-      {
-        path: 'G6Tree',
-        component: () => import('@/views/G6Tree'),
-        name: 'G6Tree',
-        meta: { title: 'G6Tree', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\G6Tree.vue
-      // JsPlumbTest
-      // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\G6EditorTest.vue
-      {
-        path: 'DragDiv',
-        component: () => import('@/views/DragDiv'),
-        // component: () => import('@/views/dashboard/index'),
-        name: 'DragDiv',
-        meta: { title: 'DragDiv', icon: 'home', affix: true }
-      },
-      {
-        path: 'CodeMirrorEditorTest',
-        component: () => import('@/views/CodeMirrorEditorTest'),
-        name: 'CodeMirrorEditorTest',
-        meta: { title: 'CodeMirrorEditorTest', icon: 'home', affix: true }
-      },
-      {
-        path: 'GraphEditorIframe',
-        component: () => import('@/views/GraphEditorIframe'),
-        name: 'GraphEditorIframe',
-        meta: { title: 'GraphEditorIframe', icon: 'home', affix: true }
-      },
-      {
-        path: 'CodeMirrorUtilTest',
-        component: () => import('@/views/CodeMirrorUtilTest'),
-        name: 'CodeMirrorUtilTest',
-        meta: { title: 'CodeMirrorUtilTest', icon: 'home', affix: true }
-      },
-      {
-        path: 'G6TreeAdd',
-        component: () => import('@/views/G6TreeAdd'),
-        name: 'G6TreeAdd',
-        meta: { title: 'G6TreeAdd', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\G6TreeAdd.vue
-      // JsEditor.vue
-      {
-        path: 'JsEditor',
-        component: () => import('@/views/JsEditor'),
-        name: 'JsEditor',
-        meta: { title: 'JsEditor', icon: 'home', affix: true }
-      },
-      {
-        path: 'Instance',
-        component: () => import('@/views/Instance'),
-        name: 'Instance',
-        meta: { title: 'Instance', icon: 'home', affix: true }
-      },
-       {
-        path: 'JsonEditor2',
-        component: () => import('@/views/JsonEditor2'),
-        name: 'JsonEditor2',
-        meta: { title: 'JsonEditor2', icon: 'home', affix: true }
-      },
-      // JsonEditor2
-      // D:\proj\bishe\exam-vue-admin3\src\views\Instance.vue
-      // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorEditorBlackTest.vue
-      // D:\proj\bishe\exam-vue-admin3\src\views\JsonEditor.vue
-      // {
-      //   path: 'JsonEditor',
-      //   component: () => import('@/views/JsonEditor'),
-      //   name: 'JsonEditor',
-      //   meta: { title: 'JsonEditor', icon: 'home', affix: true }
-      // },
-      // D:\proj\bishe\exam-vue-admin3\src\views\JsonEditorTest.vue
-      {
-        path: 'JsonEditorTest',
-        component: () => import('@/views/JsonEditorTest'),
-        name: 'JsonEditorTest',
-        meta: { title: 'JsonEditorTest', icon: 'home', affix: true }
-      },
-      {
-        path: 'CodeMirrorEditorBlackTest',
-        component: () => import('@/views/CodeMirrorEditorBlackTest'),
-        name: 'CodeMirrorEditorBlackTest',
-        meta: { title: 'CodeMirrorEditorBlackTest', icon: 'home', affix: true }
-      },
-      {
-        path: 'CodeMirrorG6',
-        component: () => import('@/views/CodeMirrorG6'),
-        name: 'CodeMirrorG6',
-        meta: { title: 'CodeMirrorG6', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorG6.vue
-      // GraphEditorIframe
-      // D:\proj\bishe\exam-vue-admin3\src\views\CodeMirrorUtilTest.vue
-      {
-        path: 'PythonEditor',
-        component: () => import('@/views/PythonEditor'),
-        name: 'PythonEditor',
-        meta: { title: 'PythonEditor', icon: 'home', affix: true }
-      },
-      // D:\proj\bishe\exam-vue-admin3\src\views\PythonEditor.vue
-      // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\DragDiv.vue
-      {
-        path: 'FlowChart',
-        component: () => import('@/views/FlowChart'),
-        name: 'FlowChart',
-        meta: { title: 'FlowChart', icon: 'home', affix: true }
-      },
-      // {
-      //   path: 'BusinessFlowChart',
-      //   component: () => import('@/views/BusinessFlowChart'),
-      //   name: 'BusinessFlowChart',
-      //   meta: { title: 'BusinessFlowChart', icon: 'home', affix: true }
-      // },
-      // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\BusinessFlowChart.vue
-      // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\FlowChart.vue
-      {
-        path: 'LatexDisplay',
-        component: () => import('@/views/LatexDisplay'),
-        name: 'LatexDisplay',
-        meta: { title: 'LatexDisplay', icon: 'home', affix: true }
-      },
-      // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\LatexDisplay.vue
-      // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\DataImport.vue
-      {
-        path: 'DataImport',
-        component: () => import('@/views/DataImport'),
-        name: 'DataImport',
-        meta: { title: 'DataImport', icon: 'home', affix: true }
-      },
-      {
-        path: 'DbManager',
-        component: () => import('@/views/DbManager/index'),
-        name: 'DbManager',
-        meta: { title: 'DbManager', icon: 'home', affix: true }
-      },
-      {
-        path: 'WangEdiorFormula',
-        component: () => import('@/views/WangEdiorFormula'),
-        name: 'WangEdiorFormula',
-        meta: { title: 'WangEdiorFormula', icon: 'home', affix: true }
-      },
-      {
-        path: 'CodeMirrorItTest',
-        component: () => import('@/views/CodeMirrorItTest'),
-        name: 'CodeMirrorItTest',
-        meta: { title: 'CodeMirrorItTest', icon: 'home', affix: true }
-        // meta: { title: 'CodeMirrorItTest', noCache: true, activeMenu: '/CodeMirrorItTest' },
-        // hidden: true
-      },
-      
-
-      {
-        path: 'CodeMirrorTest',
-        component: () => import('@/views/CodeMirrorTest'),
-        name: 'CodeMirrorTest',
-        meta: { title: 'CodeMirrorTest', icon: 'home', affix: true }
-      },
-      {
-        path: 'EditableTable',
-        component: () => import('@/views/EditableTable'),
-        name: 'EditableTable',
-        meta: { title: 'EditableTable', icon: 'home', affix: true }
-      },
-      {
-        path: 'ExamRecord',
-        component: () => import('@/views/ExamRecord'),
-        name: 'ExamRecord',
-        meta: { title: 'ExamRecord', icon: 'home', affix: true }
-      },
-      {
-        path: 'Statistics',
-        component: () => import('@/views/Statistics'),
-        name: 'ExamRStatisticsecord',
-        meta: { title: 'Statistics', icon: 'home', affix: true }
-      },
-      
-      // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\Statistics.vue
-    ]
- 
-  },
 
   {
     path: '/task',
@@ -603,7 +603,8 @@ const constantRoutes = [
     hidden: true,
     component: () => import('@/views/error-page/404'),
     meta: { title: '404', noCache: true }
-  }
+  },
+  // testRouter,
 ]
 
 const router = new Router({

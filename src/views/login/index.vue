@@ -274,8 +274,12 @@ $cursor: #fff;
 .login-container {
   // background-image: '@/assets/dang.webp';
   // background-image: url("@/assets/dang.webp");
-  background-image: url("../../assets/dang.webp");
-
+  // D:\proj\bishe\exam-vue-admin3\src\assets\books.jpg
+  // background-image: url("../../assets/dang.webp");
+  // "D:\proj\bishe\exam-vue-admin3\src\assets\login-bg.jpg"
+  // "D:\proj\bishe\exam-vue-admin3\src\assets\star_bg.jpg"
+  // background-image: url("../../assets/login-bg.jpg");
+  background-image: url("../../assets/star_bg.jpg");
   .el-input {
     display: inline-block;
     height: 47px;
