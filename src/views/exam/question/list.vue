@@ -175,22 +175,26 @@
       style="width: 100%"
     >
       <el-table-column
+      sortable
         prop="subjectId"
         label="学科"
         :formatter="subjectFormatter"
         width="120px"
       />
       <el-table-column
+      sortable
         prop="questionType"
         label="题型"
         :formatter="questionTypeFormatter"
         width="70px"
       />
-      <el-table-column prop="shortTitle" label="题干" show-overflow-tooltip />
-      <el-table-column prop="score" label="分数" width="60px" />
-      <el-table-column prop="difficult" label="难度" width="60px" />
-      <el-table-column prop="createTime" label="创建时间" width="160px" />
-      <el-table-column label="操作" align="center" width="220px">
+      <el-table-column 
+      sortable
+      prop="shortTitle" label="题干" show-overflow-tooltip />
+      <el-table-column  sortable  prop="score" label="分数" width="60px" />
+      <el-table-column  sortable  prop="difficult" label="难度" width="60px" />
+      <el-table-column   sortable  prop="createTime" label="创建时间" width="160px" />
+      <el-table-column  sortable  label="操作" align="center" width="220px">
         <template slot-scope="{ row }">
           <el-button size="mini" @click="showQuestion(row)">预览</el-button>
           <el-button size="mini" @click="editQuestion(row)">编辑</el-button>
@@ -206,7 +210,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column prop="id" label="Id" width="90px" />
+      <el-table-column  sortable prop="id" label="Id" width="90px" />
     </el-table>
     <pagination
       v-show="total > 0"

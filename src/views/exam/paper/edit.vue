@@ -207,6 +207,9 @@ export default {
 
         console.log("_this.form");
         console.log(_this.form);
+        if(!_this.form.titleItems){
+          _this.form.titleItems=[]
+        }
       }).catch(e=>{
         console.log(e);
       })

@@ -23,6 +23,9 @@ const state = {
       { key: 10, value: '智能试卷' },
       // 坏试卷
     ]
+    ,
+    difficultEnum: [{ key: 0, value: '不限' }, { key: 1, value: '简单' }, { key: 2, value: '中等' }, { key: 3, value: '困难' }]
+
     },
     examPaperAnswer: {
       statusEnum: [{ key: 1, value: '待批改' }, { key: 2, value: '完成' }],

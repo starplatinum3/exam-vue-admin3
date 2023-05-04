@@ -12,6 +12,7 @@
                   <el-option v-for="item in subjects" :key="item.id" :value="item.id" :label="item.name"></el-option>
                 </el-select>
               </el-form-item>
+              <!-- http://localhost:8002/#/auto/index -->
               <el-form-item label="章节：" prop="chapters" required>
                 <el-checkbox-group v-model="form.chapters">
                   <el-checkbox v-for="item in chapterFilter" :key="item.id" :label="item.id">{{item.name}}</el-checkbox>

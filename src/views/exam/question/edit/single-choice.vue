@@ -12,13 +12,21 @@
       </el-form-item>
       <!-- http://localhost:8002/#/education/subject/list -->
 
-     
-      <el-form-item label="学科：" prop="subjectId" required>
-        <el-select v-model="form.subjectId" placeholder="学科" >
+      <!-- required -->
+      <el-form-item label="学科：" prop="subjectId"   >
+        <el-select v-model="form.subjectId" placeholder="学科"  @change="subjectChange" >
           <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name+' ( '+item.levelName+' )'"></el-option>
         </el-select>
         <el-button type="" @click="toSubject">编辑学科列表</el-button>
       </el-form-item>
+
+      <!-- required -->
+      <el-form-item label="知识点：" prop="chapterId" >
+        <el-select v-model="form.chapterId" placeholder="知识点">
+          <el-option v-for="item in chapterFilter" :key="item.id" :value="item.id" :label="item.name"></el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item label="题干：" prop="title" required>
         <el-input v-model="form.title"   @focus="inputClick(form,'title')" />
       </el-form-item>
@@ -105,25 +113,30 @@ export default {
   data () {
     
     return {
+      chapterFilter: null,
       form: {
         id: null,
+        "chapterId": 1,
         // 单选题
         // questionType: 1,
          questionType: Common.QuestionType.singleChoice,
         // ,`grade_level`,  1 是一年级吗
-        gradeLevel: null,
-        subjectId: null,
-        title: '',
+        // gradeLevel: null,
+        // subjectId: null,
+        // title: '',
+        "gradeLevel": 1,
+    "subjectId": 4,
+    "title": "标题",
         items: [
           { prefix: 'A', content: '' },
           { prefix: 'B', content: '' },
           { prefix: 'C', content: '' },
           { prefix: 'D', content: '' }
         ],
-        analyze: '',
-        correct: null,
+        analyze: '解析',
+        correct: 'C',
         score: 1,
-        difficult: 1
+        difficult: 3
       },
       subjectFilter: null,
       formLoading: false,
@@ -169,6 +182,9 @@ export default {
          console.log(_this.subjects);
       _this.subjectFilter = _this.subjects
     })
+    this.initChapter(() => {
+        _this.chapterFilter = _this.chapters.filter(data => data.subjectId === this.form.subjectId)
+      })
     if (id && parseInt(id) !== 0) {
       _this.formLoading = true
       console.log("id");   
@@ -206,6 +222,9 @@ export default {
       console.log( "this.richEditor.object");
        console.log( this.richEditor.object);
       this.richEditor.dialogVisible = false
+    },
+    subjectChange () {
+      this.chapterFilter = this.chapters.filter(data => data.subjectId === this.form.subjectId)
     },
     questionItemRemove (index) {
       this.form.items.splice(index, 1)
@@ -280,6 +299,7 @@ this.$router.push('/education/subject/list')
       this.questionShow.question = this.form
     },
     ...mapActions('exam', { initSubject: 'initSubject' }),
+    ...mapActions('exam', { initChapter: 'initChapter' }),
     ...mapActions('tagsView', { delCurrentView: 'delCurrentView' })
   },
   computed: {
@@ -288,7 +308,8 @@ this.$router.push('/education/subject/list')
       questionTypeEnum: state => state.exam.question.typeEnum,
       levelEnum: state => state.user.levelEnum
     }),
-    ...mapState('exam', { subjects: state => state.subjects })
+    ...mapState('exam', { subjects: state => state.subjects }),
+    ...mapState('exam', { chapters: state => state.chapters })
   }
 }
 </script>
