@@ -6,6 +6,10 @@ cd D:\proj\bishe\exam-vue-admin3
 npm run serve
 npm run build
 
+d:
+cd D:\proj\bishe\exam-vue-admin3
+npm run build
+
 
 ## build
 

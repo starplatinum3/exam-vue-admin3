@@ -604,7 +604,7 @@ const constantRoutes = [
     component: () => import('@/views/error-page/404'),
     meta: { title: '404', noCache: true }
   },
-  // testRouter,
+  testRouter,
 ]
 
 const router = new Router({

@@ -116,10 +116,11 @@ let Common = {
   tenantId,
   examStatusMap,
   baseURL,
-  sysTitle:"中共青田县委党校",
+  // sysTitle:"中共青田县委党校",
+  sysTitle:"考试系统",
   // debug:true
   debug:false 
-  // sysTitle:"考试系统"
+  
 }
 
 
