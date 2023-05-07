@@ -174,6 +174,10 @@
       highlight-current-row
       style="width: 100%"
     >
+    <el-table-column 
+      sortable
+      prop="shortTitle" label="题干" show-overflow-tooltip />
+      
       <el-table-column
       sortable
         prop="subjectId"
@@ -189,9 +193,7 @@
         :formatter="questionTypeFormatter"
         width="100px"
       />
-      <el-table-column 
-      sortable
-      prop="shortTitle" label="题干" show-overflow-tooltip />
+    
       <!-- \width="60px"  -->
       <el-table-column  sortable  prop="score" label="分数" width="100px" />
       <!-- width="60px" -->

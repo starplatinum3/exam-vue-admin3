@@ -12,10 +12,10 @@
 
 
     <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
-    <el-button type="" @click="TextContentEsHilightSearchResultMapperFuzziness"
+    <!-- <el-button type="" @click="TextContentEsHilightSearchResultMapperFuzziness"
       >TextContentEsHilightSearchResultMapperFuzziness</el-button
-    >
-    <el-button type="" @click="esPage" >esPage</el-button  >
+    > -->
+    <!-- <el-button type="" @click="esPage" >esPage</el-button  > -->
     
 
     <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
@@ -298,7 +298,7 @@
       <!-- {{ item }} -->
 
 
-      selectBySql
+      <!-- selectBySql
       <div
         @click="changeTableName(item)"
         :key="item.id"
@@ -306,6 +306,7 @@
       >
         {{ item }}
       </div>
+       -->
     </div>
   </div>
 </template>
@@ -423,6 +424,16 @@ export default {
       ).then(res=> {
         console.log(res);
         // res.Data
+        let succ=1
+        if(res.code!=succ){
+          // ElMess 
+          this.$message({
+            message: res.message,
+            type: "error",
+          });
+          return
+        }
+        
         this.tableData = res.Data||res.content;
         this.forTableData();
       });
