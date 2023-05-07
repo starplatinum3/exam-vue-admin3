@@ -3,7 +3,8 @@
   <el-row  class="do-exam-title" style="background-color: #F5F5DC">
     <el-col :span="24">
         <span :key="item.itemOrder"  v-for="item in answer.answerItems">
-             <el-tag :type="questionDoRightTag(item.doRight)" class="do-exam-title-tag" @click="goAnchor('#question-'+item.itemOrder)">{{item.itemOrder}}</el-tag>
+             <el-tag :type="questionDoRightTag(item.doRight)" class="do-exam-title-tag" 
+             @click="goAnchor('#question-'+item.itemOrder)">{{item.itemOrder}}</el-tag>
         </span>
     </el-col>
   </el-row>

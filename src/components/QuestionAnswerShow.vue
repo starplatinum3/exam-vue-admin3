@@ -14,7 +14,10 @@ https://blog.csdn.net/qq_35462323/article/details/119276258 -->
             <div :key="item.prefix" v-for="item in question.items">
               <el-radio class="questionsRadio" :label="item.prefix">
                 <span class="question-prefix">{{ item.prefix }}.</span>
-                <span v-html="item.content"></span>
+                <span  class="RadioTxtAnsOne" v-html="item.content"></span>
+                <!-- v-html="item.content" -->
+                <!-- <span class="RadioTxtAnsOne" > {{  item.content}}</span> -->
+
                 <!-- class="q-item-span-content" -->
               </el-radio>
             </div>
@@ -76,6 +79,13 @@ https://blog.csdn.net/qq_35462323/article/details/119276258 -->
             type="textarea"
             rows="5"
           ></el-input>
+          <el-card>
+            <div  class="shortAnsTxtHtml" v-html="answer.content"></div>
+          </el-card>
+          <!-- <section>
+            <div  class="shortAnsTxtHtml" v-html="answer.content"></div>
+
+          </section> -->
         </div>
       </div>
       <div class="question-answer-show-item" style="margin-top: 15px">

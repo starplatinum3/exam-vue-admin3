@@ -38,6 +38,14 @@
         <el-button type="" @click="inputClickEditor(form, 'title')"
           >编写文本</el-button
         >
+
+        <el-button type="" @click="toSetDrawPageG6">去设计流程图</el-button>
+    <!-- <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button> -->
+
+    <!-- toSetDrawPageG6Editor -->
+    <!-- 用编辑器设计流程图 -->
+    <el-button type="" @click="toSetDrawPageG6Editor">用编辑器设计树状图</el-button>
+    <el-button type="" @click="toSetDrawPage">去设计图画</el-button>
         <!-- makeTitle -->
         <!-- inputClickEditor -->
         <!-- <div  v-model="form.title"   @focus="inputClick(form,'title')"></div> -->
@@ -109,17 +117,18 @@
       />
     </el-dialog>
 
-    <el-button class="btnOK" type="primary" @click="pasteOptionByNavigator"
+    <!-- <el-button class="btnOK" type="primary" @click="pasteOptionByNavigator"
       >粘贴文本</el-button
-    >
+    > -->
 
     <!-- toSetDrawPage -->
-    <el-button type="" @click="toSetDrawPage">去设计图画</el-button>
+    <!-- <el-button type="" @click="toSetDrawPage">去设计图画</el-button> -->
     <!-- toSetDrawPageG6 -->
-    <el-button type="" @click="toSetDrawPageG6">去设计流程图</el-button>
+    <!-- <el-button type="" @click="toSetDrawPageG6">去设计流程图</el-button> -->
     <!-- <el-button type="" @click="toSetDrawPageG6">toSetDrawPageG6</el-button> -->
     <!-- toSetDrawPageG6Editor -->
-    <el-button type="" @click="toSetDrawPageG6Editor">用编辑器设计流程图</el-button>
+    <!-- 用编辑器设计流程图 -->
+    <!-- <el-button type="" @click="toSetDrawPageG6Editor">用编辑器设计树状图</el-button> -->
     <!-- 这个toSetDrawPageG6EditorMove 不要了 右边的下拉条 会没有 ，刷新之后会有  -->
     <!-- 现在用的这个 toSetDrawPageG6 弹窗 不会有下拉条的问题  -->
     <!-- <el-button type="" @click="toSetDrawPageG6EditorMove">toSetDrawPageG6EditorMove</el-button> -->

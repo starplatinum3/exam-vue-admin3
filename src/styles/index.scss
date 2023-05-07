@@ -305,3 +305,47 @@ aside {
     font-size: 14px;
   }
 }
+
+
+
+
+.index-task-table {
+  width: 100%;
+}
+
+.index-task-table-paper {
+  padding-left: 20px;
+}
+
+.index-limit-paper-time {
+  font-size: 12px;
+  line-height: 1.3;
+  color: gray;
+  text-align: right;
+}
+
+.do-exam-title {
+  position: fixed;
+  width: 100%;
+  background: #fff6f6;
+  z-index: 999;
+  padding: 5px 0px;
+}
+
+.do-exam-title-hidden {
+  width: 100%;
+  visibility: hidden;
+  padding: 5px 0px;
+}
+
+.do-exam-title-tag {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.do-exam-time {
+  float: right;
+  line-height: 2;
+  font-size: 14px;
+  padding-right: 5px;
+}

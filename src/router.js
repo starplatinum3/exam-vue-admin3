@@ -6,6 +6,7 @@ Vue.use(Router)
 
 let  testRouter=  // DbManager
 {
+  hidden: true,
   path: '/test',
   component: Layout,
   // component: () => import('@/views/test/test'),
@@ -352,6 +353,7 @@ const constantRoutes = [
     children: [
       // D:\proj\springBoot\xzs-mysql\source\vue\xzs-admin\src\views\EditExamRecord.vue
       {
+        hidden: true,
         path: 'EditExamRecord',
         component: () => import('@/views/EditExamRecord'),
         name: 'EditExamRecord',
@@ -404,6 +406,7 @@ const constantRoutes = [
       },
 
       {
+        hidden: true,
         path: "question/TextContent",
         component: () => import('@/views/exam/question/TextContent'),
         name: 'TextContent',
@@ -415,9 +418,11 @@ const constantRoutes = [
         name: '内容查找',
         // select_by_content_like
         meta: { title: '内容查找', 
-        noCache: false }
+        noCache: false
+       }
       },
       {
+        hidden: true,
         path: 'DrawIo',
         component: () => import('@/views/DrawIo'),
         name: 'DrawIo',

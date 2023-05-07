@@ -538,9 +538,11 @@
               >
                 <el-button type="text" size="small">批改</el-button>
               </router-link>
+              <!-- paper/read -->
+              <!-- path: '/read', q -->
               <router-link
                 target="_blank"
-                :to="{ path: '/read', query: { id: row.id } }"
+                :to="{ path: '/exam/paper/read', query: { id: row.id } }"
               >
                 <el-button type="text" size="small">查看试卷</el-button>
               </router-link>

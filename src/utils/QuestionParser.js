@@ -213,8 +213,10 @@ let QuestionParser = {
           // questionType: 1,
           questionType: Common.QuestionType.singleChoice,
           // ,`grade_level`,  1 是一年级吗
-          gradeLevel: null,
-          subjectId: null,
+          // gradeLevel: null,
+          // subjectId: null,
+          "gradeLevel": 1,
+          "subjectId": 4,
           title: line,
           items: [
             { prefix: 'A', content: '' },
@@ -224,8 +226,8 @@ let QuestionParser = {
           ],
           analyze: '',
           correct: '',
-          score: '',
-          difficult: 0,
+          score: 2,
+          difficult: 3,
           g6tree:null,
         }
         quesList.push(oneQuestion)

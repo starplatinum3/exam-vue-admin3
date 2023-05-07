@@ -40,12 +40,12 @@
           ></span>
           <!-- <P class="cardContentText">2021_2_15/bilibili</P> -->
           <!-- correct -->
-          <P
+          <p
             v-html="item.contentParsed.correct"
             class="cardContentTex overflow-ellipsis"
-          >
+          >  </p>
             <!-- {{item.contentParsed.correct}} -->
-          </P>
+        
         </div>
         <!-- <div class="orangeBall"></div>
             <div class="blueBall"></div> -->
@@ -181,18 +181,21 @@
         :formatter="subjectFormatter"
         width="120px"
       />
+      <!-- width="70px" -->
       <el-table-column
       sortable
         prop="questionType"
         label="题型"
         :formatter="questionTypeFormatter"
-        width="70px"
+        width="100px"
       />
       <el-table-column 
       sortable
       prop="shortTitle" label="题干" show-overflow-tooltip />
-      <el-table-column  sortable  prop="score" label="分数" width="60px" />
-      <el-table-column  sortable  prop="difficult" label="难度" width="60px" />
+      <!-- \width="60px"  -->
+      <el-table-column  sortable  prop="score" label="分数" width="100px" />
+      <!-- width="60px" -->
+      <el-table-column  sortable  prop="difficult" label="难度" width="100px" />
       <el-table-column   sortable  prop="createTime" label="创建时间" width="160px" />
       <el-table-column  sortable  label="操作" align="center" width="220px">
         <template slot-scope="{ row }">
