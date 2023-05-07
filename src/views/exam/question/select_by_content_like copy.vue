@@ -275,21 +275,37 @@
         :qLoading="questionShow.loading"
       />
     </el-dialog>
-    <!-- <el-button type="" @click="insertBatch">insertBatch</el-button> -->
-    <!-- <el-button type="" @click="findAllTextContents"
+    <el-button type="" @click="insertBatch">insertBatch</el-button>
+    <el-button type="" @click="findAllTextContents"
       >findAllTextContents</el-button
-    > -->
+    >
 
-    <!-- selectPageEqual
-    <el-button type="" @click="selectPageEqual">selectPageEqual</el-button> -->
+    selectPageEqual
+    <el-button type="" @click="selectPageEqual">selectPageEqual</el-button>
 
-    <!-- <el-button type="" @click="select_by_content_like_do"
+    <el-button type="" @click="select_by_content_like_do"
       >select_by_content_like_do</el-button
-    > -->
+    >
 
-    <!-- <el-button type="" @click="selectBySql_do">selectBySql_do</el-button> -->
+    <el-button type="" @click="selectBySql_do">selectBySql_do</el-button>
 
-   
+    by_content_like
+    <div
+      @click="changeTableName(item)"
+      :key="item.id"
+      v-for="item in by_content_like"
+    >
+      <!-- {{ item }} -->
+      selectBySql
+      <div
+        @click="changeTableName(item)"
+        :key="item.id"
+        v-for="item in selectBySql"
+      >
+        {{ item }}
+      </div>
+      
+    </div>
   </div>
 </template>
 

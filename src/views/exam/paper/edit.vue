@@ -53,8 +53,9 @@
               </el-col>
               <!-- type="text" -->
                <el-col :span="20">
+                <!-- editQuestion -->
               <el-button  size="mini" 
-                @click="editQuestion(questionItem)">editQuestion
+                @click="editQuestion(questionItem)">编辑题目
                 </el-button>
               </el-col>
               <el-col :span="1">

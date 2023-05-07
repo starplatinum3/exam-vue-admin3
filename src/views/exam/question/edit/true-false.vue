@@ -7,10 +7,17 @@
         </el-select>
       </el-form-item>
       <el-form-item label="学科：" prop="subjectId" required>
-        <el-select v-model="form.subjectId" placeholder="学科" >
+        <el-select v-model="form.subjectId" placeholder="学科" @change="subjectChange" >
           <el-option v-for="item in subjectFilter" :key="item.id" :value="item.id" :label="item.name+' ( '+item.levelName+' )'"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="知识点：" prop="chapterId" >
+        <el-select v-model="form.chapterId" placeholder="知识点">
+          <el-option v-for="item in chapterFilter" :key="item.id" :value="item.id" 
+          :label="item.name"></el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item label="题干：" prop="title" required>
         <el-input v-model="form.title"   @focus="inputClick(form,'title')" />
       </el-form-item>
@@ -23,6 +30,7 @@
       <el-form-item label="解析：" prop="analyze" required>
         <el-input v-model="form.analyze"  @focus="inputClick(form,'analyze')" />
       </el-form-item>
+      <!-- question/edit/trueFalse -->
       <el-form-item label="分数：" prop="score" required>
         <el-input-number v-model="form.score" :precision="1" :step="1" :max="100"></el-input-number>
       </el-form-item>
@@ -65,20 +73,28 @@ export default {
   },
   data () {
     return {
+      chapterFilter: null,
       form: {
+        "chapterId": 1,
+        // chapterId: null,
         id: null,
         questionType: 3,
-        gradeLevel: null,
-        subjectId: null,
+        // gradeLevel: null,
+        // subjectId: null,
+        gradeLevel: 1,
+        subjectId: 4,
         title: '',
         items: [
           { id: null, prefix: 'A', content: '是' },
           { id: null, prefix: 'B', content: '否' }
         ],
-        analyze: '',
-        correct: '',
-        score: '',
-        difficult: 0
+        analyze: '无解析',
+        // correct: '',
+        correct: 'A',
+        // score: '',
+        score: 2,
+        // difficult: 0
+        difficult: 3
       },
       subjectFilter: null,
       formLoading: false,
@@ -122,6 +138,9 @@ export default {
     this.initSubject(function () {
       _this.subjectFilter = _this.subjects
     })
+    this.initChapter(() => {
+        _this.chapterFilter = _this.chapters.filter(data => data.subjectId === this.form.subjectId)
+      })
     if (id && parseInt(id) !== 0) {
       _this.formLoading = true
       questionApi.select(id).then(re => {
@@ -131,6 +150,9 @@ export default {
     }
   },
   methods: {
+    subjectChange () {
+      this.chapterFilter = this.chapters.filter(data => data.subjectId === this.form.subjectId)
+    },
     editorReady (instance) {
       this.richEditor.instance = instance
       let currentContent = this.richEditor.object[this.richEditor.parameterName]
@@ -200,6 +222,7 @@ export default {
       this.questionShow.qType = this.form.questionType
       this.questionShow.question = this.form
     },
+    ...mapActions('exam', { initChapter: 'initChapter' }),
     ...mapActions('exam', { initSubject: 'initSubject' }),
     ...mapActions('tagsView', { delCurrentView: 'delCurrentView' })
   },
@@ -209,7 +232,8 @@ export default {
       questionTypeEnum: state => state.exam.question.typeEnum,
       levelEnum: state => state.user.levelEnum
     }),
-    ...mapState('exam', { subjects: state => state.subjects })
+    ...mapState('exam', { subjects: state => state.subjects }),
+    ...mapState('exam', { chapters: state => state.chapters })
   }
 }
 </script>
