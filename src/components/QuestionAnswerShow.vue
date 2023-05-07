@@ -305,14 +305,14 @@ export default {
 
 <style scoped>
 .questionsContain {
-  background-color: beige;
+  /* background-color: beige; */
 }
 .questionsRadio {
-  background-color: azure;
+  /* background-color: azure; */
 }
 
 .questionsRadioGroup {
-  background-color: green;
+  /* background-color: green; */
 }
 
 .q-item-span-content {

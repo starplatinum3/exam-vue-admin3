@@ -372,6 +372,14 @@ const constantRoutes = [
         hidden: true
       },
       {
+        path: 'paper/read',
+        component: () => import('@/views/exam/paper/read'),
+        name: 'ExamPaperRead',
+        meta: { title: '试卷查看', noCache: true, activeMenu: '/exam/paper/list' },
+        hidden: true
+      },
+      // D:\proj\bishe\exam-vue-admin3\src\views\exam\paper\read.vue
+      {
         // /exam', '/exam/paper', '/exam/paper/AutoPaper'
         path: 'paper/AutoPaper',
         component: () => import('@/views/exam/paper/AutoPaper'),
@@ -586,6 +594,7 @@ const constantRoutes = [
       }
     ]
   },
+  // D:\proj\bishe\exam-vue-admin3\src\views\exam\paper\edit.vue
   {
     path: '/profile',
     component: Layout,

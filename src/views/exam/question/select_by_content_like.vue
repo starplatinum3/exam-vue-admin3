@@ -15,7 +15,8 @@
     <el-button type="" @click="TextContentEsHilightSearchResultMapperFuzziness"
       >TextContentEsHilightSearchResultMapperFuzziness</el-button
     >
-
+    <el-button type="" @click="esPage" >esPage</el-button  >
+    
 
     <!-- http://localhost:8003/es/textContent/TextContentEsHilightSearchResultMapper -->
 
@@ -354,6 +355,7 @@ export default {
     };
   },
   created() {
+    this.esPage()
     // this.initSubject();
     // this.search();
   },
@@ -398,6 +400,30 @@ export default {
       ).then((res) => {
         console.log(res);
         this.tableData = res.content;
+        this.forTableData();
+      });
+    },
+    // esPage
+    esPage() {
+      // /api
+      // Integer pageNum,
+      //                    @RequestParam(defaultValue = "5") Integer pageSize) 
+      let postData=  {
+          fuzziness:'fuzziness',
+          keyword: this.queryParam.content,
+        }
+      postWithQuery(
+        "/api/es/textContent/esPage",
+        {
+          pageNumber: 0,
+          pageSize: 10,
+          pageNum: 0,
+        },
+        postData
+      ).then(res=> {
+        console.log(res);
+        // res.Data
+        this.tableData = res.Data||res.content;
         this.forTableData();
       });
     },

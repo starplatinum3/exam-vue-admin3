@@ -53,7 +53,7 @@
       <QuestionShow :qType="questionShow.qType" :question="questionShow.question" :qLoading="questionShow.loading"/>
     </el-dialog> -->
 
-    输入 待解析的文字
+    输入 待解析的文字(标红的说明是重复的)
     <!-- :rows="8" -->
     <!--    v-model="allQues"-->
     <!--    v-html="allQues"-->
@@ -114,7 +114,8 @@
 <!--      width="1400"-->
 <!--      width="1800"-->
 <!--      width="1600"-->
-      <Markdown width="1500" autoSave @on-save="handleOnSave" @on-ready="onReadyMarkdown" v-model="allQues"></Markdown>
+      <Markdown width="1500" autoSave @on-save="handleOnSave" @on-ready="onReadyMarkdown"
+       v-model="allQues"></Markdown>
 <!--      @on-ready="onReadyMarkdown"-->
 <!--      isPreview="true"-->
       <Markdown  isPreview class="topMarkDown"  v-model="errorContent"></Markdown>
@@ -135,6 +136,7 @@
   // wysiwyg-editor
 
   import Markdown from 'vue-meditor'
+  // import Markdown from 'vue-meditor' v-model="errorContent" 不会变啊
 
   // WysiwygEditor
 
@@ -304,6 +306,7 @@
         this.parsedQuesList = res
         // this.parsedQuesList.
         this.errorContent = this.allQues
+        let that=this
         for (let o of this.parsedQuesList) {
           // shortTitle
           let parsedDataTrimed = o.title.trim()
@@ -336,14 +339,15 @@
               console.log('现在解析的')
               console.log(parsedDataTrimed)
             // this.$message(`数据库里面有一样的题目了  ${shortTitleDbTrimed}`)
-              this.errorHappen = true
+            that.errorHappen = true
               // this.allQues=this.allQues.replace(shortTitleDbTrimed,
               //   '<span style=\'color: red;\' >' + shortTitleDbTrimed + '</span>')
-              this.errorContent = this.errorContent.replace(shortTitleDbTrimed,
+              that.errorContent = that.errorContent.replace(shortTitleDbTrimed,
                 '<span style=\'color: red;\' >' + shortTitleDbTrimed + '</span>')
 
-                console.log(  "this.errorContent ");
-                console.log(  this.errorContent );
+                console.log(  "that.errorContent ");
+                console.log(  that.errorContent );
+                // that.allQues=  that.errorContent
             }
           }
 
@@ -360,15 +364,16 @@
     position: relative;
   }
   .topMarkDown{
-    visibility: hidden;
+    /* visibility: hidden; */
     position: absolute;
     /*top: 0;*/
     /*top: 20px;*/
     top: 40px;
     /*left: ;*/
     right: 0;
-    /*width: 50%;*/
-    width: 40%;
+    width: 50%;
+    /* width: 40%; */
+    /* z-index: 100; */
   }
   .errorHtmlContent {
     /*margin-top: 8px;*/
