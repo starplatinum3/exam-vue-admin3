@@ -981,3 +981,8 @@ export default {
   border: none; */
 }
 </style>
+<style>
+/* .el-dialog__body {
+ height:
+} */
+</style>

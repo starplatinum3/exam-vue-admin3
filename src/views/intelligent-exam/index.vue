@@ -149,8 +149,10 @@ export default {
         // chapters: [1,4],
         chapters: [1, 3],
         choiceNum: 6,
-        fillingNum: 3,
-        answerNum: 3,
+        // fillingNum: 3,
+        // answerNum: 3,
+        fillingNum: 0,
+        answerNum: 0,
         difficulty: 0,
       },
       queryParam: {
