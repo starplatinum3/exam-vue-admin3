@@ -73,7 +73,8 @@ import "codemirror/theme/monokai.css"; // 主题
 export default {
   props:{
     // data:"{}",
-    data:""
+    data:"",
+    doFake:false,
   },
   data() {
     return {
@@ -190,6 +191,150 @@ export default {
           ],
         },
       ]
+
+      let fake3Data={
+  "depth": 0,
+  "label": "0-0",
+  "status": 1,
+  "children": [
+    {
+      "depth": 1,
+      "label": "1-0-1",
+      "children": [
+        {
+          "depth": 2,
+          "label": "2-0-2",
+          "x": 432,
+          "y": 0,
+          "style": {
+            "fill": "#c6e5ff",
+            "stroke": "#6b9bfa"
+          },
+          "labelCfg": {
+            "offset": 10,
+            "position": "right",
+            "style": {
+              "fill": "#2c3e50"
+            }
+          }
+        },
+         {
+          "depth": 2,
+          "label": "2-0-2",
+          "x": 432,
+          "y": 0,
+          "style": {
+            "fill": "#c6e5ff",
+            "stroke": "#6b9bfa"
+          },
+          "labelCfg": {
+            "offset": 10,
+            "position": "right",
+            "style": {
+              "fill": "#2c3e50"
+            }
+          }
+        },
+        {
+          "depth": 2,
+          "label": "2-1-3",
+          "x": 432,
+          "y": 36,
+          "style": {
+            "fill": "#c6e5ff",
+            "stroke": "#6b9bfa"
+          },
+          "labelCfg": {
+            "offset": 10,
+            "position": "right",
+            "style": {
+              "fill": "#2c3e50"
+            }
+          }
+        }
+      ],
+      "x": 216,
+      "y": 18,
+      "style": {
+        "fill": "#c6e5ff",
+        "stroke": "#6b9bfa"
+      },
+      "labelCfg": {
+        "offset": 10,
+        "position": "left",
+        "style": {
+          "fill": "#2c3e50"
+        }
+      }
+    },
+    {
+      "depth": 1,
+      "label": "1-1-4",
+      "children": [
+        {
+          "depth": 2,
+          "label": "2-0-5",
+          "x": 432,
+          "y": 72,
+          "style": {
+            "fill": "#c6e5ff",
+            "stroke": "#6b9bfa"
+          },
+          "labelCfg": {
+            "offset": 10,
+            "position": "right",
+            "style": {
+              "fill": "#2c3e50"
+            }
+          }
+        },
+        {
+          "depth": 2,
+          "label": "2-1-6",
+          "x": 432,
+          "y": 108,
+          "style": {
+            "fill": "#c6e5ff",
+            "stroke": "#6b9bfa"
+          },
+          "labelCfg": {
+            "offset": 10,
+            "position": "right",
+            "style": {
+              "fill": "#2c3e50"
+            }
+          }
+        }
+      ],
+      "x": 216,
+      "y": 90,
+      "style": {
+        "fill": "#c6e5ff",
+        "stroke": "#6b9bfa"
+      },
+      "labelCfg": {
+        "offset": 10,
+        "position": "left",
+        "style": {
+          "fill": "#2c3e50"
+        }
+      }
+    }
+  ],
+  "x": 0,
+  "y": 54,
+  "style": {
+    "fill": "#c6e5ff",
+    "stroke": "#6b9bfa"
+  },
+  "labelCfg": {
+    "offset": 10,
+    "position": "left",
+    "style": {
+      "fill": "#2c3e50"
+    }
+  }
+}
       let treeDataOfDepth={
     "depth": 0,
     "label": "0-0",
@@ -318,10 +463,11 @@ export default {
 }
 // this.JsonCodeMirrorData=treeDataOfDepth
 
-    if(!this.data||this.data=="{}"||this.data==""){
+    if(!this.data||this.data=="{}"||this.data==""||this.doFake){
       // this.data="{}"
       // this.data=  JSON.stringify(this.JsonCodeMirrorData)
-      this.JsonCodeMirrorData=treeDataOfDepth
+      this.JsonCodeMirrorData=  fake3Data
+      // this.JsonCodeMirrorData=treeDataOfDepth
       this.mode="g6Tree"
       this.graph=   G6Util.showChartG6Tree("container",this.JsonCodeMirrorData)
 
@@ -905,5 +1051,8 @@ this.graph=   G6Util.showChartG6Tree("container",treeDataToshow)
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono,
     DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   margin-left: 10px;
+}
+#container{
+ z-index:1000;
 }
 </style>

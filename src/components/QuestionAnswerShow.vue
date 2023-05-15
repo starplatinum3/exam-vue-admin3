@@ -134,8 +134,10 @@ https://blog.csdn.net/qq_35462323/article/details/119276258 -->
       <!-- lookQuestionDrawIoRightAns -->
 
       <el-button type="" @click="lookQuestionDrawIoRightAns"  v-if="shouldShowDrawIo"
-        >lookQuestionDrawIoRightAns</el-button
-      >
+        >lookQuestionDrawIoRightAns</el-button  >
+
+      
+      <el-button type="" @click="g6TreeShow">查看树状图</el-button>
 
       <el-button type="" @click="toSetDrawPageG6">去设计流程图</el-button>
       <el-button type=""
@@ -147,6 +149,43 @@ https://blog.csdn.net/qq_35462323/article/details/119276258 -->
       </el-dialog>
     </div>
     <div v-else></div>
+
+    <el-dialog
+      top="10px"
+      class="dialogG6Editor"
+      :visible.sync="richEditor.dialogVisibleEditorG6"
+      append-to-body
+      :close-on-click-modal="false"
+      width="1300px"
+      height="1200px"
+      :show-close="false"
+      center
+    >
+      <G6Editor @exportData="exportData" :data="answer.drawIo" mode="edit">
+      </G6Editor>
+    </el-dialog>
+
+    <el-dialog
+      top="10px"
+      class="dialogG6Editor"
+      :visible.sync="dialogVisibleEditorG6Code"
+      append-to-body
+      :close-on-click-modal="false"
+      width="1300px"
+      height="1200px"
+      :show-close="false"
+      center
+    >
+   
+      <G6Tree  
+      style="z-index:1000;" @onClose="onCloseG6Tree" 
+      :doFake="true"
+      
+      @onCloseNotSave="onCloseNotSaveG6Tree" 
+      @exportData="exportData" :data="answer.drawIo"></G6Tree>
+    </el-dialog>
+
+
   </div>
 </template>
 
@@ -156,17 +195,31 @@ import DrawIo from "@/views/DrawIo";
 import axios from "axios";
 // import common from '@/utils/common'
 import common from "@/utils/Common";
-
+import G6Editor from "@/components/G6Editor/index";
+import eventBus from "@/utils/eventBus";
+import G6Tree from "@/components/G6Tree";
 export default {
   name: "QuestionShow",
   components: {
     DrawIo,
+    G6Editor ,
+    G6Tree,
   },
   data() {
     return {
+      dialogVisibleEditorG6Code:false,
       shouldShowDrawIo: true,
       drawIoShowing: false,
       questionDrawIoShowing: false,
+      richEditor: {
+        dialogVisibleEditor: false,
+        dialogVisible: false,
+        object: null,
+        parameterName: "",
+        instance: null,
+        dialogVisibleEditorG6: false,
+      },
+
     };
   },
   props: {
@@ -198,8 +251,85 @@ export default {
     console.log(this.answer);
 
     this.drawIoSetUp();
+    this.G6EditorInit()
   },
   methods: {
+    g6TreeShow(){
+
+      this.dialogVisibleEditorG6Code =true
+    },
+    onCloseG6Tree(JsonCodeMirrorVal){
+      // this.$emit('onClose',JsonCodeMirrorVal)
+
+      console.log("JsonCodeMirrorVal onCloseG6Tree");
+      console.log(JsonCodeMirrorVal);
+      this.form.g6Tree=JsonCodeMirrorVal
+      this.dialogVisibleEditorG6Code=false
+    },
+    onCloseNotSaveG6Tree(JsonCodeMirrorVal){
+      this.dialogVisibleEditorG6Code=false
+    },
+
+  exportData(data) {
+      console.log(data);
+    },
+    onClose() {
+      // onClose
+      // onClose
+      this.richEditor.dialogVisibleEditor = false;
+    },
+
+    exportData(data) {
+      // this.
+      this.$emit("exportData", data);
+    },
+    G6EditorInit(){
+      eventBus.$on("exportData", (data) => {
+      console.log("data exportData emit");
+      console.log(data);
+    });
+    // onCloseNotSave
+    eventBus.$on("onCloseNotSave", (data) => {
+      this.richEditor.dialogVisibleEditorG6 = false;
+    });
+    eventBus.$on("onClose", (data) => {
+      console.log("data onClose emit");
+      console.log(data);
+      this.richEditor.dialogVisibleEditorG6 = false;
+      // let questionId = this.$route.query?.question_id;
+      let questionId = this.form.id;
+
+      // this.form.questionId
+      // node_draw
+      let qu = {
+        id: 145,
+        questionType: 5,
+        subjectId: 5,
+        title: "drawio",
+        gradeLevel: 2,
+        items: [],
+        analyze: "无",
+        correctArray: null,
+        correct: "drawio",
+        score: 1,
+        difficult: 3,
+        itemOrder: null,
+        videoLink: null,
+        createUserId: null,
+      };
+
+      let drawObj = {};
+      let drawObjContent = data;
+      questionDrawApi
+        .saveDrawOfQuestion(drawObj, this.$message, questionId, drawObjContent)
+        .then((re) => {
+          console.log("re");
+          console.log(re);
+          // this.form.title = re.response;
+          // this.richEditor.dialogVisibleEditor = false;
+        });
+    });
+    },
     toSetDrawPageG6() {
 
 this.richEditor.dialogVisibleEditorG6 = true;
