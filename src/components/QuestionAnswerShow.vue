@@ -137,6 +137,7 @@ https://blog.csdn.net/qq_35462323/article/details/119276258 -->
         >lookQuestionDrawIoRightAns</el-button
       >
 
+      <el-button type="" @click="toSetDrawPageG6">去设计流程图</el-button>
       <el-button type=""
       v-if="shouldShowDrawIo"
        @click="lookDrawIo">lookDrawIo</el-button>
@@ -199,6 +200,11 @@ export default {
     this.drawIoSetUp();
   },
   methods: {
+    toSetDrawPageG6() {
+
+this.richEditor.dialogVisibleEditorG6 = true;
+},
+
     drawIoSetUp() {
       let rightAnsDrawIo = this.question.drawIo;
       console.log("rightAnsDrawIo");

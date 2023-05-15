@@ -19,6 +19,8 @@ select_by_con"""
 
 searchWord="""
 import G6Editor from "@/components/G6Editor/index";"""
+searchWord="""
+QuestionAnswerShow"""
 
 
 dir=r"."
